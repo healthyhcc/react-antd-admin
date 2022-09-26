@@ -121,7 +121,10 @@ const Login: React.FC = (props: any) => {
     const dataJSON: any = localStorage.getItem("user");
     const data = dataJSON ? JSON.parse(dataJSON) : null;
     if (location.search.slice(1) === "isLogin" && !!data?.token) {
-      const { last_login_time = '1970-01-01 00:00:00', last_login_ip = '127.0.0.1' } = props?.user?.userInfo || {};
+      const {
+        last_login_time = "1970-01-01 00:00:00",
+        last_login_ip = "127.0.0.1",
+      } = props?.user?.userInfo || {};
 
       navigate("/home");
 

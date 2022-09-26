@@ -64,7 +64,11 @@ const Forget: React.FC = () => {
       });
   };
   const handleAuthEmailCode = () => {
-    if (!validateForm.email || !registered || !EmailRegexp.test(validateForm.email)) {
+    if (
+      !validateForm.email ||
+      !registered ||
+      !EmailRegexp.test(validateForm.email)
+    ) {
       return message.error("请输入正确的邮箱");
     }
     const params = { email: validateForm.email };
