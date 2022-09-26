@@ -14,6 +14,7 @@ const Login: React.FC = (props: any) => {
   const navigate = useNavigate();
   const location = useLocation();
   const [loading, setLoading] = useState(false);
+  const [registered, setRegistered] = useState(false);
   const [overlay, setOverlay] = useState({ isLogin: true, step: 100 });
   const [loginForm, setLoginForm] = useState<any>({ email: "", password: "" });
   const [registerForm, setRegisterForm] = useState<any>({
@@ -79,6 +80,7 @@ const Login: React.FC = (props: any) => {
       .then((response: any) => {
         const { result } = response;
         if (result.length !== 0) {
+          setRegistered(true);
           return message.error("该邮箱已注册，请登录");
         }
       })
@@ -87,6 +89,9 @@ const Login: React.FC = (props: any) => {
       });
   };
   const handleRegister = () => {
+    if (registered) {
+      return message.error("该邮箱已注册，请登录");
+    }
     const params = JSON.parse(JSON.stringify(registerForm));
     params.password = CryptoJS.MD5(params.password).toString();
 
@@ -115,7 +120,7 @@ const Login: React.FC = (props: any) => {
     const dataJSON: any = localStorage.getItem("user");
     const data = dataJSON ? JSON.parse(dataJSON) : null;
     if (location.search.slice(1) === "isLogin" && !!data?.token) {
-      const { last_login_time, last_login_ip } = props?.user?.userInfo;
+      const { last_login_time = '1970-01-01 00:00:00', last_login_ip = '127.0.0.1' } = props?.user?.userInfo || {};
 
       navigate("/home");
 
@@ -160,11 +165,13 @@ const Login: React.FC = (props: any) => {
                     message: "邮箱格式不正确!",
                   },
                 ]}
-                onChange={(event: any) =>
-                  handleInputChange(event, "login", "email")
-                }
               >
-                <Input autoComplete="off" />
+                <Input
+                  autoComplete="off"
+                  onChange={(event: any) =>
+                    handleInputChange(event, "login", "email")
+                  }
+                />
               </Form.Item>
               <Form.Item
                 label="密码"
@@ -180,11 +187,12 @@ const Login: React.FC = (props: any) => {
                     message: "密码长度不能少于六位!",
                   },
                 ]}
-                onChange={(event: any) =>
-                  handleInputChange(event, "login", "password")
-                }
               >
-                <Input.Password />
+                <Input.Password
+                  onChange={(event: any) =>
+                    handleInputChange(event, "login", "password")
+                  }
+                />
               </Form.Item>
               <Link to="/forget" className="mx-0 my-1 text-black">
                 忘记密码
@@ -226,12 +234,14 @@ const Login: React.FC = (props: any) => {
                     message: "邮箱格式不正确!",
                   },
                 ]}
-                onChange={(event: any) =>
-                  handleInputChange(event, "register", "email")
-                }
-                onBlur={handleAuthRegistered}
               >
-                <Input autoComplete="off" />
+                <Input
+                  autoComplete="off"
+                  onChange={(event: any) =>
+                    handleInputChange(event, "register", "email")
+                  }
+                  onBlur={handleAuthRegistered}
+                />
               </Form.Item>
               <Form.Item
                 label="密码"
@@ -247,11 +257,12 @@ const Login: React.FC = (props: any) => {
                     message: "密码长度不能小于六位!",
                   },
                 ]}
-                onChange={(event: any) =>
-                  handleInputChange(event, "register", "password")
-                }
               >
-                <Input.Password />
+                <Input.Password
+                  onChange={(event: any) =>
+                    handleInputChange(event, "register", "password")
+                  }
+                />
               </Form.Item>
               <Form.Item wrapperCol={{ offset: 0, span: 16 }}>
                 <Button

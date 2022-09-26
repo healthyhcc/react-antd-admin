@@ -154,12 +154,13 @@ const Forget: React.FC = () => {
                     message: "邮箱格式不正确!",
                   },
                 ]}
-                onChange={(event: any) =>
-                  handleInputChange(event, "validate", "email")
-                }
-                onBlur={handleValidateEmail}
               >
-                <Input />
+                <Input
+                  onChange={(event: any) =>
+                    handleInputChange(event, "validate", "email")
+                  }
+                  onBlur={handleValidateEmail}
+                />
               </Form.Item>
               <Form.Item
                 label="验证码"
@@ -171,12 +172,14 @@ const Forget: React.FC = () => {
                     message: "验证码不能为空!",
                   },
                 ]}
-                onChange={(event: any) =>
-                  handleInputChange(event, "validate", "code")
-                }
               >
                 <div className="flex">
-                  <Input className="mr-0" />
+                  <Input
+                    className="mr-0"
+                    onChange={(event: any) =>
+                      handleInputChange(event, "validate", "code")
+                    }
+                  />
                   <Button
                     type="primary"
                     disabled={disabled}
@@ -225,11 +228,12 @@ const Forget: React.FC = () => {
                     message: "密码长度不能少于六位!",
                   },
                 ]}
-                onChange={(event: any) =>
-                  handleInputChange(event, "reset", "password")
-                }
               >
-                <Input.Password />
+                <Input.Password
+                  onChange={(event: any) =>
+                    handleInputChange(event, "reset", "password")
+                  }
+                />
               </Form.Item>
               <Form.Item
                 label="密码"
@@ -247,11 +251,12 @@ const Forget: React.FC = () => {
                         : Promise.reject("两次输入的密码不一致!"),
                   },
                 ]}
-                onChange={(event: any) =>
-                  handleInputChange(event, "reset", "repeatPassword")
-                }
               >
-                <Input.Password />
+                <Input.Password
+                  onChange={(event: any) =>
+                    handleInputChange(event, "reset", "repeatPassword")
+                  }
+                />
               </Form.Item>
               <Form.Item wrapperCol={{ offset: 0, span: 16 }}>
                 <Button type="primary" htmlType="submit">
