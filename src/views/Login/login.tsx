@@ -83,6 +83,7 @@ const Login: React.FC = (props: any) => {
           setRegistered(true);
           return message.error("该邮箱已注册，请登录");
         }
+        setRegistered(false);
       })
       .catch((error) => {
         console.log(error);

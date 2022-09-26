@@ -18,6 +18,7 @@ const Forget: React.FC = () => {
     password: "",
     repeatPassword: "",
   });
+  const [registered, setRegistered] = useState(true);
   const [codeText, setCodeText] = useState("获取验证码");
   const [disabled, setDisabled] = useState(false);
   const [authCode, setAuthCode] = useState(0);
@@ -54,6 +55,7 @@ const Forget: React.FC = () => {
       .then((response: any) => {
         const { result } = response;
         if (result.length === 0) {
+          setRegistered(false);
           return message.error("邮箱还未注册，请先注册");
         }
       })
@@ -62,7 +64,7 @@ const Forget: React.FC = () => {
       });
   };
   const handleAuthEmailCode = () => {
-    if (!validateForm.email || !EmailRegexp.test(validateForm.email)) {
+    if (!validateForm.email || !registered || !EmailRegexp.test(validateForm.email)) {
       return message.error("请输入正确的邮箱");
     }
     const params = { email: validateForm.email };
