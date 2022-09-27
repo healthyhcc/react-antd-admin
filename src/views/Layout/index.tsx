@@ -1,17 +1,18 @@
 import React, { Suspense } from "react";
 import { useLocation, Outlet } from "react-router-dom";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
-import { connect } from "react-redux";
+import { useSelector } from "react-redux";
 import { Layout } from "antd";
 import Sider from "./Sider";
 import Header from "./Header";
 import Tags from "@/components/Tags";
 const { Content } = Layout;
 
-const LayoutPage: React.FC = (props: any) => {
+const LayoutPage: React.FC = () => {
   const location = useLocation();
   const { pathname } = location;
-  const { settings } = props;
+  const state: any = useSelector((state) => state);
+  const { settings } = state;
 
   return (
     <Layout style={{ display: "flex", width: "100%" }}>
@@ -50,6 +51,4 @@ const LayoutPage: React.FC = (props: any) => {
   );
 };
 
-const mapStateToProps = (state: object) => state;
-
-export default connect(mapStateToProps)(LayoutPage);
+export default LayoutPage;

@@ -1,16 +1,17 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
-import { connect } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { Spin, Form, Input, Button, message } from "antd";
 import { LoadingOutlined } from "@ant-design/icons";
 import CryptoJS from "crypto-js";
 import { useRequest } from "ahooks";
 import { userLogin, userRegister, findEmail } from "@/api/login";
-import { setToken, setUserInfo } from "@/store/actions/user";
+import { setToken, setUserInfo } from "@/store/store";
 import { EmailRegexp, formatGMTTime } from "@/utils";
 
-const Login: React.FC = (props: any) => {
-  const { setToken, setUserInfo } = props;
+const Login: React.FC = () => {
+  const state: any = useSelector(state => state);
+  const userDispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
   const [loading, setLoading] = useState(false);
@@ -60,8 +61,10 @@ const Login: React.FC = (props: any) => {
       .then((response: any) => {
         const { token, userInfo } = response;
 
-        setToken(token);
-        setUserInfo(userInfo);
+        const tokenAction = setToken(token);
+        const userInfoAction = setUserInfo(userInfo);
+        userDispatch(tokenAction);
+        userDispatch(userInfoAction);
         localStorage.setItem("user", JSON.stringify({ token, userInfo }));
 
         // navigate("/home");
@@ -124,7 +127,7 @@ const Login: React.FC = (props: any) => {
       const {
         last_login_time = "1970-01-01 00:00:00",
         last_login_ip = "127.0.0.1",
-      } = props?.user?.userInfo || {};
+      } = state?.user?.userInfo || {};
 
       navigate("/home");
 
@@ -324,14 +327,4 @@ const Login: React.FC = (props: any) => {
   );
 };
 
-const mapStateToProps = (state: object) => state;
-const mapDispatchToProps = (dispatch: any) => ({
-  setToken: (data: string) => {
-    dispatch(setToken(data));
-  },
-  setUserInfo: (data: object) => {
-    dispatch(setUserInfo(data));
-  },
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(Login);
+export default Login;

@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { MenuFoldOutlined, MenuUnfoldOutlined } from "@ant-design/icons";
-import { setCollapse } from "@/store/actions/settings";
+// import { setCollapse } from "@/store/actions/settings";
 
 const Hamburger: React.FC = (props: any) => {
   const { settings, setCollapse } = props;

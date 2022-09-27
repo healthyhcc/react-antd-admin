@@ -1,13 +1,15 @@
 import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { connect } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { useIntl } from "react-intl";
 import { Tag, Tooltip, Space, Button } from "antd";
 import { CloseOutlined } from "@ant-design/icons";
-import { closeTag, closeOtherTag, closeAllTag } from "@/store/actions/tag";
+import { closeTag, closeOtherTag, closeAllTag } from "@/store/store";
 
-const TagView: React.FC = (props: any) => {
-  const { tag, closeTag, closeOtherTag, closeAllTag } = props;
+const Tags: React.FC = () => {
+  const state: any = useSelector(state => state);
+  const tagsDispatch = useDispatch();
+  const { tags } = state;
   const location = useLocation();
   const navigate = useNavigate();
   const { pathname } = location;
@@ -19,15 +21,15 @@ const TagView: React.FC = (props: any) => {
     navigate(item?.key);
   };
   const onCloseTag = (item: any) => {
-    const tagLength = tag.length;
-    if (pathname === item.key && item.key === tag[tagLength - 1].key) {
-      navigate(tag[tagLength - 2].key);
+    const tagLength = tags.length;
+    if (pathname === item.key && item.key === tags[tagLength - 1].key) {
+      navigate(tags[tagLength - 2].key);
     }
-    if (pathname === item.key && item.key !== tag[tagLength - 1].key) {
-      const tagIndex = tag.findIndex(
+    if (pathname === item.key && item.key !== tags[tagLength - 1].key) {
+      const tagIndex = tags.findIndex(
         (tagItem: any) => tagItem.key === item.key
       );
-      navigate(tag[tagIndex + 1].key);
+      navigate(tags[tagIndex + 1].key);
     }
     closeTag(item);
   };
@@ -35,11 +37,12 @@ const TagView: React.FC = (props: any) => {
     closeOtherTag(item);
   };
   const onCloseAllTag = () => {
-    closeAllTag();
+    const tagAction = closeAllTag();
+    tagsDispatch(tagAction);
   };
   return (
     <div className="w-full pl-4 py-2" style={{ backgroundColor: "#fafafa" }}>
-      {tag.map((item: any) => (
+      {tags.map((item: any) => (
         <Tag
           key={item?.key}
           closable={item?.key !== "/home"}
@@ -71,17 +74,5 @@ const TagView: React.FC = (props: any) => {
   );
 };
 
-const mapStateToProps = (state: object) => state;
-const mapDispatchToProps = (dispatch: any) => ({
-  closeTag: (data: object) => {
-    dispatch(closeTag(data));
-  },
-  closeOtherTag: (data: object) => {
-    dispatch(closeOtherTag(data));
-  },
-  closeAllTag: () => {
-    dispatch(closeAllTag());
-  },
-});
 
-export default connect(mapStateToProps, mapDispatchToProps)(TagView);
+export default Tags;

@@ -1,13 +1,15 @@
 import React from "react";
-import { connect } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { useIntl } from "react-intl";
 import { Card, Select, Image, Empty } from "antd";
-import { setUserInfo } from "@/store/actions/user";
+import { setUserInfo } from "@/store/store";
 import logo from "@/assets/logo.svg";
 import vite from "@/assets/vite.svg";
 
-const Authority: React.FC = (props: any) => {
-  const { user, setUserInfo } = props;
+const Authority: React.FC = () => {
+  const state: any = useSelector((state) => state);
+  const userDispatch = useDispatch();
+  const { user } = state;
   const { userInfo } = user;
   const roleMap: any = {
     1: "authority.options_role_user",
@@ -19,7 +21,8 @@ const Authority: React.FC = (props: any) => {
     return intl.formatMessage({ id });
   };
   const onSelectChange = (value: number) => {
-    setUserInfo({ ...userInfo, role: value });
+    const userInfoAction = setUserInfo({ ...userInfo, role: value });
+    userDispatch(userInfoAction);
   };
   const roleOptions = [
     { label: "authority.options_role_user", value: 1 },
@@ -65,10 +68,4 @@ const Authority: React.FC = (props: any) => {
   );
 };
 
-const mapStateToProps = (state: object) => state;
-const mapDispatchToProps = (dispatch: any) => ({
-  setUserInfo: (data: object) => {
-    dispatch(setUserInfo(data));
-  },
-});
-export default connect(mapStateToProps, mapDispatchToProps)(Authority);
+export default Authority;

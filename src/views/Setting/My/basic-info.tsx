@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { connect } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import {
   Spin,
   Card,
@@ -15,7 +15,7 @@ import { useIntl } from "react-intl";
 import { useRequest } from "ahooks";
 import Uploading from "@/components/Uploading";
 import { getUserDetail, updateUser } from "@/api/user";
-import { setUserInfo } from "@/store/actions/user";
+import { setUserInfo } from "@/store/store";
 import { EmailRegexp, PhoneRegexp } from "@/utils";
 import { SERVER_ADDRESS } from "@/utils/config";
 
@@ -33,9 +33,10 @@ type FileType = {
   type: string;
   size: number;
 };
-const BasicInfo: React.FC = (props: any) => {
-  const { user, setUserInfo } = props;
-  const { userInfo } = user;
+const BasicInfo: React.FC = () => {
+  const state: any = useSelector((state) => state);
+  const { userInfo } = state;
+  const userDispatch = useDispatch();
   const [uploading, setUploading] = useState(false);
   const [avatarUrl, setAvatarUrl] = useState("");
   const formRef = useRef<any>();
@@ -104,11 +105,12 @@ const BasicInfo: React.FC = (props: any) => {
     params["avatar"] = avatarUrl;
     runUpdateUser(params)
       .then(() => {
-        setUserInfo({
+        const action = setUserInfo({
           ...userInfo,
           username: params["username"],
           avatar: params["avatar"],
         });
+        userDispatch(action);
         message.success(formatMessage("message.edit.success"));
       })
       .catch((error) => {
@@ -256,11 +258,4 @@ const BasicInfo: React.FC = (props: any) => {
   );
 };
 
-const mapStateToProps = (state: object) => state;
-const mapDispatchToProps = (dispatch: any) => ({
-  setUserInfo: (data: object) => {
-    dispatch(setUserInfo(data));
-  },
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(BasicInfo);
+export default BasicInfo;

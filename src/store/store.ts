@@ -1,11 +1,20 @@
-import { createStore, applyMiddleware, compose } from "redux";
-import thunk from "redux-thunk";
-import reducers from "./reducers/index";
+import { configureStore } from "@reduxjs/toolkit";
+import userReducer from "@/store/reducers/userReducer";
+import settingsReducer from "@/store/reducers/settingsReducer";
+import tagsReducer from "@/store/reducers/tagsReducer";
 
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
-  ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({})
-  : compose;
+const store = configureStore({
+  reducer: {
+    user: userReducer.reducer,
+    settings: settingsReducer.reducer,
+    tags: tagsReducer.reducer,
+  },
+  devTools: true,
+});
 
-const store = createStore(reducers, composeEnhancers(applyMiddleware(thunk)));
-
+export const { setToken, setUserInfo } = userReducer.actions;
+export const { setCollapse, setIntl, setFixedHeader, setShowLogo, setShowTag } =
+  settingsReducer.actions;
+export const { addTag, closeTag, closeOtherTag, closeAllTag } =
+  tagsReducer.actions;
 export default store;

@@ -2,11 +2,11 @@ import React from "react";
 import { connect } from "react-redux";
 import { Drawer, Switch, Space, Button, Divider } from "antd";
 import { useIntl } from "react-intl";
-import {
-  setFixedHeader,
-  setShowLogo,
-  setShowTag,
-} from "@/store/actions/settings";
+// import {
+//   setFixedHeader,
+//   setShowLogo,
+//   setShowTag,
+// } from "@/store/actions/settings";
 
 const DrawerSettings = (props: any) => {
   const {

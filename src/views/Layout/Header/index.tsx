@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { connect } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import {
   Layout,
   Menu,
@@ -20,11 +20,13 @@ import FullScreen from "@/components/FullScreen";
 import DrawerSettings from "@/components/DrawerSettings";
 import Hamburger from "@/components/Hamburger";
 import BreadCrumb from "@/components/BreadCrumb";
-import { setIntl } from "@/store/actions/settings";
+import { setIntl } from "@/store/store";
 import { SERVER_ADDRESS } from "@/utils/config";
 
-const Header: React.FC = (props: any) => {
-  const { user, settings, setIntl } = props;
+const Header: React.FC = () => {
+  const state: any = useSelector((state) => state);
+  const settingsDispatch = useDispatch();
+  const { user, settings } = state;
   const { userInfo } = user;
   const { collapsed, fixedHeader } = settings;
   const [drawerVisible, setDrawerVisible] = useState<any>(false);
@@ -34,13 +36,17 @@ const Header: React.FC = (props: any) => {
   const formatMessage = (id: string): string => {
     return intl.formatMessage({ id });
   };
+  const handleIntl = (event: any) => {
+    const intlAction = setIntl(event.key);
+    settingsDispatch(intlAction);
+  };
   const handleLogout = () => {
     localStorage.clear();
     message.success(formatMessage("header.logout_success"));
   };
   const intlMenu = (
     <Menu
-      onClick={(event: any) => setIntl(event.key)}
+      onClick={handleIntl}
       items={[
         {
           key: "en",
@@ -181,11 +187,4 @@ const Header: React.FC = (props: any) => {
   );
 };
 
-const mapStateToProps = (state: object) => state;
-const mapDispatchToProps = (dispatch: any) => ({
-  setIntl: (data: string) => {
-    dispatch(setIntl(data));
-  },
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(Header);
+export default Header;

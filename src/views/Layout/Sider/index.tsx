@@ -1,20 +1,21 @@
 import React, { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { connect } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { useIntl } from "react-intl";
 import DocumentTitle from "react-document-title";
 import { Layout, Menu } from "antd";
 import Logo from "@/components/Logo";
 import menuList from "@/router/menuList";
-import { setCollapse } from "@/store/actions/settings";
-import { addTag } from "@/store/actions/tag";
+import { setCollapse, addTag } from "@/store/store";
 import { formatRole } from "@/utils";
 
 type ArrayObjectType = Array<object>;
-const Sider: React.FC = (props: any) => {
+const Sider: React.FC = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const { user, settings, setCollapse, addTag } = props;
+  const state: any = useSelector((state) => state);
+  const settingsDispatch = useDispatch();
+  const { user, settings } = state;
   const { pathname } = location;
   const { userInfo } = user;
   const { collapsed } = settings;
@@ -26,7 +27,8 @@ const Sider: React.FC = (props: any) => {
     return intl.formatMessage({ id });
   };
   const onCollapse = (collapsed: boolean) => {
-    setCollapse(collapsed);
+    const collapseAction = setCollapse(collapsed);
+    settingsDispatch(collapseAction);
   };
   const handleAuthMenuItem = (item: any) => {
     const { roles } = item;
@@ -86,7 +88,8 @@ const Sider: React.FC = (props: any) => {
     const { key } = data;
     handleFindMenuItemByKey(menuList, key);
     handleDocumentTitle(menuList, key);
-    addTag({ label: menuItemByKey?.label?.props?.id, key });
+    const tagsAction = addTag({ label: menuItemByKey?.label?.props?.id, key });
+    settingsDispatch(tagsAction);
     navigate(key);
   };
   useEffect(() => {
@@ -125,14 +128,4 @@ const Sider: React.FC = (props: any) => {
   );
 };
 
-const mapStateToProps = (state: object) => state;
-const mapDispatchToProps = (dispatch: any) => ({
-  setCollapse: (data: boolean) => {
-    dispatch(setCollapse(data));
-  },
-  addTag: (data: object) => {
-    dispatch(addTag(data));
-  },
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(Sider);
+export default Sider;

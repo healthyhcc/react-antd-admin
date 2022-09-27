@@ -1,5 +1,5 @@
 import React from "react";
-import { connect } from "react-redux";
+import { useSelector } from "react-redux";
 import { ConfigProvider } from "antd";
 import { IntlProvider } from "react-intl";
 import enUS from "antd/es/locale/en_US";
@@ -8,7 +8,8 @@ import en from "@/lang/en.json";
 import zh from "@/lang/zh.json";
 
 const Intl = (props: any) => {
-  const { settings } = props;
+  const state: any = useSelector(state => state);
+  const { settings } = state;
   const localLang = settings["intl"];
   const i18nData: any = { en, zh };
   const languageMap: any = {
@@ -29,6 +30,4 @@ const Intl = (props: any) => {
   );
 };
 
-const mapStateToProps = (state: object) => state;
-
-export default connect(mapStateToProps)(Intl);
+export default Intl;
