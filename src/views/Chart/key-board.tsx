@@ -15,7 +15,7 @@ for (let i = 0; i < 50; i++) {
 
 const KeyBoard: React.FC = (props: any) => {
   const { settings } = props;
-  const settingsIntl = settings.intl;
+  const settingsIntl = settings?.intl;
   const intl = useIntl();
   const formatMessage = (id: string): string => {
     return intl.formatMessage({ id });
@@ -28,7 +28,6 @@ const KeyBoard: React.FC = (props: any) => {
   };
   const chartOptions = {
     backgroundColor: "#08263a",
-    // 标题
     title: {
       top: 30,
       text: formatMessage("chart.keyboard_title"),
@@ -39,7 +38,6 @@ const KeyBoard: React.FC = (props: any) => {
       },
       left: "center",
     },
-    // 小工具
     tooltip: {
       trigger: "axis",
       axisPointer: {
@@ -47,7 +45,6 @@ const KeyBoard: React.FC = (props: any) => {
       },
       padding: [5, 10],
     },
-    // tab
     legend: {
       data: chartOptionsData.legend_data,
       right: "2%",
@@ -58,7 +55,6 @@ const KeyBoard: React.FC = (props: any) => {
         color: "#fff",
       },
     },
-    // 图表
     grid: {
       top: 80,
       left: "3%",
@@ -66,7 +62,6 @@ const KeyBoard: React.FC = (props: any) => {
       bottom: "10%",
       containLabel: true,
     },
-    // x轴
     xAxis: [
       {
         show: false,
@@ -93,7 +88,6 @@ const KeyBoard: React.FC = (props: any) => {
         ],
       },
     },
-    // y 轴
     yAxis: [
       {
         axisLine: {

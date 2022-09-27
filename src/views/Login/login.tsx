@@ -45,10 +45,10 @@ const Login: React.FC = (props: any) => {
   ) => {
     event.preventDefault();
     if (formType === "login") {
-      loginForm[labelName] = event.target.value;
+      loginForm[labelName] = event?.target?.value;
       setLoginForm(loginForm);
     } else {
-      registerForm[labelName] = event.target.value;
+      registerForm[labelName] = event?.target?.value;
       setRegisterForm(registerForm);
     }
   };
@@ -75,7 +75,7 @@ const Login: React.FC = (props: any) => {
       });
   };
   const handleAuthRegistered = (event: any) => {
-    const params = { email: event.target.value };
+    const params = { email: event?.target?.value };
     runFindEmail(params)
       .then((response: any) => {
         const { result } = response;
@@ -94,7 +94,7 @@ const Login: React.FC = (props: any) => {
       return message.error("该邮箱已注册，请登录");
     }
     const params = JSON.parse(JSON.stringify(registerForm));
-    params.password = CryptoJS.MD5(params.password).toString();
+    params.password = CryptoJS.MD5(params?.password).toString();
 
     runUserRegister(params)
       .then(() => {

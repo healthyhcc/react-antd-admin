@@ -27,8 +27,8 @@ const BreadCrumb: React.FC = (props: any) => {
           throw new Error("GOT IT!");
         }
         if (node.children && node.children.length > 0) {
-          for (let index = 0; index < node.children.length; index++) {
-            getNodePath(node.children[index]);
+          for (let index = 0; index < node?.children?.length; index++) {
+            getNodePath(node?.children[index]);
           }
           // 遍历完children所有节点没找到
           temporaryPath.pop();
@@ -45,7 +45,7 @@ const BreadCrumb: React.FC = (props: any) => {
     }
   };
   let pathData: any = handleBreadCrumb(menuList, pathname);
-  const formatLable = formatMessage(pathData[0].label.props.id);
+  const formatLable = formatMessage(pathData[0]?.label?.props?.id);
   if (formatLable !== homeLabel) {
     pathData = [{ label: homeLabel, key: "/home" }].concat(pathData);
   }
@@ -53,12 +53,12 @@ const BreadCrumb: React.FC = (props: any) => {
     <div id="breadcrumb" className="ml-2">
       <Breadcrumb className="h-full flex items-center ml-4 text-sm">
         {pathData.map((item: any) =>
-          item.label === homeLabel ? (
-            <Breadcrumb.Item key={item.key}>
-              <a href={`#${item.key}`}>{item.label}</a>
+          item?.label === homeLabel ? (
+            <Breadcrumb.Item key={item?.key}>
+              <a href={`#${item?.key}`}>{item?.label}</a>
             </Breadcrumb.Item>
           ) : (
-            <Breadcrumb.Item key={item.key}>{item.label}</Breadcrumb.Item>
+            <Breadcrumb.Item key={item?.key}>{item?.label}</Breadcrumb.Item>
           )
         )}
       </Breadcrumb>

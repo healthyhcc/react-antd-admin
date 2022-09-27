@@ -16,7 +16,7 @@ const TagView: React.FC = (props: any) => {
     return intl.formatMessage({ id });
   };
   const onClickTag = (item: any) => {
-    navigate(item.key);
+    navigate(item?.key);
   };
   const onCloseTag = (item: any) => {
     const tagLength = tag.length;
@@ -41,9 +41,9 @@ const TagView: React.FC = (props: any) => {
     <div className="w-full pl-4 py-2" style={{ backgroundColor: "#fafafa" }}>
       {tag.map((item: any) => (
         <Tag
-          key={item.key}
-          closable={item.key !== "/home"}
-          color={item.key === pathname ? "#1890ff" : ""}
+          key={item?.key}
+          closable={item?.key !== "/home"}
+          color={item?.key === pathname ? "#1890ff" : ""}
           closeIcon={<CloseOutlined className="align-baseline" />}
           onClose={() => onCloseTag(item)}
           className="text-sm mb-2"
@@ -62,7 +62,7 @@ const TagView: React.FC = (props: any) => {
             }
           >
             <span onClick={() => onClickTag(item)} className="cursor-pointer">
-              {formatMessage(item.label)}
+              {formatMessage(item?.label)}
             </span>
           </Tooltip>
         </Tag>

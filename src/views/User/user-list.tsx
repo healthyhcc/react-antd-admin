@@ -100,7 +100,7 @@ const UserList: React.FC = () => {
   const searchRef = useRef<any>();
   const intl = useIntl();
   const formatMessage = (id: string): string => {
-    return intl?.formatMessage({ id });
+    return intl.formatMessage({ id });
   };
   const columns: Array<object> = [
     {
@@ -196,10 +196,10 @@ const UserList: React.FC = () => {
       align: "center",
       width: "100px",
       height: "100px",
-      render: (_: string, record: UserDataType) => {
+      render: (_: any, record: UserDataType) => {
         return (
           <img
-            src={SERVER_ADDRESS + "/" + record.avatar}
+            src={SERVER_ADDRESS + "/" + record?.avatar}
             alt={formatMessage("user_list.columns_avatar_alt")}
             className="w-20 h-20"
           />
@@ -210,7 +210,7 @@ const UserList: React.FC = () => {
       title: formatMessage("user_list.columns_action"),
       key: "action",
       align: "center",
-      render: (_: string, record: UserDataType) => {
+      render: (_: any, record: UserDataType) => {
         return (
           <Fragment>
             <Button
@@ -497,7 +497,7 @@ const UserList: React.FC = () => {
                 <Button type="primary" htmlType="submit">
                   {formatMessage("user_list.button_search")}
                 </Button>
-                <Button onClick={() => searchRef.current.resetFields()}>
+                <Button onClick={() => searchRef?.current?.resetFields()}>
                   {formatMessage("user_list.button_reset")}
                 </Button>
               </Space>

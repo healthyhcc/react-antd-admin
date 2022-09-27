@@ -16,39 +16,39 @@ const initSettings = {
 const settingsData = localStorage.getItem("settings");
 const settingsState = settingsData ? JSON.parse(settingsData) : initSettings;
 export const settings = (state = settingsState, action: any) => {
-  switch (action.type) {
+  switch (action?.type) {
     case SET_COLLAPSE:
       const settingsCollapsed = {
         ...state,
-        collapsed: action.collapsed,
+        collapsed: action?.collapsed,
       };
       localStorage.setItem("settings", JSON.stringify(settingsCollapsed));
       return settingsCollapsed;
     case SET_INTL:
       const settingsIntl = {
         ...state,
-        intl: action.intl,
+        intl: action?.intl,
       };
       localStorage.setItem("settings", JSON.stringify(settingsIntl));
       return settingsIntl;
     case SET_FIXED_HEADER:
       const settingsFixedHeader = {
         ...state,
-        fixedHeader: action.fixedHeader,
+        fixedHeader: action?.fixedHeader,
       };
       localStorage.setItem("settings", JSON.stringify(settingsFixedHeader));
       return settingsFixedHeader;
     case SET_SHOW_LOGO:
       const settingsShowLogo = {
         ...state,
-        showLogo: action.showLogo,
+        showLogo: action?.showLogo,
       };
       localStorage.setItem("settings", JSON.stringify(settingsShowLogo));
       return settingsShowLogo;
     case SET_SHOW_TAG:
       const settingsShowTag = {
         ...state,
-        showTag: action.showTag,
+        showTag: action?.showTag,
       };
       localStorage.setItem("settings", JSON.stringify(settingsShowTag));
       return settingsShowTag;

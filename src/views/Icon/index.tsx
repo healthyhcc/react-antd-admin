@@ -110,21 +110,21 @@ const Icon: React.FC = () => {
     return intl.formatMessage({ id });
   };
   const handleCopyToClipboard = (item: any) => {
-    copy(`<${item.key} />`);
-    message.success(`<${item.key} />${formatMessage("icon.success_copy")}`, 1);
+    copy(`<${item?.key} />`);
+    message.success(`<${item?.key} />${formatMessage("icon.success_copy")}`, 1);
   };
 
   return (
     <Card title={formatMessage("icon.title")}>
       <ul className="flex flex-wrap overflow-hidden mx-0 my-3">
-        {icons.map((item, index) => (
+        {icons.map((item: any, index: number) => (
           <li
             key={index}
             onClick={handleCopyToClipboard.bind(this, item)}
             className="w-1/6 h-full overflow-hidden text-center justify-center list-none cursor-pointer hover:bg-slate-300"
           >
-            <span className="block mx-0 my-3 text-2xl">{item.value}</span>
-            <span className="block mb-3">{item.key}</span>
+            <span className="block mx-0 my-3 text-2xl">{item?.value}</span>
+            <span className="block mb-3">{item?.key}</span>
           </li>
         ))}
       </ul>

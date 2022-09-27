@@ -30,7 +30,7 @@ const Sider: React.FC = (props: any) => {
   };
   const handleAuthMenuItem = (item: any) => {
     const { roles } = item;
-    if (!roles || roles.includes(formatRole(userInfo.role))) {
+    if (!roles || roles.includes(formatRole(userInfo?.role))) {
       return true;
     }
     return false;
@@ -53,7 +53,7 @@ const Sider: React.FC = (props: any) => {
     menuList.forEach((item: any) => {
       if (item.children) {
         const cItem = item.children.find(
-          (child: any) => pathname.indexOf(child.key) === 0
+          (child: any) => pathname.indexOf(child?.key) === 0
         );
         if (cItem) {
           openKeysData.push(item.key);
@@ -79,14 +79,14 @@ const Sider: React.FC = (props: any) => {
   };
   const handleDocumentTitle = (menuList: ArrayObjectType, pathKey: string) => {
     handleFindMenuItemByKey(menuList, pathKey);
-    const lableId = menuItemByKey.label.props.id;
+    const lableId = menuItemByKey?.label?.props?.id;
     setDocumentTitle(formatMessage(lableId));
   };
   const handleSelectMenu = (data: any) => {
     const { key } = data;
     handleFindMenuItemByKey(menuList, key);
     handleDocumentTitle(menuList, key);
-    addTag({ label: menuItemByKey.label.props.id, key });
+    addTag({ label: menuItemByKey?.label?.props?.id, key });
     navigate(key);
   };
   useEffect(() => {
@@ -107,7 +107,7 @@ const Sider: React.FC = (props: any) => {
         onCollapse={onCollapse}
         style={{ overflow: "auto", height: "100vh" }}
       >
-        {settings.showLogo ? <Logo /> : null}
+        {settings?.showLogo ? <Logo /> : null}
         <div style={{ height: "calc(100% - 64px)" }}>
           <Menu
             mode="inline"

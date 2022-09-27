@@ -154,7 +154,7 @@ const Excel: React.FC = () => {
     setSpinning(true);
     const fileReader = new FileReader();
     fileReader.addEventListener("load", (event: any) => {
-      const list = event.target.result;
+      const list = event?.target?.result;
 
       // try parse list
       const workBook = XLSX.read(list, { type: "binary" });
@@ -186,7 +186,7 @@ const Excel: React.FC = () => {
           <Input
             className="w-1/4 mb-2 mr-4"
             placeholder={formatMessage("module.excel.placeholder")}
-            onChange={(event) => setFileName(event.target.value)}
+            onChange={(event) => setFileName(event?.target?.value)}
           />
           <Button className="mr-4" type="primary" onClick={handleExportAll}>
             {formatMessage("module.excel.button_export")}
@@ -208,7 +208,7 @@ const Excel: React.FC = () => {
           columns={columns}
           dataSource={tableData}
           pagination={false}
-          rowKey={(record: any) => `${record.id}`}
+          rowKey={(record: any) => `${record?.id}`}
         />
       </Card>
     </Spin>

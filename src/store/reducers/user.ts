@@ -14,18 +14,18 @@ const initState = {
 const userData: any = localStorage.getItem("user");
 const userState = userData ? JSON.parse(userData) : initState;
 const user = (state = userState, action: any) => {
-  switch (action.type) {
+  switch (action?.type) {
     case SET_TOKEN:
       const userToken = {
         ...state,
-        toekn: action.toekn,
+        toekn: action?.toekn,
       };
       localStorage.setItem("user", JSON.stringify(userToken));
       return userToken;
     case SET_USER_INFO:
       const userUserInfo = {
         ...state,
-        userInfo: action.userInfo,
+        userInfo: action?.userInfo,
       };
       localStorage.setItem("user", JSON.stringify(userUserInfo));
       return userUserInfo;

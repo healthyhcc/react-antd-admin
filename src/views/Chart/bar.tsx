@@ -48,7 +48,6 @@ const Bar: React.FC = (props: any) => {
   };
   const chartOptions = {
     backgroundColor: "#08263a",
-    // 标题
     title: {
       top: 30,
       text: formatMessage("chart.bar_title"),
@@ -59,7 +58,6 @@ const Bar: React.FC = (props: any) => {
       },
       left: "center",
     },
-    // 小工具
     tooltip: {
       trigger: "axis",
       axisPointer: {
@@ -67,7 +65,6 @@ const Bar: React.FC = (props: any) => {
       },
       padding: [5, 10],
     },
-    // tab
     legend: {
       data: chartOptionsData.legend_data,
       right: "2%",
@@ -78,7 +75,6 @@ const Bar: React.FC = (props: any) => {
         color: "#fff",
       },
     },
-    // 图表
     grid: {
       top: 80,
       left: "3%",
@@ -86,10 +82,9 @@ const Bar: React.FC = (props: any) => {
       bottom: "10%",
       containLabel: true,
     },
-    // x轴
     xAxis: [
       {
-        type: "category", //分类
+        type: "category", 
         axisTick: {
           show: false,
         },
@@ -105,7 +100,6 @@ const Bar: React.FC = (props: any) => {
         data: chartOptionsData.xAxis_data,
       },
     ],
-    // y 轴
     yAxis: [
       {
         type: "value",
@@ -143,19 +137,14 @@ const Bar: React.FC = (props: any) => {
         },
         itemStyle: {
           normal: {
-            // 设置柱状图颜色
             color: "#1890FF",
-            // 以下为是否显示，显示位置和显示格式的设置了
             label: {
               show: true,
               position: "top",
               formatter: "{c}",
-              // formatter: '{b}\n{c}'
             },
           },
         },
-        // 设置柱的宽度，要是数据太少，柱子太宽不美观~
-        // barWidth:100
       },
       {
         name: formatMessage("chart.bar_series_name2"),
@@ -174,7 +163,6 @@ const Bar: React.FC = (props: any) => {
         },
         itemStyle: {
           normal: {
-            // 设置柱状图颜色
             color: "#001529",
           },
         },

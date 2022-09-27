@@ -48,7 +48,6 @@ const Mix: React.FC = (props: any) => {
   };
   const chartOptions = {
     backgroundColor: "#001529",
-    // 标题
     title: {
       top: 30,
       text: formatMessage("chart.mix_title"),
@@ -63,7 +62,6 @@ const Mix: React.FC = (props: any) => {
         fontSize: "16",
       },
     },
-    // 小工具
     tooltip: {
       trigger: "axis",
       axisPointer: {
@@ -83,7 +81,6 @@ const Mix: React.FC = (props: any) => {
         color: "#fff",
       },
     },
-    // tab
     legend: {
       left: "2%",
       top: 20,

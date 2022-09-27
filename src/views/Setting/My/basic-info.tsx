@@ -73,11 +73,11 @@ const BasicInfo: React.FC = (props: any) => {
   );
 
   const handleBeforeUpload = (file: FileType) => {
-    if (file.type !== "image/jpeg" && file.type !== "image/png") {
+    if (file?.type !== "image/jpeg" && file?.type !== "image/png") {
       message.error(formatMessage("basic_info.before_upload_type"));
       return false;
     }
-    if (file.size / 1024 / 1024 > 2) {
+    if (file?.size / 1024 / 1024 > 2) {
       message.error(formatMessage("basic_info.before_upload_size"));
       return false;
     }
@@ -91,7 +91,7 @@ const BasicInfo: React.FC = (props: any) => {
       case "uploading":
         return setUploading(true);
       case "done":
-        const { path } = file.response.file;
+        const { path } = file?.response?.file;
         setAvatarUrl(path);
         return setUploading(false);
       case "error":
@@ -117,19 +117,19 @@ const BasicInfo: React.FC = (props: any) => {
       });
   };
   const handleResetForm = () => {
-    const id = formRef.current.getFieldValue("id");
+    const id = formRef?.current?.getFieldValue("id");
     setAvatarUrl("");
-    formRef.current.resetFields();
-    formRef.current.setFieldsValue({ id });
+    formRef?.current?.resetFields();
+    formRef?.current?.setFieldsValue({ id });
   };
   const handleGetUserDetail = () => {
-    runGetUserDetail(userInfo.id)
+    runGetUserDetail(userInfo?.id)
       .then((response: any) => {
         const { result } = response;
         const data = result[0];
 
-        setAvatarUrl(data.avatar);
-        formRef.current.setFieldsValue(data);
+        setAvatarUrl(data?.avatar);
+        formRef?.current?.setFieldsValue(data);
       })
       .catch((error) => {
         console.log(error);
@@ -167,18 +167,18 @@ const BasicInfo: React.FC = (props: any) => {
             name="gender"
           >
             <Radio.Group>
-              {genderRadios.map((options) => (
-                <Radio key={options.value} value={options.value}>
-                  {formatMessage(options.label)}
+              {genderRadios.map((option) => (
+                <Radio key={option?.value} value={option?.value}>
+                  {formatMessage(option?.label)}
                 </Radio>
               ))}
             </Radio.Group>
           </Form.Item>
           <Form.Item label={formatMessage("basic_info.label_role")} name="role">
             <Radio.Group>
-              {roleRadios.map((options) => (
-                <Radio key={options.value} value={options.value}>
-                  {formatMessage(options.label)}
+              {roleRadios.map((option) => (
+                <Radio key={option?.value} value={option?.value}>
+                  {formatMessage(option?.label)}
                 </Radio>
               ))}
             </Radio.Group>

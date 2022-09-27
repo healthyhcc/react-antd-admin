@@ -6,7 +6,7 @@ const SpinCard: React.FC = (props: any) => {
   return (
     <Spin spinning={spinning}>
       <Card title={title} style={{ height: "calc(100vh - 100px - 2rem)" }}>
-        {props.children}
+        {props?.children}
       </Card>
     </Spin>
   );

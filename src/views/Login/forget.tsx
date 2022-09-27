@@ -42,15 +42,15 @@ const Forget: React.FC = () => {
     labelName: string
   ) => {
     if (formType === "validate") {
-      validateForm[labelName] = event.target.value;
+      validateForm[labelName] = event?.target?.value;
       setValidateForm(validateForm);
     } else {
-      resetForm[labelName] = event.target.value;
+      resetForm[labelName] = event?.target?.value;
       setResetForm(resetForm);
     }
   };
   const handleValidateEmail = (event: any) => {
-    const params = { email: event.target.value };
+    const params = { email: event?.target?.value };
     runFindEmail(params)
       .then((response: any) => {
         const { result } = response;
@@ -71,12 +71,12 @@ const Forget: React.FC = () => {
     ) {
       return message.error("请输入正确的邮箱");
     }
-    const params = { email: validateForm.email };
+    const params = { email: validateForm?.email };
 
     runSendEmail(params)
       .then((response: any) => {
         const authCode = CryptoJS.AES.decrypt(
-          response.emailAuthCode,
+          response?.emailAuthCode,
           EMAIL_KEY
         ).toString(CryptoJS.enc.Utf8);
         setAuthCode(Number(authCode));
@@ -105,7 +105,7 @@ const Forget: React.FC = () => {
     if (validateForm.code !== authCode.toString()) {
       return message.error("验证码不正确");
     }
-    localStorage.setItem("validateEmail", validateForm.email);
+    localStorage.setItem("validateEmail", validateForm?.email);
     setFormType("reset");
     setValidateForm({ email: "", code: "" });
   };
@@ -251,8 +251,8 @@ const Forget: React.FC = () => {
                     message: "密码不能为空!",
                   },
                   {
-                    validator: (_, value) =>
-                      value === resetForm.password
+                    validator: (_: any, value: string) =>
+                      value === resetForm?.password
                         ? Promise.resolve()
                         : Promise.reject("两次输入的密码不一致!"),
                   },

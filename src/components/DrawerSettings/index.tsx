@@ -41,7 +41,7 @@ const DrawerSettings = (props: any) => {
         <Switch
           checkedChildren={formatMessage("drawsettings.open")}
           unCheckedChildren={formatMessage("drawsettings.close")}
-          defaultChecked={settings.fixedHeader}
+          defaultChecked={settings?.fixedHeader}
           onChange={(checked) => setFixedHeader(checked)}
         />
       </div>
@@ -52,7 +52,7 @@ const DrawerSettings = (props: any) => {
         <Switch
           checkedChildren={formatMessage("drawsettings.open")}
           unCheckedChildren={formatMessage("drawsettings.close")}
-          defaultChecked={settings.showLogo}
+          defaultChecked={settings?.showLogo}
           onChange={(checked) => setShowLogo(checked)}
         />
       </div>
@@ -63,7 +63,7 @@ const DrawerSettings = (props: any) => {
         <Switch
           checkedChildren={formatMessage("drawsettings.open")}
           unCheckedChildren={formatMessage("drawsettings.close")}
-          defaultChecked={settings.showTag}
+          defaultChecked={settings?.showTag}
           onChange={(checked) => setShowTag(checked)}
         />
       </div>

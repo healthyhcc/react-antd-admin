@@ -11,7 +11,7 @@ function Router(props: any) {
   const { user } = props;
   const { userInfo } = user;
   const handleFilterComponent = (route: any) => {
-    return route.roles.includes(formatRole(userInfo.role));
+    return route.roles.includes(formatRole(userInfo?.role));
   };
   return (
     <HashRouter>
@@ -25,8 +25,8 @@ function Router(props: any) {
               return (
                 handleFilterComponent(route) && (
                   <Route
-                    key={route.path}
-                    path={route.path}
+                    key={route?.path}
+                    path={route?.path}
                     element={<route.component />}
                   />
                 )

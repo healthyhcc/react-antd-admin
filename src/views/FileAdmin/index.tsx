@@ -137,7 +137,7 @@ const FileAdmin: React.FC = () => {
       });
       setSpinning(false);
     } else if (typeof type === "object") {
-      window.open(`${SERVER_ADDRESS}/${type.name}`);
+      window.open(`${SERVER_ADDRESS}/${type?.name}`);
       setSpinning(false);
     }
   };
@@ -145,8 +145,8 @@ const FileAdmin: React.FC = () => {
     if (data === "uploadlist") {
       const deleteParams = myUploadList.map((file: FileType) => {
         return {
-          id: file.id,
-          name: file.name,
+          id: file?.id,
+          name: file?.name,
         };
       });
       const params = { deleteParams };
@@ -160,7 +160,7 @@ const FileAdmin: React.FC = () => {
           message.error(formatMessage("message.delete.error"));
         });
     } else if (typeof data === "object") {
-      const params = { id: data.id, name: data.name };
+      const params = { id: data?.id, name: data?.name };
       runDeleteSingleFile(params)
         .then(() => {
           handleGetMyUploadFileList();
@@ -193,7 +193,9 @@ const FileAdmin: React.FC = () => {
               maxCount={5}
               multiple={true}
               fileList={uploadFileList}
-              beforeUpload={(_, fileList) => handleBeforeUploadFile(fileList)}
+              beforeUpload={(_: any, fileList: any) =>
+                handleBeforeUploadFile(fileList)
+              }
               onRemove={handleRemoveFile}
               name="files"
               className="w-1/4"
@@ -247,7 +249,7 @@ const FileAdmin: React.FC = () => {
                     {item.originalname}
                   </span>
                   <span className="w-1/4 text-center">
-                    {formatGMTTime(item.time)}
+                    {formatGMTTime(item?.time)}
                   </span>
                   <Space>
                     <Button
@@ -301,7 +303,7 @@ const FileAdmin: React.FC = () => {
                     {item.originalname}
                   </span>
                   <span className="w-1/4 text-center">
-                    {formatGMTTime(item.time)}
+                    {formatGMTTime(item?.time)}
                   </span>
                   <Space>
                     <Button

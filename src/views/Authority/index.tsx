@@ -32,18 +32,18 @@ const Authority: React.FC = (props: any) => {
         <div>
           {formatMessage("authority.current_authority")}&nbsp;&nbsp;
           <span className="text-sm font-bold">
-            {formatMessage(roleMap[userInfo.role])}
+            {formatMessage(roleMap[userInfo?.role])}
           </span>
         </div>
         <div className="mt-8">
           <Select
             className="w-28"
-            defaultValue={userInfo.role}
+            defaultValue={userInfo?.role}
             onChange={onSelectChange}
           >
             {roleOptions.map((option) => (
-              <Select.Option key={option.value} value={option.value}>
-                {formatMessage(option.label)}
+              <Select.Option key={option?.value} value={option?.value}>
+                {formatMessage(option?.label)}
               </Select.Option>
             ))}
           </Select>

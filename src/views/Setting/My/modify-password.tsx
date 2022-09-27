@@ -38,7 +38,7 @@ const ModifyPassword: React.FC = () => {
 
   const handleVerifyPassword = (event: any) => {
     setIsFirst(false);
-    const value = event.target.value;
+    const value = event?.target?.value;
     if (value === "") {
       return message.error(formatMessage("modify_password.verify_password"));
     }
@@ -53,7 +53,7 @@ const ModifyPassword: React.FC = () => {
       });
   };
   const handleSubmitForm = (values: DataPasswordType) => {
-    const params = { newPassword: CryptoJS.MD5(values.newPassword).toString() };
+    const params = { newPassword: CryptoJS.MD5(values?.newPassword).toString() };
 
     runUpdatePassword(params)
       .then(() => {
@@ -138,7 +138,7 @@ const ModifyPassword: React.FC = () => {
                 ),
               },
               ({ getFieldValue }) => ({
-                validator(rule, value) {
+                validator(_: any, value: string) {
                   if (!value || getFieldValue("newPassword") === value) {
                     return Promise.resolve();
                   }

@@ -11,7 +11,6 @@ const Line: React.FC = () => {
   const chartOptions = {
     color: ["#009688", "#1f9fff", "#5eb878"],
     backgroundColor: "#08263a",
-    // 标题
     title: {
       top: 30,
       text: formatMessage("chart.line_title"),
@@ -22,7 +21,6 @@ const Line: React.FC = () => {
       },
       left: "center",
     },
-    // 小工具
     tooltip: {
       trigger: "axis",
       axisPointer: {
@@ -30,7 +28,6 @@ const Line: React.FC = () => {
       },
       padding: [5, 10],
     },
-    // tab
     legend: {
       top: 20,
       icon: "rect",
@@ -43,7 +40,6 @@ const Line: React.FC = () => {
         color: "#57617B",
       },
     },
-    // 图表
     grid: {
       top: 80,
       left: "3%",
@@ -51,10 +47,9 @@ const Line: React.FC = () => {
       bottom: "10%",
       containLabel: true,
     },
-    // x轴
     xAxis: [
       {
-        type: "category", //分类
+        type: "category", 
         axisTick: {
           show: false,
         },
@@ -83,7 +78,6 @@ const Line: React.FC = () => {
         ],
       },
     ],
-    // y 轴
     yAxis: [
       {
         type: "value",

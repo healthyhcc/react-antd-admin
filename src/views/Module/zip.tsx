@@ -86,7 +86,7 @@ const Zip: React.FC = () => {
         <Input
           className="w-1/4 mr-4"
           placeholder={formatMessage("module.zip.placeholder")}
-          onChange={(event) => setFileName(event.target.value)}
+          onChange={(event) => setFileName(event?.target?.value)}
         />
         <Button type="primary" onClick={handleExportZip}>
           {formatMessage("module.zip.button_export")}
@@ -97,7 +97,7 @@ const Zip: React.FC = () => {
           columns={columns}
           dataSource={tableData}
           pagination={false}
-          rowKey={(record: any) => `${record.id}`}
+          rowKey={(record: any) => `${record?.id}`}
         />
       </Card>
     </Spin>

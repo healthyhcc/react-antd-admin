@@ -35,7 +35,7 @@ const QrCode: React.FC = () => {
           <Input
             className="w-64"
             placeholder={formatMessage("module.qrcode.placeholder")}
-            onChange={(event) => setUrl(event.target.value)}
+            onChange={(event) => setUrl(event?.target?.value)}
           />
           <Button type="primary" onClick={generateQRCode}>
             {formatMessage("module.qrcode.generate")}

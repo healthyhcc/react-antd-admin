@@ -24,7 +24,7 @@ const LayoutPage: React.FC = (props: any) => {
         }}
       >
         <Header />
-        {settings.showTag ? <Tags /> : null}
+        {settings?.showTag ? <Tags /> : null}
         <Content
           style={{
             height: "calc(100% - 100px)",

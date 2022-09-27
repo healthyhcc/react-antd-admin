@@ -65,7 +65,8 @@ const TaskList: React.FC = () => {
       key: "id",
       align: "center",
       defaultSortOrder: "ascend",
-      sorter: (a: TaskDataType, b: TaskDataType) => Number(a.id) - Number(b.id),
+      sorter: (a: TaskDataType, b: TaskDataType) =>
+        Number(a?.id) - Number(b?.id),
     },
     {
       title: formatMessage("home.columns.taskname"),
@@ -104,14 +105,14 @@ const TaskList: React.FC = () => {
       },
       defaultSortOrder: "ascend",
       sorter: (a: TaskDataType, b: TaskDataType) =>
-        Number(a.tasklevel) - Number(b.tasklevel),
+        Number(a?.tasklevel) - Number(b?.tasklevel),
     },
     {
       title: formatMessage("home.columns.action"),
       dataIndex: "action",
       key: "action",
       align: "center",
-      render: (text: string, record: TaskDataType) => {
+      render: (_: any, record: TaskDataType) => {
         return (
           <Fragment>
             <Button
@@ -200,7 +201,7 @@ const TaskList: React.FC = () => {
           console.log(error);
         });
     } else {
-      values.id = modalForm.id;
+      values.id = modalForm?.id;
       runEditTask(values)
         .then(() => {
           message.success(formatMessage("message.edit.success"));
@@ -220,11 +221,11 @@ const TaskList: React.FC = () => {
       content: (
         <span>
           {formatMessage("home.delete_confirm_content")}
-          <span className="text-light-red">{record.taskname}</span>？
+          <span className="text-light-red">{record?.taskname}</span>？
         </span>
       ),
       onOk: () => {
-        const params = { id: record.id };
+        const params = { id: record?.id };
         runDeleteTask(params)
           .then(() => {
             message.success(formatMessage("message.delete.success"));
@@ -272,8 +273,8 @@ const TaskList: React.FC = () => {
               >
                 <Select placeholder={formatMessage("home.initial_tasklevel")}>
                   {taskLevelOptions.map((option) => (
-                    <Select.Option key={option.value} value={option.value}>
-                      {formatMessage(option.label)}
+                    <Select.Option key={option?.value} value={option?.value}>
+                      {formatMessage(option?.label)}
                     </Select.Option>
                   ))}
                 </Select>
@@ -303,7 +304,7 @@ const TaskList: React.FC = () => {
           dataSource={taskTableData}
           pagination={{ ...pagination, ...total }}
           onChange={handlePageChange}
-          rowKey={(record: any) => `${record.id}`}
+          rowKey={(record: any) => `${record?.id}`}
         />
         <Modal
           title={
@@ -341,8 +342,8 @@ const TaskList: React.FC = () => {
             >
               <Radio.Group>
                 {taskLevelRadios.map((option) => (
-                  <Radio key={option.value} value={option.value}>
-                    {formatMessage(option.label)}
+                  <Radio key={option?.value} value={option?.value}>
+                    {formatMessage(option?.label)}
                   </Radio>
                 ))}
               </Radio.Group>

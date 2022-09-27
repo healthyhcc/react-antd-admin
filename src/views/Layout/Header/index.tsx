@@ -40,7 +40,7 @@ const Header: React.FC = (props: any) => {
   };
   const intlMenu = (
     <Menu
-      onClick={(event) => setIntl(event.key)}
+      onClick={(event: any) => setIntl(event.key)}
       items={[
         {
           key: "en",
@@ -140,7 +140,7 @@ const Header: React.FC = (props: any) => {
 
               <div id="intl">
                 <Dropdown overlay={intlMenu} placement="bottom" arrow>
-                  <a onClick={(e) => e.preventDefault()}>
+                  <a onClick={(event: any) => event?.preventDefault()}>
                     <Space>
                       <TranslationOutlined className="ml-4" />
                     </Space>
@@ -161,10 +161,10 @@ const Header: React.FC = (props: any) => {
               </div>
             </div>
             <div className="h-full flex justify-between items-center">
-              <Avatar src={`${SERVER_ADDRESS}/${userInfo.avatar}`} />
+              <Avatar src={`${SERVER_ADDRESS}/${userInfo?.avatar}`} />
               <Dropdown overlay={systemMenu} placement="bottom" arrow>
                 <Button type="link">
-                  <span className="text-lg">{userInfo.username}</span>
+                  <span className="text-lg">{userInfo?.username}</span>
                   <DownOutlined />
                 </Button>
               </Dropdown>
