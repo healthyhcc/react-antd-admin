@@ -100,7 +100,7 @@ const UserList: React.FC = () => {
   const searchRef = useRef<any>();
   const intl = useIntl();
   const formatMessage = (id: string): string => {
-    return intl.formatMessage({ id });
+    return intl?.formatMessage({ id });
   };
   const columns: Array<object> = [
     {
@@ -109,7 +109,7 @@ const UserList: React.FC = () => {
       key: "id",
       align: "center",
       defaultSortOrder: "ascend",
-      sorter: (a: UserDataType, b: UserDataType) => a.id - b.id,
+      sorter: (a: UserDataType, b: UserDataType) => a?.id - b?.id,
     },
     {
       title: formatMessage("user_list.columns_username_title"),
@@ -134,7 +134,7 @@ const UserList: React.FC = () => {
         );
       },
       defaultSortOrder: "ascend",
-      sorter: (a: UserDataType, b: UserDataType) => a.gender - b.gender,
+      sorter: (a: UserDataType, b: UserDataType) => a?.gender - b?.gender,
     },
     {
       title: formatMessage("user_list.columns_role"),
@@ -166,7 +166,7 @@ const UserList: React.FC = () => {
         }
       },
       defaultSortOrder: "ascend",
-      sorter: (a: UserDataType, b: UserDataType) => a.role - b.role,
+      sorter: (a: UserDataType, b: UserDataType) => a?.role - b?.role,
     },
     {
       title: formatMessage("user_list.columns_phone"),
@@ -196,7 +196,7 @@ const UserList: React.FC = () => {
       align: "center",
       width: "100px",
       height: "100px",
-      render: (text: string, record: UserDataType) => {
+      render: (_: string, record: UserDataType) => {
         return (
           <img
             src={SERVER_ADDRESS + "/" + record.avatar}
@@ -210,7 +210,7 @@ const UserList: React.FC = () => {
       title: formatMessage("user_list.columns_action"),
       key: "action",
       align: "center",
-      render: (text: string, record: UserDataType) => {
+      render: (_: string, record: UserDataType) => {
         return (
           <Fragment>
             <Button
@@ -291,7 +291,7 @@ const UserList: React.FC = () => {
   const onOpenAddEditForm = (modalType: string, record?: any) => {
     if (record) {
       setModalForm(record);
-      setAvatarUrl(record.avatar);
+      setAvatarUrl(record?.avatar);
     } else {
       setAvatarUrl("");
       setModalForm({
@@ -308,8 +308,8 @@ const UserList: React.FC = () => {
     setModalVisible(true);
   };
   const onSaveAddEditForm = (params: any) => {
-    if (Object.prototype.toString.call(params.avatar) === "[object Object]") {
-      params.avatar = params.avatar.file.response.file.path;
+    if (Object.prototype.toString.call(params?.avatar) === "[object Object]") {
+      params.avatar = params?.avatar?.file?.response?.file?.path;
     }
     if (modalType === "add") {
       runAddUser(params)
@@ -323,7 +323,7 @@ const UserList: React.FC = () => {
           console.log(error);
         });
     } else {
-      params.id = modalForm.id;
+      params.id = modalForm?.id;
       runEditUser(params)
         .then(() => {
           message.success(formatMessage("message.edit.success"));
@@ -343,11 +343,11 @@ const UserList: React.FC = () => {
       content: (
         <span>
           {formatMessage("user_list.delete_confirm_content")}
-          <span className="text-light-red">{record.username}</span>？
+          <span className="text-light-red">{record?.username}</span>？
         </span>
       ),
       onOk: () => {
-        const params = { id: record.id };
+        const params = { id: record?.id };
         runDeleteUser(params)
           .then(() => {
             message.success(formatMessage("message.delete.success"));
@@ -385,11 +385,11 @@ const UserList: React.FC = () => {
     });
   };
   const handleBeforeUpload = (file: FileType) => {
-    if (file.type !== "image/jpeg" && file.type !== "image/png") {
+    if (file?.type !== "image/jpeg" && file?.type !== "image/png") {
       message.error(formatMessage("user_list.before_upload_type"));
       return false;
     }
-    if (file.size / 1024 / 1024 > 2) {
+    if (file?.size / 1024 / 1024 > 2) {
       message.error(formatMessage("user_list.before_upload_size"));
       return false;
     }
@@ -403,7 +403,7 @@ const UserList: React.FC = () => {
       case "uploading":
         return setUploading(true);
       case "done":
-        const { path } = file.response.file;
+        const { path } = file?.response?.file;
         setAvatarUrl(path);
         return setUploading(false);
       case "error":
@@ -451,8 +451,8 @@ const UserList: React.FC = () => {
               >
                 <Select placeholder={formatMessage("user_list.initial_gender")}>
                   {genderOptions.map((option) => (
-                    <Select.Option key={option.value} value={option.value}>
-                      {formatMessage(option.label)}
+                    <Select.Option key={option?.value} value={option?.value}>
+                      {formatMessage(option?.label)}
                     </Select.Option>
                   ))}
                 </Select>
@@ -465,8 +465,8 @@ const UserList: React.FC = () => {
               >
                 <Select placeholder={formatMessage("user_list.initial_role")}>
                   {roleOptions.map((option) => (
-                    <Select.Option key={option.value} value={option.value}>
-                      {formatMessage(option.label)}
+                    <Select.Option key={option?.value} value={option?.value}>
+                      {formatMessage(option?.label)}
                     </Select.Option>
                   ))}
                 </Select>
@@ -524,7 +524,7 @@ const UserList: React.FC = () => {
           dataSource={userTableData}
           pagination={{ ...pagination, ...total }}
           onChange={handlePageChange}
-          rowKey={(record: any) => `${record.id}`}
+          rowKey={(record: any) => `${record?.id}`}
         />
         <Modal
           title={
@@ -564,8 +564,8 @@ const UserList: React.FC = () => {
             >
               <Radio.Group>
                 {genderRadios.map((option) => (
-                  <Radio key={option.value} value={option.value}>
-                    {formatMessage(option.label)}
+                  <Radio key={option?.value} value={option?.value}>
+                    {formatMessage(option?.label)}
                   </Radio>
                 ))}
               </Radio.Group>
@@ -576,8 +576,8 @@ const UserList: React.FC = () => {
             >
               <Radio.Group>
                 {roleRadios.map((option) => (
-                  <Radio key={option.value} value={option.value}>
-                    {formatMessage(option.label)}
+                  <Radio key={option?.value} value={option?.value}>
+                    {formatMessage(option?.label)}
                   </Radio>
                 ))}
               </Radio.Group>

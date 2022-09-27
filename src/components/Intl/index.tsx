@@ -23,7 +23,7 @@ const Intl = (props: any) => {
       messages={i18nData[localLang]}
     >
       <ConfigProvider locale={languageMap[localLang]}>
-        {props.children}
+        {props?.children}
       </ConfigProvider>
     </IntlProvider>
   );
