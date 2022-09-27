@@ -1,5 +1,5 @@
 import React from "react";
-import { connect } from "react-redux";
+import { useSelector } from "react-redux";
 import { useIntl } from "react-intl";
 import ReactECharts from "echarts-for-react";
 
@@ -13,8 +13,9 @@ for (let i = 0; i < 50; i++) {
   data2.push((Math.sin(i / 5) * (i / 5 + 10) + i / 6) * 3);
 }
 
-const KeyBoard: React.FC = (props: any) => {
-  const { settings } = props;
+const KeyBoard: React.FC = () => {
+  const state: any = useSelector((state) => state);
+  const { settings } = state;
   const settingsIntl = settings?.intl;
   const intl = useIntl();
   const formatMessage = (id: string): string => {
@@ -176,6 +177,4 @@ const KeyBoard: React.FC = (props: any) => {
   );
 };
 
-const mapStateToProps = (state: object) => state;
-
-export default connect(mapStateToProps)(KeyBoard);
+export default KeyBoard;

@@ -1,14 +1,15 @@
 import React from "react";
 import { HashRouter, Routes, Route, Navigate } from "react-router-dom";
-import { connect } from "react-redux";
+import { useSelector } from "react-redux";
 import Login from "@/views/Login/login";
 import Forget from "@/views/Login/forget";
 import Layout from "@/views/Layout";
 import routeList from "@/router/routeList";
 import { formatRole } from "@/utils";
 
-function Router(props: any) {
-  const { user } = props;
+function Router() {
+  const state: any = useSelector((state) => state);
+  const { user } = state;
   const { userInfo } = user;
   const handleFilterComponent = (route: any) => {
     return route.roles.includes(formatRole(userInfo?.role));
@@ -41,6 +42,4 @@ function Router(props: any) {
   );
 }
 
-const mapStateToProps = (state: object) => state;
-
-export default connect(mapStateToProps)(Router);
+export default Router;

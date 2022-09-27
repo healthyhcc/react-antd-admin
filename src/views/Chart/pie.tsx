@@ -1,13 +1,14 @@
 import React from "react";
-import { connect } from "react-redux";
+import { useSelector } from "react-redux";
 import { useIntl } from "react-intl";
 import ReactECharts from "echarts-for-react";
 
-const Pie: React.FC = (props: any) => {
-  const { settings } = props;
+const Pie: React.FC = () => {
+  const state: any = useSelector((state) => state);
+  const { settings } = state;
   const settingsIntl = settings.intl;
   const intl = useIntl();
-  const formatMessage = (id: string): string =>{
+  const formatMessage = (id: string): string => {
     return intl.formatMessage({ id });
   };
   const chartOptionsData = {
@@ -84,6 +85,4 @@ const Pie: React.FC = (props: any) => {
   );
 };
 
-const mapStateToProps = (state: object) => state;
-
-export default connect(mapStateToProps)(Pie);
+export default Pie;

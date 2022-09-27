@@ -1,10 +1,11 @@
 import React from "react";
-import { connect } from "react-redux";
+import { useSelector } from "react-redux";
 import { useIntl } from "react-intl";
 import ReactECharts from "echarts-for-react";
 
-const Mix: React.FC = (props: any) => {
-  const { settings } = props;
+const Mix: React.FC = () => {
+  const state: any = useSelector((state) => state);
+  const { settings } = state;
   const settingsIntl = settings.intl;
   const intl = useIntl();
   const formatMessage = (id: string): string => {
@@ -242,6 +243,4 @@ const Mix: React.FC = (props: any) => {
   );
 };
 
-const mapStateToProps = (state: object) => state;
-
-export default connect(mapStateToProps)(Mix);
+export default Mix;

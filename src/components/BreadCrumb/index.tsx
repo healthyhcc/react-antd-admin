@@ -1,13 +1,14 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
-import { connect } from "react-redux";
+import { useSelector } from "react-redux";
 import { useIntl } from "react-intl";
 import { Breadcrumb } from "antd";
 import menuList from "@/router/menuList";
 
 type ArrayObjectType = Array<object>;
-const BreadCrumb: React.FC = (props: any) => {
-  const { settings } = props;
+const BreadCrumb: React.FC = () => {
+  const state: any = useSelector((state) => state);
+  const { settings } = state;
   const settingsIntl = settings.intl;
   const location = useLocation();
   let { pathname } = location;
@@ -66,6 +67,4 @@ const BreadCrumb: React.FC = (props: any) => {
   );
 };
 
-const mapStateToProps = (state: object) => state;
-
-export default connect(mapStateToProps)(BreadCrumb);
+export default BreadCrumb;

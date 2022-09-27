@@ -1,10 +1,11 @@
 import React from "react";
-import { connect } from "react-redux";
+import { useSelector } from "react-redux";
 import { useIntl } from "react-intl";
 import ReactECharts from "echarts-for-react";
 
-const Bar: React.FC = (props: any) => {
-  const { settings } = props;
+const Bar: React.FC = () => {
+  const state: any = useSelector((state) => state);
+  const { settings } = state;
   const settingsIntl = settings.intl;
   const intl = useIntl();
   const formatMessage = (id: string): string => {
@@ -84,7 +85,7 @@ const Bar: React.FC = (props: any) => {
     },
     xAxis: [
       {
-        type: "category", 
+        type: "category",
         axisTick: {
           show: false,
         },
@@ -177,6 +178,4 @@ const Bar: React.FC = (props: any) => {
   );
 };
 
-const mapStateToProps = (state: object) => state;
-
-export default connect(mapStateToProps)(Bar);
+export default Bar;
