@@ -1,27 +1,22 @@
 import React from "react";
-import { connect } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { MenuFoldOutlined, MenuUnfoldOutlined } from "@ant-design/icons";
-// import { setCollapse } from "@/store/actions/settings";
+import { setCollapse } from "@/store/store";
 
-const Hamburger: React.FC = (props: any) => {
-  const { settings, setCollapse } = props;
+const Hamburger: React.FC = () => {
+  const state: any = useSelector((state) => state);
+  const settingsDispatch = useDispatch();
+  const { settings } = state;
   const { collapsed } = settings;
   return (
     <div
       id="hamburger"
       className="h-full flex items-center cursor-pointer text-2xl -ml-8"
-      onClick={() => setCollapse(!collapsed)}
+      onClick={() => settingsDispatch(setCollapse(!collapsed))}
     >
       {collapsed ? <MenuFoldOutlined /> : <MenuUnfoldOutlined />}
     </div>
   );
 };
 
-const mapStateToProps = (state: object) => state;
-const mapDispatchToProps = (dispatch: any) => ({
-  setCollapse: (data: boolean) => {
-    dispatch(setCollapse(data));
-  },
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(Hamburger);
+export default Hamburger;

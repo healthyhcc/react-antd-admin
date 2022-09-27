@@ -1,22 +1,14 @@
 import React from "react";
-import { connect } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { Drawer, Switch, Space, Button, Divider } from "antd";
 import { useIntl } from "react-intl";
-// import {
-//   setFixedHeader,
-//   setShowLogo,
-//   setShowTag,
-// } from "@/store/actions/settings";
+import { setFixedHeader, setShowLogo, setShowTag } from "@/store/store";
 
 const DrawerSettings = (props: any) => {
-  const {
-    drawerVisible,
-    setDrawerVisible,
-    settings,
-    setFixedHeader,
-    setShowLogo,
-    setShowTag,
-  } = props;
+  const { drawerVisible, setDrawerVisible } = props;
+  const state: any = useSelector((state) => state);
+  const settingsDispatch = useDispatch();
+  const { settings } = state;
   const intl = useIntl();
   const formatMessage = (id: string): string => {
     return intl.formatMessage({ id });
@@ -42,7 +34,7 @@ const DrawerSettings = (props: any) => {
           checkedChildren={formatMessage("drawsettings.open")}
           unCheckedChildren={formatMessage("drawsettings.close")}
           defaultChecked={settings?.fixedHeader}
-          onChange={(checked) => setFixedHeader(checked)}
+          onChange={(checked) => settingsDispatch(setFixedHeader(checked))}
         />
       </div>
       <Divider dashed />
@@ -53,7 +45,7 @@ const DrawerSettings = (props: any) => {
           checkedChildren={formatMessage("drawsettings.open")}
           unCheckedChildren={formatMessage("drawsettings.close")}
           defaultChecked={settings?.showLogo}
-          onChange={(checked) => setShowLogo(checked)}
+          onChange={(checked) => settingsDispatch(setShowLogo(checked))}
         />
       </div>
       <Divider dashed />
@@ -64,24 +56,11 @@ const DrawerSettings = (props: any) => {
           checkedChildren={formatMessage("drawsettings.open")}
           unCheckedChildren={formatMessage("drawsettings.close")}
           defaultChecked={settings?.showTag}
-          onChange={(checked) => setShowTag(checked)}
+          onChange={(checked) => settingsDispatch(setShowTag(checked))}
         />
       </div>
     </Drawer>
   );
 };
 
-const mapStateToProps = (state: object) => state;
-const mapDispatchToProps = (dispatch: any) => ({
-  setFixedHeader: (data: boolean) => {
-    dispatch(setFixedHeader(data));
-  },
-  setShowLogo: (data: boolean) => {
-    dispatch(setShowLogo(data));
-  },
-  setShowTag: (data: boolean) => {
-    dispatch(setShowTag(data));
-  },
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(DrawerSettings);
+export default DrawerSettings;

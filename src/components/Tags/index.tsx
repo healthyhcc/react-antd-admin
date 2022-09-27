@@ -7,7 +7,7 @@ import { CloseOutlined } from "@ant-design/icons";
 import { closeTag, closeOtherTag, closeAllTag } from "@/store/store";
 
 const Tags: React.FC = () => {
-  const state: any = useSelector(state => state);
+  const state: any = useSelector((state) => state);
   const tagsDispatch = useDispatch();
   const { tags } = state;
   const location = useLocation();
@@ -31,10 +31,12 @@ const Tags: React.FC = () => {
       );
       navigate(tags[tagIndex + 1].key);
     }
-    closeTag(item);
+    const tagAction = closeTag(item);
+    tagsDispatch(tagAction);
   };
   const onCloseOtherTag = (item: any) => {
-    closeOtherTag(item);
+    const tagAction = closeOtherTag(item);
+    tagsDispatch(tagAction);
   };
   const onCloseAllTag = () => {
     const tagAction = closeAllTag();
@@ -73,6 +75,5 @@ const Tags: React.FC = () => {
     </div>
   );
 };
-
 
 export default Tags;
