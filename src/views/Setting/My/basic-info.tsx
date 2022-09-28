@@ -35,7 +35,8 @@ type FileType = {
 };
 const BasicInfo: React.FC = () => {
   const state: any = useSelector((state) => state);
-  const { userInfo } = state;
+  const { user } = state;
+  const { userInfo } = user;
   const userDispatch = useDispatch();
   const [uploading, setUploading] = useState(false);
   const [avatarUrl, setAvatarUrl] = useState("");
@@ -105,12 +106,12 @@ const BasicInfo: React.FC = () => {
     params["avatar"] = avatarUrl;
     runUpdateUser(params)
       .then(() => {
-        const action = setUserInfo({
+        const setUserInfoAction = setUserInfo({
           ...userInfo,
           username: params["username"],
           avatar: params["avatar"],
         });
-        userDispatch(action);
+        userDispatch(setUserInfoAction);
         message.success(formatMessage("message.edit.success"));
       })
       .catch((error) => {

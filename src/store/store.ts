@@ -17,4 +17,5 @@ export const { setCollapse, setIntl, setFixedHeader, setShowLogo, setShowTag } =
   settingsReducer.actions;
 export const { addTag, closeTag, closeOtherTag, closeAllTag } =
   tagsReducer.actions;
+
 export default store;

@@ -1,40 +1,42 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-const initialTags = [{ label: "menulist.home", key: "/home" }];
+const initialTags = {
+  tags: [{ label: "menulist.home", key: "/home" }],
+};
 
 const reducer = createSlice({
   name: "tags",
   initialState: initialTags,
   reducers: {
-    addTag(state: any, action: PayloadAction<object>) {
-      const exist = state.find(
-        (item: { key: any }) => item?.key === action?.data?.key
+    addTag(state: any, action: PayloadAction<any>) {
+      const exist = state.tags.find(
+        (item: any) => item?.key === action?.payload?.key
       );
       if (exist) {
         return state;
       }
-      state.push(action?.payload);
+      state.tags.push(action?.payload);
       return state;
     },
-    closeTag(state: any, action: PayloadAction<object>) {
-      const targetIndex = state.findIndex(
-        (item: { key: any }) => item?.key === action?.payload?.key
+    closeTag(state: any, action: PayloadAction<any>) {
+      const targetIndex = state.tags.findIndex(
+        (item: any) => item?.key === action?.payload?.key
       );
-      state.splice(targetIndex, 1);
+      state.tags.splice(targetIndex, 1);
       return state;
     },
-    closeOtherTag(state: any, action: PayloadAction<object>) {
-      const filterState = state.filter(
-        (item: { key: string }) =>
+    closeOtherTag(state: any, action: PayloadAction<any>) {
+      const filterState = state.tags.filter(
+        (item: any) =>
           item?.key === action?.payload?.key || item?.key === "/home"
       );
-      return filterState;
+      state.tags = filterState;
+      return state;
     },
     closeAllTag(state: any) {
-      const emptyState = state.filter(
-        (item: { key: string }) => item?.key === "/home"
-      );
-      return emptyState;
+      const emptyState = state.tags.filter((item: any) => item?.key === "/home");
+      state.tags = emptyState;
+      return state;
     },
   },
 });

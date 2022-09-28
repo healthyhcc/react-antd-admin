@@ -37,8 +37,8 @@ const Header: React.FC = () => {
     return intl.formatMessage({ id });
   };
   const handleIntl = (event: any) => {
-    const intlAction = setIntl(event.key);
-    settingsDispatch(intlAction);
+    const setIntlAction = setIntl(event.key);
+    settingsDispatch(setIntlAction);
   };
   const handleLogout = () => {
     localStorage.clear();

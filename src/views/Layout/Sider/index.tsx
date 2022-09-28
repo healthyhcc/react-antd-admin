@@ -88,8 +88,8 @@ const Sider: React.FC = () => {
     const { key } = data;
     handleFindMenuItemByKey(menuList, key);
     handleDocumentTitle(menuList, key);
-    const tagsAction = addTag({ label: menuItemByKey?.label?.props?.id, key });
-    settingsDispatch(tagsAction);
+    const addTagAction = addTag({ label: menuItemByKey?.label?.props?.id, key });
+    settingsDispatch(addTagAction);
     navigate(key);
   };
   useEffect(() => {

@@ -9,7 +9,7 @@ import { closeTag, closeOtherTag, closeAllTag } from "@/store/store";
 const Tags: React.FC = () => {
   const state: any = useSelector((state) => state);
   const tagsDispatch = useDispatch();
-  const { tags } = state;
+  const { tags } = state?.tags;
   const location = useLocation();
   const navigate = useNavigate();
   const { pathname } = location;
@@ -29,18 +29,19 @@ const Tags: React.FC = () => {
       const tagIndex = tags.findIndex(
         (tagItem: any) => tagItem.key === item.key
       );
-      navigate(tags[tagIndex + 1].key);
+      navigate(tags[tagIndex + 1]?.key);
     }
-    const tagAction = closeTag(item);
-    tagsDispatch(tagAction);
+    const closeTagAction = closeTag(item);
+    tagsDispatch(closeTagAction);
   };
   const onCloseOtherTag = (item: any) => {
-    const tagAction = closeOtherTag(item);
-    tagsDispatch(tagAction);
+    const closeOtherTagAction = closeOtherTag(item);
+    tagsDispatch(closeOtherTagAction);
   };
   const onCloseAllTag = () => {
-    const tagAction = closeAllTag();
-    tagsDispatch(tagAction);
+    const closeAllTagAction = closeAllTag();
+    tagsDispatch(closeAllTagAction);
+    navigate(tags[0]?.key);
   };
   return (
     <div className="w-full pl-4 py-2" style={{ backgroundColor: "#fafafa" }}>
