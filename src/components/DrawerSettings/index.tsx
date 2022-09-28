@@ -1,8 +1,8 @@
 import React from "react";
-import { useSelector, useDispatch } from "react-redux";
 import { Drawer, Switch, Space, Button, Divider } from "antd";
+import { useSelector, useDispatch } from "react-redux";
 import { useIntl } from "react-intl";
-import { setFixedHeader, setShowLogo, setShowTag } from "@/store/store";
+import { setFixedHeader, setShowLogo, setShowTag } from "@/store";
 
 const DrawerSettings = (props: any) => {
   const { drawerVisible, setDrawerVisible } = props;
@@ -12,6 +12,15 @@ const DrawerSettings = (props: any) => {
   const intl = useIntl();
   const formatMessage = (id: string): string => {
     return intl.formatMessage({ id });
+  };
+  const handleFixedHeader = (checked: any) => {
+    settingsDispatch(setFixedHeader(checked));
+  };
+  const handleShowLogo = (checked: any) => {
+    settingsDispatch(setShowLogo(checked));
+  };
+  const handleShowTag = (checked: any) => {
+    settingsDispatch(setShowTag(checked));
   };
   return (
     <Drawer
@@ -34,7 +43,7 @@ const DrawerSettings = (props: any) => {
           checkedChildren={formatMessage("drawsettings.open")}
           unCheckedChildren={formatMessage("drawsettings.close")}
           defaultChecked={settings?.fixedHeader}
-          onChange={(checked) => settingsDispatch(setFixedHeader(checked))}
+          onChange={handleFixedHeader}
         />
       </div>
       <Divider dashed />
@@ -45,7 +54,7 @@ const DrawerSettings = (props: any) => {
           checkedChildren={formatMessage("drawsettings.open")}
           unCheckedChildren={formatMessage("drawsettings.close")}
           defaultChecked={settings?.showLogo}
-          onChange={(checked) => settingsDispatch(setShowLogo(checked))}
+          onChange={handleShowLogo}
         />
       </div>
       <Divider dashed />
@@ -56,7 +65,7 @@ const DrawerSettings = (props: any) => {
           checkedChildren={formatMessage("drawsettings.open")}
           unCheckedChildren={formatMessage("drawsettings.close")}
           defaultChecked={settings?.showTag}
-          onChange={(checked) => settingsDispatch(setShowTag(checked))}
+          onChange={handleShowTag}
         />
       </div>
     </Drawer>

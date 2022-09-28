@@ -15,7 +15,7 @@ import { useIntl } from "react-intl";
 import { useRequest } from "ahooks";
 import Uploading from "@/components/Uploading";
 import { getUserDetail, updateUser } from "@/api/user";
-import { setUserInfo } from "@/store/store";
+import { setUserInfo } from "@/store";
 import { EmailRegexp, PhoneRegexp } from "@/utils";
 import { SERVER_ADDRESS } from "@/utils/config";
 

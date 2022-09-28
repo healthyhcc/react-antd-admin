@@ -126,13 +126,13 @@ const FileAdmin: React.FC = () => {
     setSpinning(true);
     if (type === "filelist") {
       fileList.forEach((file: FileType) => {
-        const name = file.name;
+        const name = file?.name;
         window.open(`${SERVER_ADDRESS}/${name}`);
       });
       setSpinning(false);
     } else if (type === "myupload") {
       myUploadList.forEach((file: FileType) => {
-        const name = file.name;
+        const name = file?.name;
         window.open(`${SERVER_ADDRESS}/${name}`);
       });
       setSpinning(false);
@@ -241,12 +241,12 @@ const FileAdmin: React.FC = () => {
               dataSource={fileList}
               pagination={{ pageSize: 8 }}
               renderItem={(item: any) => (
-                <List.Item key={item.id} className="flex justify-between">
+                <List.Item key={item?.id} className="flex justify-between">
                   <span
                     className="flex-1 overflow-hidden whitespace-nowrap text-ellipsis cursor-pointer text-green-700"
                     onClick={() => handleDownloadFile(item)}
                   >
-                    {item.originalname}
+                    {item?.originalname}
                   </span>
                   <span className="w-1/4 text-center">
                     {formatGMTTime(item?.time)}
@@ -295,12 +295,12 @@ const FileAdmin: React.FC = () => {
               dataSource={myUploadList}
               pagination={{ pageSize: 8 }}
               renderItem={(item: any) => (
-                <List.Item key={item.id} className="flex justify-between">
+                <List.Item key={item?.id} className="flex justify-between">
                   <span
                     className="flex-1 overflow-hidden whitespace-nowrap text-ellipsis cursor-pointer text-green-700"
                     onClick={() => handleDownloadFile(item)}
                   >
-                    {item.originalname}
+                    {item?.originalname}
                   </span>
                   <span className="w-1/4 text-center">
                     {formatGMTTime(item?.time)}

@@ -6,7 +6,7 @@ import { LoadingOutlined } from "@ant-design/icons";
 import CryptoJS from "crypto-js";
 import { useRequest } from "ahooks";
 import { userLogin, userRegister, findEmail } from "@/api/login";
-import { setToken, setUserInfo } from "@/store/store";
+import { setToken, setUserInfo } from "@/store";
 import { EmailRegexp, formatGMTTime } from "@/utils";
 
 const Login: React.FC = () => {

@@ -6,7 +6,7 @@ import ReactECharts from "echarts-for-react";
 const Mix: React.FC = () => {
   const state: any = useSelector((state) => state);
   const { settings } = state;
-  const settingsIntl = settings.intl;
+  const settingsIntl = settings?.intl;
   const intl = useIntl();
   const formatMessage = (id: string): string => {
     return intl.formatMessage({ id });
@@ -88,7 +88,7 @@ const Mix: React.FC = () => {
       textStyle: {
         color: "#90979c",
       },
-      data: chartOptionsData.legend_data,
+      data: chartOptionsData?.legend_data,
     },
     calculable: true,
     xAxis: [
@@ -111,7 +111,7 @@ const Mix: React.FC = () => {
         axisLabel: {
           interval: 0,
         },
-        data: chartOptionsData.xAxis_data,
+        data: chartOptionsData?.xAxis_data,
       },
     ],
     yAxis: [
@@ -180,7 +180,7 @@ const Mix: React.FC = () => {
               },
               position: "insideTop",
               formatter(p: any) {
-                return p.value > 0 ? p.value : "";
+                return p?.value > 0 ? p?.value : "";
               },
             },
           },
@@ -202,7 +202,7 @@ const Mix: React.FC = () => {
               show: true,
               position: "top",
               formatter(p: any) {
-                return p.value > 0 ? p.value : "";
+                return p?.value > 0 ? p?.value : "";
               },
             },
           },
@@ -223,7 +223,7 @@ const Mix: React.FC = () => {
               show: true,
               position: "top",
               formatter(p: any) {
-                return p.value > 0 ? p.value : "";
+                return p?.value > 0 ? p?.value : "";
               },
             },
           },

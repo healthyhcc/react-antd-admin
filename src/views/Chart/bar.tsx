@@ -6,7 +6,7 @@ import ReactECharts from "echarts-for-react";
 const Bar: React.FC = () => {
   const state: any = useSelector((state) => state);
   const { settings } = state;
-  const settingsIntl = settings.intl;
+  const settingsIntl = settings?.intl;
   const intl = useIntl();
   const formatMessage = (id: string): string => {
     return intl.formatMessage({ id });
@@ -67,7 +67,7 @@ const Bar: React.FC = () => {
       padding: [5, 10],
     },
     legend: {
-      data: chartOptionsData.legend_data,
+      data: chartOptionsData?.legend_data,
       right: "2%",
       top: 20,
       textStyle: {
@@ -98,7 +98,7 @@ const Bar: React.FC = () => {
         axisLabel: {
           color: "#fff",
         },
-        data: chartOptionsData.xAxis_data,
+        data: chartOptionsData?.xAxis_data,
       },
     ],
     yAxis: [

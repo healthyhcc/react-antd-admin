@@ -20,7 +20,7 @@ import FullScreen from "@/components/FullScreen";
 import DrawerSettings from "@/components/DrawerSettings";
 import Hamburger from "@/components/Hamburger";
 import BreadCrumb from "@/components/BreadCrumb";
-import { setIntl } from "@/store/store";
+import { setIntl } from "@/store";
 import { SERVER_ADDRESS } from "@/utils/config";
 
 const Header: React.FC = () => {

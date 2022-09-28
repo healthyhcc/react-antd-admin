@@ -6,7 +6,7 @@ import ReactECharts from "echarts-for-react";
 const Pie: React.FC = () => {
   const state: any = useSelector((state) => state);
   const { settings } = state;
-  const settingsIntl = settings.intl;
+  const settingsIntl = settings?.intl;
   const intl = useIntl();
   const formatMessage = (id: string): string => {
     return intl.formatMessage({ id });
@@ -59,7 +59,7 @@ const Pie: React.FC = () => {
     legend: {
       orient: "vertical",
       x: 20,
-      data: chartOptionsData.legend_data,
+      data: chartOptionsData?.legend_data,
       top: 20,
       textStyle: {
         fontWeight: "normal",
@@ -73,7 +73,7 @@ const Pie: React.FC = () => {
         type: "pie",
         radius: "55%",
         center: ["50%", "60%"],
-        data: chartOptionsData.series_data,
+        data: chartOptionsData?.series_data,
       },
     ],
   };

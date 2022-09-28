@@ -3,9 +3,7 @@ import * as Echarts from "echarts";
 import cityMap from "./citymap";
 import CHINA_JSON from "./map/china.json";
 
-//34个省、市、自治区的名字拼音映射数组
 const provinces: any = {
-  //23个省
   台湾: "taiwan",
   河北: "hebei",
   山西: "shanxi",
@@ -29,18 +27,15 @@ const provinces: any = {
   陕西: "shanxi1",
   甘肃: "gansu",
   青海: "qinghai",
-  //5个自治区
   新疆: "xinjiang",
   广西: "guangxi",
   内蒙古: "neimenggu",
   宁夏: "ningxia",
   西藏: "xizang",
-  //4个直辖市
   北京: "beijing",
   天津: "tianjin",
   上海: "shanghai",
   重庆: "chongqing",
-  //2个特别行政区
   香港: "xianggang",
   澳门: "aomen",
 };
@@ -51,13 +46,12 @@ const China: React.FC = () => {
   let chart: any;
   const [mapData, setMapData] = useState([]);
 
-  // init basic config
   const option: any = {
     backgroundColor: "#000",
     title: {
       text: "全国地图",
       subtext: "三级下钻",
-      link: "http://www.ldsun.com",
+      link: "https://github.com/healthyhcc",
       left: "center",
       textStyle: {
         color: "#fff",
@@ -142,10 +136,10 @@ const China: React.FC = () => {
   };
   const handleDrawChinaMap = () => {
     const areaData: any = [];
-    const features = CHINA_JSON.features;
+    const features = CHINA_JSON?.features;
 
     features.forEach((feature) => {
-      areaData.push({ name: feature.properties.name });
+      areaData.push({ name: feature?.properties?.name });
     });
 
     setMapData(areaData);
@@ -159,13 +153,13 @@ const China: React.FC = () => {
         //如果点击的是34个省、市、自治区，绘制选中地区的二级地图
         const moduleData = import(`./map/province/${provinces[name]}.json`);
         moduleData.then((result) => {
-          Echarts.registerMap(name, result.default);
+          Echarts.registerMap(name, result?.default);
 
           const areaData: Array<object> = [];
-          const features = result.default.features;
+          const features = result?.default?.features;
 
           features.forEach((feature: any) => {
-            areaData.push({ name: feature.properties.name });
+            areaData.push({ name: feature?.properties?.name });
           });
 
           handleRenderMap(name, areaData);
@@ -179,13 +173,13 @@ const China: React.FC = () => {
           const moduleData = import(`./map/city/${cityMap[name]}.json`);
 
           moduleData.then((result) => {
-            Echarts.registerMap(name, result.default);
+            Echarts.registerMap(name, result?.default);
 
             const areaData: Array<object> = [];
-            const features = result.default.features;
+            const features = result?.default?.features;
 
             features.forEach((feature: any) => {
-              areaData.push({ name: feature.properties.name });
+              areaData.push({ name: feature?.properties?.name });
             });
 
             handleRenderMap(name, areaData);

@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useIntl } from "react-intl";
 import { Tag, Tooltip, Space, Button } from "antd";
 import { CloseOutlined } from "@ant-design/icons";
-import { closeTag, closeOtherTag, closeAllTag } from "@/store/store";
+import { closeTag, closeOtherTag, closeAllTag } from "@/store";
 
 const Tags: React.FC = () => {
   const state: any = useSelector((state) => state);
@@ -23,7 +23,7 @@ const Tags: React.FC = () => {
   const onCloseTag = (item: any) => {
     const tagLength = tags.length;
     if (pathname === item.key && item.key === tags[tagLength - 1].key) {
-      navigate(tags[tagLength - 2].key);
+      navigate(tags[tagLength - 2]?.key);
     }
     if (pathname === item.key && item.key !== tags[tagLength - 1].key) {
       const tagIndex = tags.findIndex(

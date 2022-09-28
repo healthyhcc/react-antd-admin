@@ -47,7 +47,7 @@ const KeyBoard: React.FC = () => {
       padding: [5, 10],
     },
     legend: {
-      data: chartOptionsData.legend_data,
+      data: chartOptionsData?.legend_data,
       right: "2%",
       top: 20,
       textStyle: {

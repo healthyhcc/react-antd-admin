@@ -2,7 +2,7 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useIntl } from "react-intl";
 import { Card, Select, Image, Empty } from "antd";
-import { setUserInfo } from "@/store/store";
+import { setUserInfo } from "@/store";
 import logo from "@/assets/logo.svg";
 import vite from "@/assets/vite.svg";
 

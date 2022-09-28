@@ -9,7 +9,7 @@ type ArrayObjectType = Array<object>;
 const BreadCrumb: React.FC = () => {
   const state: any = useSelector((state) => state);
   const { settings } = state;
-  const settingsIntl = settings.intl;
+  const settingsIntl = settings?.intl;
   const location = useLocation();
   let { pathname } = location;
   const intl = useIntl();

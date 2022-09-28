@@ -1,4 +1,4 @@
-const cityMap = {
+const cityMap: object = {
   北京市: "110100",
   天津市: "120100",
   上海市: "310100",

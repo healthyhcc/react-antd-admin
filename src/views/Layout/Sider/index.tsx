@@ -6,7 +6,7 @@ import DocumentTitle from "react-document-title";
 import { Layout, Menu } from "antd";
 import Logo from "@/components/Logo";
 import menuList from "@/router/menuList";
-import { setCollapse, addTag } from "@/store/store";
+import { setCollapse, addTag } from "@/store";
 import { formatRole } from "@/utils";
 
 type ArrayObjectType = Array<object>;
