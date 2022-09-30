@@ -2,13 +2,9 @@
   "name": "react-antd-admin",
   "version": "1.0.0",
   "description": "react-antd-admin-back-end",
-  "main": "app.js",
   "scripts": {
     "dev": "nodemon app.js"
   },
-  "keywords": [],
-  "author": "healthyhcc",
-  "license": "MIT",
   "dependencies": {
     "body-parser": "^1.20.0",
     "compression": "^1.7.4",
