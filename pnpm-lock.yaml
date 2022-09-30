@@ -3,8 +3,8 @@ lockfileVersion: 5.4
 specifiers:
   '@ant-design/icons': ^4.7.0
   '@reduxjs/toolkit': ^1.8.5
-  '@toast-ui/editor': ^3.2.0
-  '@toast-ui/react-editor': ^3.2.0
+  '@toast-ui/editor': ^3.2.1
+  '@toast-ui/react-editor': ^3.2.2
   '@types/crypto-js': ^4.1.1
   '@types/draft-js': ^0.11.9
   '@types/file-saver': ^2.0.5
@@ -43,7 +43,7 @@ specifiers:
   react-document-title: ^2.0.3
   react-dom: ^18.2.0
   react-draft-wysiwyg: ^1.15.0
-  react-intl: ^6.1.1
+  react-intl: ^6.1.2
   react-player: ^2.11.0
   react-redux: ^8.0.4
   react-router-dom: ^6.4.1
@@ -52,7 +52,7 @@ specifiers:
   screenfull: ^6.0.2
   tailwindcss: ^3.1.8
   typewriter-effect: ^2.19.0
-  vite: ^3.1.3
+  vite: ^3.1.4
   vite-plugin-compression: ^0.5.1
   vite-plugin-style-import: ^2.0.0
   xlsx: ^0.18.5
@@ -60,8 +60,8 @@ specifiers:
 dependencies:
   '@ant-design/icons': 4.7.0_biqbaboplfbrettd7655fr4n2y
   '@reduxjs/toolkit': 1.8.5_kuo2ie247izvzll3jejufdtq3q
-  '@toast-ui/editor': 3.2.0
-  '@toast-ui/react-editor': 3.2.0_react@18.2.0
+  '@toast-ui/editor': 3.2.1
+  '@toast-ui/react-editor': 3.2.2_react@18.2.0
   ahooks: 3.7.1_react@18.2.0
   antd: 4.22.8_biqbaboplfbrettd7655fr4n2y
   axios: 0.27.2
@@ -81,7 +81,7 @@ dependencies:
   react-document-title: 2.0.3_react@18.2.0
   react-dom: 18.2.0_react@18.2.0
   react-draft-wysiwyg: 1.15.0_u2uddnr2lenfwn7luyp53wziye
-  react-intl: 6.1.1_react@18.2.0
+  react-intl: 6.1.2_react@18.2.0
   react-player: 2.11.0_react@18.2.0
   react-redux: 8.0.4_yfr4m6wk75wdra335rld4tkrbu
   react-router-dom: 6.4.1_biqbaboplfbrettd7655fr4n2y
@@ -112,9 +112,9 @@ devDependencies:
   less: 4.1.3
   postcss: 8.4.16
   tailwindcss: 3.1.8_postcss@8.4.16
-  vite: 3.1.3_less@4.1.3
-  vite-plugin-compression: 0.5.1_vite@3.1.3
-  vite-plugin-style-import: 2.0.0_vite@3.1.3
+  vite: 3.1.4_less@4.1.3
+  vite-plugin-compression: 0.5.1_vite@3.1.4
+  vite-plugin-style-import: 2.0.0_vite@3.1.4
 
 packages:
 
@@ -416,8 +416,8 @@ packages:
       tslib: 2.4.0
     dev: false
 
-  /@formatjs/icu-messageformat-parser/2.1.7:
-    resolution: {integrity: sha512-KM4ikG5MloXMulqn39Js3ypuVzpPKq/DDplvl01PE2qD9rAzFO8YtaUCC9vr9j3sRXwdHPeTe8r3J/8IJgvYEQ==}
+  /@formatjs/icu-messageformat-parser/2.1.8:
+    resolution: {integrity: sha512-T1R/UtPSCdznwjlfIJDl9XnjZdcFap+rPJrKC9uATr/sUdziVad3SfRQFf50JOuHptbk6knz+VdiYdApek4Sag==}
     dependencies:
       '@formatjs/ecma402-abstract': 1.12.0
       '@formatjs/icu-skeleton-parser': 1.3.13
@@ -453,8 +453,8 @@ packages:
       tslib: 2.4.0
     dev: false
 
-  /@formatjs/intl/2.4.1:
-    resolution: {integrity: sha512-lWJ5dhLlkbMeWQOxBCq4MJNkB735TO5rwvcnnFzTx1H9Pkth1OLRH1R1aCAudptbd0Qe1W2hwJiMLumKpl6WCg==}
+  /@formatjs/intl/2.4.2:
+    resolution: {integrity: sha512-RuZT+fecObhWA4CuoDolftfbEYn1yaqTG4yiTSX7W6vnvAupZOqyZXctzebtQ9pDhm6uHHNQSLQ0NL3Y8pCi9g==}
     peerDependencies:
       typescript: ^4.7
     peerDependenciesMeta:
@@ -463,10 +463,10 @@ packages:
     dependencies:
       '@formatjs/ecma402-abstract': 1.12.0
       '@formatjs/fast-memoize': 1.2.6
-      '@formatjs/icu-messageformat-parser': 2.1.7
+      '@formatjs/icu-messageformat-parser': 2.1.8
       '@formatjs/intl-displaynames': 6.1.3
       '@formatjs/intl-listformat': 7.1.2
-      intl-messageformat: 10.1.4
+      intl-messageformat: 10.1.5
       tslib: 2.4.0
     dev: false
 
@@ -561,8 +561,8 @@ packages:
       picomatch: 2.3.1
     dev: true
 
-  /@toast-ui/editor/3.2.0:
-    resolution: {integrity: sha512-lEvbBSbvz5MvmTGHoDAYkco5B1os9C8B0IJmSj/iLmjSFQCtku1g4hFG4jKzTju9e+5wTosbDa3aYHAJAZK/QA==}
+  /@toast-ui/editor/3.2.1:
+    resolution: {integrity: sha512-05nKfqK2n/6Mq8WpO1E7OnOjlhiFfxr1G2i/DpG/pFjKlY3E7uOtSAyuz7rybKWHgUzXRzRGv7MqDL6lXfqnWg==}
     dependencies:
       dompurify: 2.3.10
       prosemirror-commands: 1.3.0
@@ -574,12 +574,12 @@ packages:
       prosemirror-view: 1.27.0
     dev: false
 
-  /@toast-ui/react-editor/3.2.0_react@18.2.0:
-    resolution: {integrity: sha512-kUPKikE+qHte4/NarACyJHwM1FKsN6QZG2SMLWTlCIQfm3cQ8MCV4t6rassHnbq9R6sPQZm5H1RfsQpKwBMo9A==}
+  /@toast-ui/react-editor/3.2.2_react@18.2.0:
+    resolution: {integrity: sha512-lbqRUcSJ9f3HO/MG7cjXmDmoBJpBQGErwKIWsNj1byC76G4yhHJ5gVKFn3zZ47hEQj7aQRFTEtbWCEMTF2bixQ==}
     peerDependencies:
       react: ^17.0.1
     dependencies:
-      '@toast-ui/editor': 3.2.0
+      '@toast-ui/editor': 3.2.1
       react: 18.2.0
     dev: false
 
@@ -1718,12 +1718,12 @@ packages:
     resolution: {integrity: sha512-7m1vEcPCxXYI8HqnL8CKI6siDyD+eIWSwgB3DZA+ZTogxk9I4CDnj4wilt9x/+/QbHI4YG5YZNmC6458/e9Ktg==}
     dev: false
 
-  /intl-messageformat/10.1.4:
-    resolution: {integrity: sha512-tXCmWCXhbeHOF28aIf5b9ce3kwdwGyIiiSXVZsyDwksMiGn5Tp0MrMvyeuHuz4uN1UL+NfGOztHmE+6aLFp1wQ==}
+  /intl-messageformat/10.1.5:
+    resolution: {integrity: sha512-bDQz81oQ6TkQp1pSnlBK36ahGL5/tLb0+3hSiG/1/SnVbz5NWPQTqaPx2cT7nmGujDrPn9pQ0ik8RWE8v1lzEw==}
     dependencies:
       '@formatjs/ecma402-abstract': 1.12.0
       '@formatjs/fast-memoize': 1.2.6
-      '@formatjs/icu-messageformat-parser': 2.1.7
+      '@formatjs/icu-messageformat-parser': 2.1.8
       tslib: 2.4.0
     dev: false
 
@@ -2868,8 +2868,8 @@ packages:
     resolution: {integrity: sha512-rtGImPZ0YyLrscKI9xTpV8psd6I8VAtjKCzQDlzyDvqJA8XOW78TXYQwNRNd8g8JZnDu8q9Fu/1v4HPAVwVdHA==}
     dev: false
 
-  /react-intl/6.1.1_react@18.2.0:
-    resolution: {integrity: sha512-nNNHBxivUdNwIcqNR1I4mLDAfDtnh1glEaOa8Sfu2pUDvKzYQyX6+in1PDcIn5RyV6enMgw9I6H+VwtlRDXhRw==}
+  /react-intl/6.1.2_react@18.2.0:
+    resolution: {integrity: sha512-42Kkne7QzXjvljZQ3/ilWz5dHooG2cfgwmZbhtn90gZtUKzmyxRU11Os8nZvCuuLCW1vnecHTjsbBP+7Wpbp6g==}
     peerDependencies:
       react: ^16.6.0 || 17 || 18
       typescript: ^4.7
@@ -2878,14 +2878,14 @@ packages:
         optional: true
     dependencies:
       '@formatjs/ecma402-abstract': 1.12.0
-      '@formatjs/icu-messageformat-parser': 2.1.7
-      '@formatjs/intl': 2.4.1
+      '@formatjs/icu-messageformat-parser': 2.1.8
+      '@formatjs/intl': 2.4.2
       '@formatjs/intl-displaynames': 6.1.3
       '@formatjs/intl-listformat': 7.1.2
       '@types/hoist-non-react-statics': 3.3.1
       '@types/react': 18.0.21
       hoist-non-react-statics: 3.3.2
-      intl-messageformat: 10.1.4
+      intl-messageformat: 10.1.5
       react: 18.2.0
       tslib: 2.4.0
     dev: false
@@ -3355,7 +3355,7 @@ packages:
   /util-deprecate/1.0.2:
     resolution: {integrity: sha512-EPD5q1uXyFxJpCrLnCc1nHnq3gOa6DZBocAIiI2TaSCA7VCJ1UJDMagCzIkXNsUYfD1daK//LTEQ8xiIbrHtcw==}
 
-  /vite-plugin-compression/0.5.1_vite@3.1.3:
+  /vite-plugin-compression/0.5.1_vite@3.1.4:
     resolution: {integrity: sha512-5QJKBDc+gNYVqL/skgFAP81Yuzo9R+EAf19d+EtsMF/i8kFUpNi3J/H01QD3Oo8zBQn+NzoCIFkpPLynoOzaJg==}
     peerDependencies:
       vite: '>=2.0.0'
@@ -3363,12 +3363,12 @@ packages:
       chalk: 4.1.2
       debug: 4.3.4
       fs-extra: 10.1.0
-      vite: 3.1.3_less@4.1.3
+      vite: 3.1.4_less@4.1.3
     transitivePeerDependencies:
       - supports-color
     dev: true
 
-  /vite-plugin-style-import/2.0.0_vite@3.1.3:
+  /vite-plugin-style-import/2.0.0_vite@3.1.4:
     resolution: {integrity: sha512-qtoHQae5dSUQPo/rYz/8p190VU5y19rtBaeV7ryLa/AYAU/e9CG89NrN/3+k7MR8mJy/GPIu91iJ3zk9foUOSA==}
     peerDependencies:
       vite: '>=2.0.0'
@@ -3380,11 +3380,11 @@ packages:
       fs-extra: 10.1.0
       magic-string: 0.25.9
       pathe: 0.2.0
-      vite: 3.1.3_less@4.1.3
+      vite: 3.1.4_less@4.1.3
     dev: true
 
-  /vite/3.1.3_less@4.1.3:
-    resolution: {integrity: sha512-/3XWiktaopByM5bd8dqvHxRt5EEgRikevnnrpND0gRfNkrMrPaGGexhtLCzv15RcCMtV2CLw+BPas8YFeSG0KA==}
+  /vite/3.1.4_less@4.1.3:
+    resolution: {integrity: sha512-JoQI08aBjY9lycL7jcEq4p9o1xUjq5aRvdH4KWaXtkSx7e7RpAh9D3IjzDWRD4Fg44LS3oDAIOG/Kq1L+82psA==}
     engines: {node: ^14.18.0 || >=16.0.0}
     hasBin: true
     peerDependencies:
