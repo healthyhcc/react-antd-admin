@@ -41,9 +41,9 @@ app
       path: whiteList,
     })
   )
-  .use((error, request, response, next) => {
+  .use((error, _, response) => {
     if (error.name === "UnauthorizedError") {
-      response.status(401).send("你的登录已过期,请重新登录");
+      response.status(401).send("your login has expired, please log in again.");
     }
   });
 

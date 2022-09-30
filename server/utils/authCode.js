@@ -33,15 +33,15 @@ const generateEmailCode = (emailString) => {
         </body>
     </html>`;
   const addressee = {
-    from: `"韩畅畅"<${proxyEmail.auth.user}>`,
+    from: `"healthyhcc"<${proxyEmail.auth.user}>`,
     to: `<${emailString}>`,
     subject: "验证码",
     text: "😊😊😊",
     html: htmlString,
     attachments: [
       {
-        filename: "image.png",
-        path: "../server/static/image.png",
+        filename: "favicon.ico",
+        path: "../server/static/favicon.ico",
       },
     ],
   };
