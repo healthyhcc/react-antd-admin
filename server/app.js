@@ -41,7 +41,7 @@ app
       path: whiteList,
     })
   )
-  .use((error, _, response) => {
+  .use((error, request, response, next) => {
     if (error.name === "UnauthorizedError") {
       response.status(401).send("your login has expired, please log in again.");
     }
