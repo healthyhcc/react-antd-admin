@@ -11,7 +11,7 @@ const pool = mysql.createPool({
   database,
 });
 
-function executeMysql(sql) {
+const executeMysql = (sql) => {
   return new Promise((resolve, reject) => {
     pool.getConnection((error, connection) => {
       if (error) {
@@ -26,6 +26,6 @@ function executeMysql(sql) {
       });
     });
   });
-}
+};
 
 module.exports = executeMysql;

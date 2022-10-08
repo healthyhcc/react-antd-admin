@@ -20,6 +20,7 @@ const {
   taskRouter,
   userRouter,
   fileRouter,
+  scheduleRouter,
 } = require("./routes/router");
 
 const app = express();
@@ -42,7 +43,6 @@ app
     })
   )
   .use((error, request, response, next) => {
-    console.log(error);
     if (error.name === "UnauthorizedError") {
       response.status(401).send("your login has expired, please log in again.");
     }
@@ -52,7 +52,8 @@ app
   .use("/login", loginRouter)
   .use("/task", taskRouter)
   .use("/user", userRouter)
-  .use("/file", fileRouter);
+  .use("/file", fileRouter)
+  .use("/schedule", scheduleRouter);
 
 app.listen(serverConfig.port, "0.0.0.0", () => {
   console.log("server is running in http://localhost:" + serverConfig.port);

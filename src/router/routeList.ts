@@ -37,6 +37,11 @@ const routeList = [
     component: React.lazy(() => import("@/views/Authority/index")),
   },
   {
+    path: "/schedule",
+    roles: ["root", "admin", "user"],
+    component: React.lazy(() => import("@/views/Schedule/index")),
+  },
+  {
     path: "/icon",
     roles: ["root", "admin", "user"],
     component: React.lazy(() => import("@/views/Icon/index")),

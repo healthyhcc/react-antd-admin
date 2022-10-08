@@ -78,6 +78,12 @@ const menuList: Array<object> = [
     roles: ["root", "admin", "user"],
   },
   {
+    label: <FormattedMessage id="menulist.authority" />,
+    key: "/schedule",
+    icon: <EyeInvisibleOutlined />,
+    roles: ["root", "admin", "user"],
+  },
+  {
     label: <FormattedMessage id="menulist.icon" />,
     key: "/icon",
     icon: <CopyOutlined />,
