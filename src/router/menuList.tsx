@@ -11,6 +11,7 @@ import {
   AppstoreOutlined,
   FileOutlined,
   EyeInvisibleOutlined,
+  FieldTimeOutlined
 } from "@ant-design/icons";
 
 const menuList: Array<object> = [
@@ -78,9 +79,9 @@ const menuList: Array<object> = [
     roles: ["root", "admin", "user"],
   },
   {
-    label: <FormattedMessage id="menulist.authority" />,
+    label: <FormattedMessage id="menulist.schedule" />,
     key: "/schedule",
-    icon: <EyeInvisibleOutlined />,
+    icon: <FieldTimeOutlined />,
     roles: ["root", "admin", "user"],
   },
   {
