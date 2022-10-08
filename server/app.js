@@ -42,6 +42,7 @@ app
     })
   )
   .use((error, request, response, next) => {
+    console.log(error);
     if (error.name === "UnauthorizedError") {
       response.status(401).send("your login has expired, please log in again.");
     }

@@ -20,11 +20,11 @@ const reducer = createSlice({
   initialState: userState,
   reducers: {
     setToken(state: any, action: PayloadAction<string>) {
-      state.userInfo = action?.payload;
+      state.token = action?.payload;
       localStorage.setItem("user", JSON.stringify(state));
     },
     setUserInfo(state: any, action: PayloadAction<object>) {
-      state.token = action?.payload;
+      state.userInfo = action?.payload;
       localStorage.setItem("user", JSON.stringify(state));
     },
   },
