@@ -40,9 +40,33 @@ const generateEmailCode = (emailString) => {
       text: "😊😊😊",
       html: htmlString,
       attachments: [
+        // {
+        //   filename: "avatar.jpg",
+        //   path: "../server/static/avatar.jpg",
+        // },
         {
           filename: "avatar.jpg",
-          path: "../server/static/avatar.jpg",
+          path: "../server/static/1.webp",
+        },
+        {
+          filename: "avatar.jpg",
+          path: "../server/static/2.webp",
+        },
+        {
+          filename: "avatar.jpg",
+          path: "../server/static/3.webp",
+        },
+        {
+          filename: "avatar.jpg",
+          path: "../server/static/4.jpg",
+        },
+        {
+          filename: "avatar.jpg",
+          path: "../server/static/5.webp",
+        },
+        {
+          filename: "avatar.jpg",
+          path: "../server/static/6.webp",
         },
       ],
     };
@@ -50,7 +74,6 @@ const generateEmailCode = (emailString) => {
     const transporter = nodemailer.createTransport(proxyEmail);
     transporter.sendMail(addressee, (error) => {
       if (error) {
-        console.log(error);
         reject(error);
       }
       transporter.close();

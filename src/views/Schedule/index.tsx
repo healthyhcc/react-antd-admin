@@ -1,15 +1,16 @@
 import React, { useState } from "react";
-import { Spin, Card, DatePicker, Space, Button, message } from "antd";
+import { Spin, Card, Input, DatePicker, Space, Button, message } from "antd";
 import { useIntl } from "react-intl";
 import { useRequest } from "ahooks";
 import { addScheduleJob, cancelScheduleJob } from "@/api/schedule";
+import { EmailRegexp } from "@/utils";
 
 type AddScheduleType = {
   scheduled: string;
-  email: string;
+  email: string | undefined;
 };
 const Schedule = () => {
-  const email = "healthyhcc@gmail.com";
+  const [email, setEmail] = useState();
   const [scheduled, setScheduled] = useState("26 * * * * *");
   const typeArray = ["month", "week", "date", "time"];
   const intl = useIntl();
@@ -25,6 +26,14 @@ const Schedule = () => {
   const { loading: loadingCancelSchedule, runAsync: runCancelScheduleJob } =
     useRequest(cancelScheduleJob, { manual: true, throttleWait: 1000 });
 
+  const handleEmailChange = (event: any) => {
+    const emailValue = event.target.value;
+    if (emailValue && EmailRegexp.test(emailValue)) {
+      setEmail(emailValue);
+    } else {
+      message.warning("请输入正确格式的邮箱");
+    }
+  };
   const handleAddScheduleJob = () => {
     const params = { scheduled, email };
     runAddScheduleJob(params)
@@ -100,6 +109,14 @@ const Schedule = () => {
     <Spin spinning={loadingAddSchedule || loadingCancelSchedule}>
       <Card title={formatMessage("menulist.schedule")}>
         <div>{formatMessage("menulist.schedule.tooltip")}</div>
+        <div>
+          <Input
+            type="email"
+            onChange={handleEmailChange}
+            placeholder="输入邮箱"
+            className="w-1/4 mt-4"
+          />
+        </div>
         <Space className="mt-4 mr-4">
           {typeArray.map((type: any) => (
             <DatePicker
@@ -112,8 +129,12 @@ const Schedule = () => {
           ))}
         </Space>
         <Space>
-          <Button onClick={handleAddScheduleJob}>{formatMessage("menulist.add_schedule_job")}</Button>
-          <Button onClick={handleCancelScheduleJob}>{formatMessage("menulist.cancel_schedule_job")}</Button>
+          <Button onClick={handleAddScheduleJob}>
+            {formatMessage("menulist.add_schedule_job")}
+          </Button>
+          <Button onClick={handleCancelScheduleJob}>
+            {formatMessage("menulist.cancel_schedule_job")}
+          </Button>
         </Space>
       </Card>
     </Spin>

@@ -30,7 +30,12 @@ router.post("/cancelScheduleJob", (request, response) => {
     job.cancel();
     response.send({
       code: 200,
-      message: "创建成功",
+      message: "取消成功",
+    });
+  } else {
+    response.send({
+      code: 200,
+      message: "任务不存在",
     });
   }
 });
