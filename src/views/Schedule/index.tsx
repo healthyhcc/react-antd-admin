@@ -31,7 +31,7 @@ const Schedule = () => {
     if (emailValue && EmailRegexp.test(emailValue)) {
       setEmail(emailValue);
     } else {
-      message.warning("请输入正确格式的邮箱");
+      message.warning(formatMessage("schedule.input_email"));
     }
   };
   const handleAddScheduleJob = () => {
@@ -108,12 +108,12 @@ const Schedule = () => {
   return (
     <Spin spinning={loadingAddSchedule || loadingCancelSchedule}>
       <Card title={formatMessage("menulist.schedule")}>
-        <div>{formatMessage("menulist.schedule.tooltip")}</div>
+        <div>{formatMessage("schedule.tips")}</div>
         <div>
           <Input
             type="email"
             onBlur={handleInputEmail}
-            placeholder="输入邮箱"
+            placeholder={formatMessage("menulist.placeholder_email")}
             className="w-1/4 mt-4"
           />
         </div>
@@ -130,10 +130,10 @@ const Schedule = () => {
         </Space>
         <Space>
           <Button onClick={handleAddScheduleJob}>
-            {formatMessage("menulist.add_schedule_job")}
+            {formatMessage("schedule.add_schedule_job")}
           </Button>
           <Button onClick={handleCancelScheduleJob}>
-            {formatMessage("menulist.cancel_schedule_job")}
+            {formatMessage("schedule.cancel_schedule_job")}
           </Button>
         </Space>
       </Card>
