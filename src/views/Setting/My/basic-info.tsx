@@ -144,7 +144,7 @@ const BasicInfo: React.FC = () => {
 
   return (
     <Spin spinning={loadingGetUserDetail || loadingUpdateUser}>
-      <Card title={formatMessage("basic_info.title")}>
+      <Card title={formatMessage("basic_info.title")} style={{ height: "calc(100vh - 100px - 2rem)" }}>
         <Form
           labelCol={{ span: 4 }}
           wrapperCol={{ span: 12 }}

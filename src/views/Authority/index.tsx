@@ -30,7 +30,10 @@ const Authority: React.FC = () => {
     { label: "authority.options_role_root", value: 3 },
   ];
   return (
-    <Card title={formatMessage("authority.title")}>
+    <Card
+      title={formatMessage("authority.title")}
+      style={{ height: "calc(100vh - 100px - 2rem)" }}
+    >
       <div className="flex flex-col items-center">
         <div>
           {formatMessage("authority.current_authority")}&nbsp;&nbsp;

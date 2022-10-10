@@ -183,7 +183,10 @@ const FileAdmin: React.FC = () => {
         spinning
       }
     >
-      <Card title={formatMessage("file_admin.title")}>
+      <Card
+        title={formatMessage("file_admin.title")}
+        style={{ height: "calc(100vh - 100px - 2rem)" }}
+      >
         <Tabs defaultActiveKey="upload" onChange={handleTabChange}>
           <Tabs.TabPane
             tab={formatMessage("file_admin.upload_tab")}
@@ -197,6 +200,15 @@ const FileAdmin: React.FC = () => {
                 handleBeforeUploadFile(fileList)
               }
               onRemove={handleRemoveFile}
+              progress={{
+                strokeColor: {
+                  "0%": "#108ee9",
+                  "100%": "#87d068",
+                },
+                strokeWidth: 3,
+                format: (percent) =>
+                  percent && `${parseFloat(percent.toFixed(2))}%`,
+              }}
               name="files"
               className="w-1/4"
             >

@@ -68,7 +68,7 @@ const ModifyPassword: React.FC = () => {
 
   return (
     <Spin spinning={loadingCheckPassword || loadingUpdatePassword}>
-      <Card title={formatMessage("modify_password.title")}>
+      <Card title={formatMessage("modify_password.title")} style={{ height: "calc(100vh - 100px - 2rem)" }}>
         <Form
           labelCol={{ span: 4 }}
           wrapperCol={{ span: 12 }}

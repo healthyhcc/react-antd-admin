@@ -107,7 +107,10 @@ const Schedule = () => {
   };
   return (
     <Spin spinning={loadingAddSchedule || loadingCancelSchedule}>
-      <Card title={formatMessage("menulist.schedule")}>
+      <Card
+        title={formatMessage("menulist.schedule")}
+        style={{ height: "calc(100vh - 100px - 2rem)" }}
+      >
         <div>{formatMessage("schedule.tips")}</div>
         <div>
           <Input
