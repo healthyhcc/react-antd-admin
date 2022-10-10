@@ -26,7 +26,7 @@ const Schedule = () => {
   const { loading: loadingCancelSchedule, runAsync: runCancelScheduleJob } =
     useRequest(cancelScheduleJob, { manual: true, throttleWait: 1000 });
 
-  const handleEmailChange = (event: any) => {
+  const handleInputEmail = (event: any) => {
     const emailValue = event.target.value;
     if (emailValue && EmailRegexp.test(emailValue)) {
       setEmail(emailValue);
@@ -112,7 +112,7 @@ const Schedule = () => {
         <div>
           <Input
             type="email"
-            onChange={handleEmailChange}
+            onBlur={handleInputEmail}
             placeholder="输入邮箱"
             className="w-1/4 mt-4"
           />
