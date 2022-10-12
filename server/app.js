@@ -44,7 +44,15 @@ app
   )
   .use((error, request, response, next) => {
     if (error.name === "UnauthorizedError") {
-      response.status(401).send("your login has expired, please log in again.");
+      response.send({
+        status: 401,
+        message: "you do not have permission to access",
+      });
+    } else {
+      response.send({
+        status: 500,
+        message: "unknown error",
+      });
     }
   });
 
