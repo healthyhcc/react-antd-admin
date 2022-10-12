@@ -36,7 +36,7 @@ type FileType = {
 const BasicInfo: React.FC = () => {
   const state: any = useSelector((state) => state);
   const { user } = state;
-  const { userInfo } = user;
+  const { token, userInfo } = user;
   const userDispatch = useDispatch();
   const [uploading, setUploading] = useState(false);
   const [avatarUrl, setAvatarUrl] = useState("");
@@ -192,6 +192,9 @@ const BasicInfo: React.FC = () => {
             valuePropName="avatar"
           >
             <Upload
+              headers={{
+                authorization: `Bearer ${token}`,
+              }}
               name="avatar"
               listType="picture-card"
               showUploadList={false}

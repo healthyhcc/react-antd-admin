@@ -25,8 +25,6 @@ const whiteList = [
   "/login/findEmail",
   "/login/sendEmail",
   "/login/resetPassword",
-  "/file/uploadAvatar",
-  "/file/uploadFiles",
 ];
 
 const emailConfig = {

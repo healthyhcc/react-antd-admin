@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { useIntl } from "react-intl";
 import { Spin, Card, Tabs, List, Upload, Space, Button, message } from "antd";
 import { InboxOutlined } from "@ant-design/icons";
+import { useIntl } from "react-intl";
 import { useRequest } from "ahooks";
 import { formatGMTTime } from "@/utils";
 import { SERVER_ADDRESS } from "@/utils/config";

@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef, Fragment } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import {
   Spin,
   Card,
@@ -73,6 +74,9 @@ type FileType = {
   size: number;
 };
 const UserList: React.FC = () => {
+  const state: any = useSelector((state) => state);
+  const { user } = state;
+  const { token } = user;
   const [selectedRowKeys, setSelectedRowKeys] = useState([]);
   const [uploading, setUploading] = useState(false);
   const [avatarUrl, setAvatarUrl] = useState("");
@@ -588,6 +592,9 @@ const UserList: React.FC = () => {
               valuePropName="avatar"
             >
               <Upload
+              headers={{
+                authorization: `Bearer ${token}`,
+              }}
                 name="avatar"
                 listType="picture-card"
                 showUploadList={false}
