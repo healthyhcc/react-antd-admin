@@ -8,7 +8,7 @@ specifiers:
   '@types/crypto-js': ^4.1.1
   '@types/draft-js': ^0.11.9
   '@types/file-saver': ^2.0.5
-  '@types/node': ^18.8.3
+  '@types/node': ^18.8.4
   '@types/nprogress': ^0.2.0
   '@types/qrcode': ^1.5.0
   '@types/react': ^18.0.21
@@ -52,7 +52,7 @@ specifiers:
   screenfull: ^6.0.2
   tailwindcss: ^3.1.8
   typewriter-effect: ^2.19.0
-  vite: ^3.1.6
+  vite: ^3.1.7
   vite-plugin-compression: ^0.5.1
   vite-plugin-style-import: ^2.0.0
   xlsx: ^0.18.5
@@ -95,7 +95,7 @@ devDependencies:
   '@types/crypto-js': 4.1.1
   '@types/draft-js': 0.11.9
   '@types/file-saver': 2.0.5
-  '@types/node': 18.8.3
+  '@types/node': 18.8.4
   '@types/nprogress': 0.2.0
   '@types/qrcode': 1.5.0
   '@types/react': 18.0.21
@@ -112,9 +112,9 @@ devDependencies:
   less: 4.1.3
   postcss: 8.4.17
   tailwindcss: 3.1.8_postcss@8.4.17
-  vite: 3.1.6_less@4.1.3
-  vite-plugin-compression: 0.5.1_vite@3.1.6
-  vite-plugin-style-import: 2.0.0_vite@3.1.6
+  vite: 3.1.7_less@4.1.3
+  vite-plugin-compression: 0.5.1_vite@3.1.7
+  vite-plugin-style-import: 2.0.0_vite@3.1.7
 
 packages:
 
@@ -621,8 +621,8 @@ packages:
     resolution: {integrity: sha512-aLkWa0C0vO5b4Sr798E26QgOkss68Un0bLjs7u9qxzPT5CG+8DuNTffWES58YzJs3hrVAOs1wonycqEBqNJubA==}
     dev: false
 
-  /@types/node/18.8.3:
-    resolution: {integrity: sha512-0os9vz6BpGwxGe9LOhgP/ncvYN5Tx1fNcd2TM3rD/aCGBkysb+ZWpXEocG24h6ZzOi13+VB8HndAQFezsSOw1w==}
+  /@types/node/18.8.4:
+    resolution: {integrity: sha512-WdlVphvfR/GJCLEMbNA8lJ0lhFNBj4SW3O+O5/cEGw9oYrv0al9zTwuQsq+myDUXgNx2jgBynoVgZ2MMJ6pbow==}
     dev: true
 
   /@types/nprogress/0.2.0:
@@ -635,7 +635,7 @@ packages:
   /@types/qrcode/1.5.0:
     resolution: {integrity: sha512-x5ilHXRxUPIMfjtM+1vf/GPTRWZ81nqscursm5gMznJeK9M0YnZ1c3bEvRLQ0zSSgedLx1J6MGL231ObQGGhaA==}
     dependencies:
-      '@types/node': 18.8.3
+      '@types/node': 18.8.4
     dev: true
 
   /@types/react-document-title/2.0.5:
@@ -3370,7 +3370,7 @@ packages:
   /util-deprecate/1.0.2:
     resolution: {integrity: sha512-EPD5q1uXyFxJpCrLnCc1nHnq3gOa6DZBocAIiI2TaSCA7VCJ1UJDMagCzIkXNsUYfD1daK//LTEQ8xiIbrHtcw==}
 
-  /vite-plugin-compression/0.5.1_vite@3.1.6:
+  /vite-plugin-compression/0.5.1_vite@3.1.7:
     resolution: {integrity: sha512-5QJKBDc+gNYVqL/skgFAP81Yuzo9R+EAf19d+EtsMF/i8kFUpNi3J/H01QD3Oo8zBQn+NzoCIFkpPLynoOzaJg==}
     peerDependencies:
       vite: '>=2.0.0'
@@ -3378,12 +3378,12 @@ packages:
       chalk: 4.1.2
       debug: 4.3.4
       fs-extra: 10.1.0
-      vite: 3.1.6_less@4.1.3
+      vite: 3.1.7_less@4.1.3
     transitivePeerDependencies:
       - supports-color
     dev: true
 
-  /vite-plugin-style-import/2.0.0_vite@3.1.6:
+  /vite-plugin-style-import/2.0.0_vite@3.1.7:
     resolution: {integrity: sha512-qtoHQae5dSUQPo/rYz/8p190VU5y19rtBaeV7ryLa/AYAU/e9CG89NrN/3+k7MR8mJy/GPIu91iJ3zk9foUOSA==}
     peerDependencies:
       vite: '>=2.0.0'
@@ -3395,11 +3395,11 @@ packages:
       fs-extra: 10.1.0
       magic-string: 0.25.9
       pathe: 0.2.0
-      vite: 3.1.6_less@4.1.3
+      vite: 3.1.7_less@4.1.3
     dev: true
 
-  /vite/3.1.6_less@4.1.3:
-    resolution: {integrity: sha512-qMXIwnehvvcK5XfJiXQUiTxoYAEMKhM+jqCY6ZSTKFBKu1hJnAKEzP3AOcnTerI0cMZYAaJ4wpW1wiXLMDt4mA==}
+  /vite/3.1.7_less@4.1.3:
+    resolution: {integrity: sha512-5vCAmU4S8lyVdFCInu9M54f/g8qbOMakVw5xJ4pjoaDy5wgy9sLLZkGdSLN52dlsBqh0tBqxjaqqa8LgPqwRAA==}
     engines: {node: ^14.18.0 || >=16.0.0}
     hasBin: true
     peerDependencies:
