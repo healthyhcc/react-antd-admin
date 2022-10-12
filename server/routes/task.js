@@ -110,7 +110,7 @@ router.post("/getTask", (request, response) => {
         }
         break;
       case "tasklevel":
-        if (body["tasklevel"] !== 0) {
+        if (body[key] !== -1 && body[key] !== 0) {
           sqlString += ` AND tasklevel = ${Number(body[key])}`;
         }
         break;
