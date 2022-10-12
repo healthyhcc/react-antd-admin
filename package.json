@@ -13,7 +13,7 @@
     "@toast-ui/editor": "^3.2.1",
     "@toast-ui/react-editor": "^3.2.2",
     "ahooks": "^3.7.1",
-    "antd": "4.22.8",
+    "antd": "^4.23.5",
     "axios": "^1.1.2",
     "copy-to-clipboard": "^3.3.2",
     "crypto-js": "^4.1.1",
