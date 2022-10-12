@@ -3,15 +3,15 @@
 
  Source Server         : mysql
  Source Server Type    : MySQL
- Source Server Version : 50738
+ Source Server Version : 50739
  Source Host           : localhost:3306
  Source Schema         : user
 
  Target Server Type    : MySQL
- Target Server Version : 50738
+ Target Server Version : 50739
  File Encoding         : 65001
 
- Date: 09/09/2022 15:26:06
+ Date: 12/10/2022 17:43:08
 */
 
 SET NAMES utf8mb4;
@@ -28,7 +28,7 @@ CREATE TABLE `file`  (
   `time` datetime(0) NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP(0),
   `userId` int(11) NOT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 50 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 71 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of file
@@ -49,6 +49,27 @@ INSERT INTO `file` VALUES (46, 'profile-fb-kid-01.png', 'ca846e5b33499287f4482f9
 INSERT INTO `file` VALUES (47, '工作报告-韩畅畅.pptx', '5a9e963772d60e4820d66b9c5c794951.pptx', '2022-09-06 16:00:52', 59);
 INSERT INTO `file` VALUES (48, '20220705-093120.jpg', 'a162cc5a7eff6b9b7eca79473363e44b.jpg', '2022-09-06 16:00:52', 59);
 INSERT INTO `file` VALUES (49, '2022Calendar.pdf', '04cd5cb3b29c35f75241cf72aa7906b6.pdf', '2022-09-06 16:00:52', 59);
+INSERT INTO `file` VALUES (50, 'u=1657952994,837822251&fm=253&fmt=auto&app=120&f=JPEG.webp', '29ec9ae7417b7ec37e572a5578681636.webp', '2022-10-09 16:38:26', 61);
+INSERT INTO `file` VALUES (51, 'd233aeb248644de403140f4a77eeb2c.jpg', 'b9a9411fb49671aa6b463f81c08388c3.jpg', '2022-10-09 16:38:26', 61);
+INSERT INTO `file` VALUES (52, 'u=551407047,2913020865&fm=253&fmt=auto&app=120&f=JPEG.webp', '314f55f353b5e7b88c12cf7218adb22a.webp', '2022-10-09 16:38:26', 61);
+INSERT INTO `file` VALUES (53, 'u=3529937599,2897121170&fm=253&fmt=auto&app=138&f=JPEG.webp', 'f4d5c00f5a8a6b13d0902e979f1d1712.webp', '2022-10-09 16:38:26', 61);
+INSERT INTO `file` VALUES (54, 'u=2896165801,2181483533&fm=253&fmt=auto&app=138&f=JPEG.webp', 'fe62af5e681ead4e1c36ecf95b4f3a42.webp', '2022-10-09 16:38:26', 61);
+INSERT INTO `file` VALUES (55, 'u=2508023202,2934562447&fm=253&fmt=auto&app=138&f=JPEG.webp', '2ac069bde0288b72527912ee3685cee5.webp', '2022-10-09 16:38:26', 61);
+INSERT INTO `file` VALUES (56, '5edea39e9f9b946b2c0151071a7bced9.jpg', '12e83aeb7b44a3a6e7faf62454cc09a9.jpg', '2022-10-10 14:40:30', 61);
+INSERT INTO `file` VALUES (57, '49b8d28b3677085f6f73eb07e00ee0a4.jpg', '9cfb579ccba8965271fd555f5112e476.jpg', '2022-10-10 14:45:16', 61);
+INSERT INTO `file` VALUES (58, '5edea39e9f9b946b2c0151071a7bced9.jpg', '0e4d179dbe5a147905c72562f87b29a5.jpg', '2022-10-10 14:45:30', 61);
+INSERT INTO `file` VALUES (59, '26baa9a8b5bf4526cfd7d0a20173cb79.jpg', 'ef7cafc7f34b5e5ee1ae4b306c2d4bcd.jpg', '2022-10-10 14:45:30', 61);
+INSERT INTO `file` VALUES (60, 'LICENSE', '83904801596e6bddb31b929a8ebc5e3a.undefined', '2022-10-10 14:51:20', 61);
+INSERT INTO `file` VALUES (61, 'package.json', '22007e4e1756907ef17579f96ae6b7f1.json', '2022-10-10 14:51:20', 61);
+INSERT INTO `file` VALUES (62, 'README.md', '1d971d74021df15776d322143c41f877.md', '2022-10-10 14:51:20', 61);
+INSERT INTO `file` VALUES (63, 'README.md', 'db190630e80173dbc9f4f0b4914fb5be.md', '2022-10-10 14:51:54', 61);
+INSERT INTO `file` VALUES (64, 'LICENSE', '74895ec7eac810211fdb2e097662fd2d.undefined', '2022-10-10 14:57:03', 61);
+INSERT INTO `file` VALUES (65, 'package.json', 'a73d2351cf4cf6796ff1d22b219a56c7.json', '2022-10-10 14:57:03', 61);
+INSERT INTO `file` VALUES (66, 'README.md', '3b6a4829f02cdc7bca5ad295c5233a65.md', '2022-10-10 14:57:03', 61);
+INSERT INTO `file` VALUES (67, '26baa9a8b5bf4526cfd7d0a20173cb79.jpg', 'e8db8c9aa768433c3fb758a53c524a79.jpg', '2022-10-12 16:05:23', 61);
+INSERT INTO `file` VALUES (68, '49b8d28b3677085f6f73eb07e00ee0a4.jpg', 'f35e9282fa053e2010d8d371ccf247e8.jpg', '2022-10-12 16:05:23', 61);
+INSERT INTO `file` VALUES (69, '26baa9a8b5bf4526cfd7d0a20173cb79.jpg', '837687830b405f2e0aece6a0e8d6312a.jpg', '2022-10-12 16:06:36', 61);
+INSERT INTO `file` VALUES (70, '26baa9a8b5bf4526cfd7d0a20173cb79.jpg', '445d930a991229d2b788d894f43c9f43.jpg', '2022-10-12 16:07:00', 61);
 
 -- ----------------------------
 -- Table structure for task
@@ -59,14 +80,14 @@ CREATE TABLE `task`  (
   `taskname` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `tasklevel` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 10 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of task
 -- ----------------------------
-INSERT INTO `task` VALUES (1, '实现拖拽功能', '1');
+INSERT INTO `task` VALUES (1, '优化部分页面的样式', '1');
 INSERT INTO `task` VALUES (2, '配置自动化更新部署，CI/CD', '2');
-INSERT INTO `task` VALUES (3, '优化TypeScript重构', '3');
+INSERT INTO `task` VALUES (3, '优化TypeScript类型', '3');
 
 -- ----------------------------
 -- Table structure for user
@@ -86,12 +107,12 @@ CREATE TABLE `user`  (
   `last_login_time` datetime(0) NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP(0),
   `last_login_ip` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT '',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 61 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 63 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of user
 -- ----------------------------
-INSERT INTO `user` VALUES (1, 'CC', 'e10adc3949ba59abbe56e057f20f883e', 0, '15657122361', 'hcc960923@gmail.com', '2022-09-09 10:24:36', '05c265feeb62cf17bf73c485b63498ff.png', 'LKLKLKLKLKLKLKLKLKLKLKLKLKLK', 2, '2022-09-09 10:24:36', '127.0.0.1');
+INSERT INTO `user` VALUES (1, 'CC', 'e10adc3949ba59abbe56e057f20f883e', 0, '15657122361', 'hcc960923@gmail.com', '2022-10-12 16:13:48', 'afb24c57a3d6bf9872da46a454e19f42.jpg', 'LKLKLKLKLKLKLKLKLKLKLKLKLKLK', 2, '2022-10-12 16:13:48', '127.0.0.1');
 INSERT INTO `user` VALUES (2, '曹青青', 'e10adc3949ba59abbe56e057f20f883e', 1, '15157122361', 'hcc96923@gmail.com', '2022-09-06 16:11:06', '105fe1ec82fd9bab305116268b12212d.png', 'SSSSSSSSSSSSS', 2, '2022-09-06 16:11:06', '127.0.0.1');
 INSERT INTO `user` VALUES (3, '张家辉', 'e10adc3949ba59abbe56e057f20f883e', 1, '15825759654', 'zjh987@qq.com', '2022-09-06 16:11:12', '1bdb4c82fbea478db41c30ffdbd39f5c.png', 'SSSSSSSSSSSSSSCCCCCCCCCCCCCCCC', 1, '2022-09-06 16:11:12', '127.0.0.1');
 INSERT INTO `user` VALUES (4, '曹操', 'e10adc3949ba59abbe56e057f20f883e', 1, '15657122369', 'hcc96923@163.com', '2022-09-06 16:11:40', '6147f28d3ed6b97d0769ee6e14e6bcc4.png', 'CXXXXXXXXXXXXXXXXXXXXXXX', 3, '2022-09-06 16:11:40', '127.0.0.1');
@@ -111,5 +132,7 @@ INSERT INTO `user` VALUES (57, '小鬼', 'e10adc3949ba59abbe56e057f20f883e', 0, 
 INSERT INTO `user` VALUES (58, '小鬼1', 'e10adc3949ba59abbe56e057f20f883e', 0, '18147295149', 'vvvddvs@qwsq.com', '2022-09-06 16:12:48', 'a384ef8ce147b9d8a2fcb60ac9a45236.png', 'YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY', 1, '2022-09-06 16:12:48', '127.0.0.1');
 INSERT INTO `user` VALUES (59, '默然', 'e10adc3949ba59abbe56e057f20f883e', 0, '18147275140', 'changchanghan@qq.com', '2022-09-06 16:10:38', '8e0e6fa8fcd5a0e8de10b63e6ba753c3.png', 'IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII', 3, '2022-09-06 16:10:38', '127.0.0.1');
 INSERT INTO `user` VALUES (60, '张家辉', 'e10adc3949ba59abbe56e057f20f883e', 0, '15825759654', 'hcc0x96923@163.com', '2022-09-07 13:33:09', '8da073feb039d9d50511b5931eeee7b7.png', '', 1, '2022-09-07 13:33:09', '');
+INSERT INTO `user` VALUES (61, 'CCH', 'e10adc3949ba59abbe56e057f20f883e', 0, '15657122362', 'healthyhcc@gmail.com', '2022-10-12 16:10:50', 'eb33606c7a1913757029a237f854ec40.jpg', '2222222222222222222', 3, '2022-10-12 16:10:50', '127.0.0.1');
+INSERT INTO `user` VALUES (62, '太夫人', 'e10adc3949ba59abbe56e057f20f883e', 0, '', 'healthyhcsc@gmail.com', '2022-10-10 09:29:48', 'd8846b94ec98bd9df41f14bc290c340e.jpg', '', 1, '2022-10-10 09:29:48', '127.0.0.1');
 
 SET FOREIGN_KEY_CHECKS = 1;
