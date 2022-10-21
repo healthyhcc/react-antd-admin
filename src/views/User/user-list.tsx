@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef, Fragment } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import {
   Spin,
   Card,
@@ -90,7 +90,7 @@ const UserList: React.FC = () => {
   });
   const [pagination, setPagination] = useState({ pageNum: 1, pageSize: 10 });
   const [total, setTotal] = useState({ total: 0 });
-  const [modalVisible, setModalVisible] = useState(false);
+  const [modalOpen, setModalOpen] = useState(false);
   const [modalForm, setModalForm] = useState({
     id: undefined,
     username: "",
@@ -309,7 +309,7 @@ const UserList: React.FC = () => {
       });
     }
     setModalType(modalType);
-    setModalVisible(true);
+    setModalOpen(true);
   };
   const onSaveAddEditForm = (params: any) => {
     if (Object.prototype.toString.call(params?.avatar) === "[object Object]") {
@@ -320,7 +320,7 @@ const UserList: React.FC = () => {
         .then(() => {
           message.success(formatMessage("message.add.success"));
           handleGetUserList();
-          setModalVisible(false);
+          setModalOpen(false);
         })
         .catch((error) => {
           message.error(formatMessage("message.add.error"));
@@ -332,7 +332,7 @@ const UserList: React.FC = () => {
         .then(() => {
           message.success(formatMessage("message.edit.success"));
           handleGetUserList();
-          setModalVisible(false);
+          setModalOpen(false);
         })
         .catch((error) => {
           message.error(formatMessage("message.edit.error"));
@@ -536,10 +536,10 @@ const UserList: React.FC = () => {
               ? formatMessage("user_list.modal_add_user")
               : formatMessage("user_list.modal_edit_user")
           }
-          visible={modalVisible}
+          open={modalOpen}
           footer={null}
           destroyOnClose={true}
-          onCancel={() => setModalVisible(false)}
+          onCancel={() => setModalOpen(false)}
         >
           <Form
             labelCol={{ span: 8 }}
@@ -592,9 +592,9 @@ const UserList: React.FC = () => {
               valuePropName="avatar"
             >
               <Upload
-              headers={{
-                authorization: `Bearer ${token}`,
-              }}
+                headers={{
+                  authorization: `Bearer ${token}`,
+                }}
                 name="avatar"
                 listType="picture-card"
                 showUploadList={false}
@@ -646,7 +646,7 @@ const UserList: React.FC = () => {
                 <Button type="primary" htmlType="submit">
                   {formatMessage("user_list.modal_input_submit")}
                 </Button>
-                <Button type="default" onClick={() => setModalVisible(false)}>
+                <Button type="default" onClick={() => setModalOpen(false)}>
                   {formatMessage("user_list.modal_button_cancel")}
                 </Button>
               </Space>

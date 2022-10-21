@@ -5,7 +5,7 @@ import { useIntl } from "react-intl";
 import { setFixedHeader, setShowLogo, setShowTag } from "@/store";
 
 const DrawerSettings = (props: any) => {
-  const { drawerVisible, setDrawerVisible } = props;
+  const { drawerOpen, setDrawerOpen } = props;
   const state: any = useSelector((state) => state);
   const settingsDispatch = useDispatch();
   const { settings } = state;
@@ -27,11 +27,11 @@ const DrawerSettings = (props: any) => {
       title={formatMessage("drawsettings.title")}
       closeIcon={<></>}
       placement="right"
-      visible={drawerVisible}
+      open={drawerOpen}
       headerStyle={{ boxShadow: "0px 0px 3px rgba(0, 0, 0, 0.25)" }}
       extra={
         <Space>
-          <Button type="primary" onClick={() => setDrawerVisible(false)}>
+          <Button type="primary" onClick={() => setDrawerOpen(false)}>
             OK
           </Button>
         </Space>

@@ -4,11 +4,11 @@ import "./index.less";
 const Github: React.FC = () => {
   return (
     <a
-      href="https://github.com/hcc960923/react-antd-admin"
+      href="https://github.com/healthyhcc/react-antd-admin"
       target="_blank"
       rel="noopener noreferrer"
       className="github-logo"
-    ></a>
+    />
   );
 };
 

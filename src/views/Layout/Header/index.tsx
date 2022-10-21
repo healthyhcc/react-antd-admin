@@ -29,7 +29,7 @@ const Header: React.FC = () => {
   const { user, settings } = state;
   const { userInfo } = user;
   const { collapsed, fixedHeader } = settings;
-  const [drawerVisible, setDrawerVisible] = useState<any>(false);
+  const [drawerOpen, setDrawerOpen] = useState<any>(false);
   const isMb = document.body.clientWidth <= 992;
   const [mobile, setMobile] = useState(isMb);
   const intl = useIntl();
@@ -161,7 +161,7 @@ const Header: React.FC = () => {
                 >
                   <SettingOutlined
                     className="mx-4 cursor-default"
-                    onClick={() => setDrawerVisible(true)}
+                    onClick={() => setDrawerOpen(true)}
                   />
                 </Tooltip>
               </div>
@@ -177,9 +177,9 @@ const Header: React.FC = () => {
             </div>
           </div>
           <DrawerSettings
-            drawerVisible={drawerVisible}
+            drawerOpen={drawerOpen}
             fixedHeader={fixedHeader}
-            setDrawerVisible={setDrawerVisible}
+            setDrawerOpen={setDrawerOpen}
           />
         </div>
       </Layout.Header>

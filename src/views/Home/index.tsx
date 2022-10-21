@@ -46,7 +46,7 @@ const TaskList: React.FC = () => {
   });
   const [pagination, setPagination] = useState({ pageNum: 1, pageSize: 10 });
   const [total, setTotal] = useState({ total: 0 });
-  const [modalVisible, setModalVisible] = useState(false);
+  const [modalOpen, setModalOpen] = useState(false);
   const [modalForm, setModalForm] = useState({
     id: undefined,
     taskname: "",
@@ -186,7 +186,7 @@ const TaskList: React.FC = () => {
       });
     }
     setModalType(modalType);
-    setModalVisible(true);
+    setModalOpen(true);
   };
   const onSaveAddEditForm = (values: TaskDataType) => {
     if (modalType === "add") {
@@ -194,7 +194,7 @@ const TaskList: React.FC = () => {
         .then(() => {
           message.success(formatMessage("message.add.success"));
           handleGetTaskList();
-          setModalVisible(false);
+          setModalOpen(false);
         })
         .catch((error) => {
           message.error(formatMessage("message.add.error"));
@@ -206,7 +206,7 @@ const TaskList: React.FC = () => {
         .then(() => {
           message.success(formatMessage("message.edit.success"));
           handleGetTaskList();
-          setModalVisible(false);
+          setModalOpen(false);
         })
         .catch((error) => {
           message.error(formatMessage("message.edit.error"));
@@ -312,10 +312,10 @@ const TaskList: React.FC = () => {
               ? formatMessage("home.modal_add_task")
               : formatMessage("home.modal_edit_task")
           }
-          visible={modalVisible}
+          open={modalOpen}
           footer={null}
           destroyOnClose={true}
-          onCancel={() => setModalVisible(false)}
+          onCancel={() => setModalOpen(false)}
         >
           <Form
             labelCol={{ span: 8 }}
@@ -353,7 +353,7 @@ const TaskList: React.FC = () => {
                 <Button type="primary" htmlType="submit">
                   {formatMessage("home.modal_button_submit")}
                 </Button>
-                <Button type="default" onClick={() => setModalVisible(false)}>
+                <Button type="default" onClick={() => setModalOpen(false)}>
                   {formatMessage("home.modal_button_cancel")}
                 </Button>
               </Space>
