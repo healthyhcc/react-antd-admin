@@ -15,7 +15,7 @@ An simple exercise project, react-antd-admin, use the latest package.
 [![antd](https://img.shields.io/badge/antd-^4.24.1-orange.svg?style=flat-square)](https://github.com/ant-design/ant-design)
 [![vite](https://img.shields.io/badge/vite-^3.1.8-yellow.svg?style=flat-square)](https://github.com/vitejs/vite)
 [![MIT](https://img.shields.io/dub/l/vibe-d.svg?style=flat-square)](http://opensource.org/licenses/MIT)
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](https://github.com/zuiidea/antd-admin/pulls)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](https://github.com/healthyhcc/react-antd-admin/pulls)
 
 </div>
 
@@ -37,27 +37,40 @@ git clone https://github.com/healthyhcc/react-antd-admin.git
 cd react-antd-admin
 ```
 
-2. Installation dependence.
+2. Installation frontend dependence.
 
 ```bash
 pnpm install
 ```
 
-Or
-
-```bash
-npm install
-```
-
-3. Start local server.
+3. Start frontend serve.
 
 ```bash
 pnpm dev
 ```
 
-4. After the startup is complete, open a browser and visit [http://localhost:3000](http://localhost:3000), If you need to change the startup port, you can configure it in the `.env` file.
+4. Installation backend dependence.
 
-5. For login page, View the user data table in the database
+```bash
+cd server
+pnpm install
+```
+
+5. Start backend serve.
+
+```bash
+pnpm dev
+```
+
+
+
+6. Visit Porject
+
+After the startup is complete, open a browser and visit [http://localhost:3000](http://localhost:3000), If you need to change the startup port, you can configure it in the `.env` file.
+
+7. Login System
+
+View the user data table in the database, Select a super administrator or administrator or user and enter an email account such as healthyhcc@gamil.com and the password is 123456 to log in
 
 
 ## Browsers support
