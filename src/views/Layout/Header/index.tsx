@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import type { MenuProps } from 'antd';
 import {
   Layout,
-  Menu,
   Dropdown,
   Space,
   Avatar,
@@ -44,54 +44,39 @@ const Header: React.FC = () => {
     localStorage.clear();
     message.success(formatMessage("header.logout_success"));
   };
-  const intlMenu = (
-    <Menu
-      onClick={handleIntl}
-      items={[
-        {
-          key: "en",
-          label: "English",
-        },
-        {
-          key: "zh",
-          label: "中文",
-        },
-      ]}
-    />
-  );
-  const systemMenu = (
-    <Menu
-      items={[
-        {
-          key: "1",
-          label: (
-            <a href="#/setting-menu/user-setting/basic-info">
-              {formatMessage("header.system_menu.basic_info")}
-            </a>
-          ),
-        },
-        {
-          key: "2",
-          label: (
-            <a href="#/setting-menu/user-setting/modify-password">
-              {formatMessage("header.system_menu.modify_password")}
-            </a>
-          ),
-        },
-        {
-          type: "divider",
-        },
-        {
-          key: "3",
-          label: (
-            <a href="/" onClick={() => handleLogout()}>
-              {formatMessage("header.system_menu.logout")}
-            </a>
-          ),
-        },
-      ]}
-    />
-  );
+  const intlMenu: MenuProps['items'] = [
+    { key: "en", label: "English" },
+    { key: "zh", label: "中文" },
+  ]
+  const systemMenu: MenuProps['items'] = [
+    {
+      key: "1",
+      label: (
+        <a href="#/setting-menu/user-setting/basic-info">
+          {formatMessage("header.system_menu.basic_info")}
+        </a>
+      ),
+    },
+    {
+      key: "2",
+      label: (
+        <a href="#/setting-menu/user-setting/modify-password">
+          {formatMessage("header.system_menu.modify_password")}
+        </a>
+      ),
+    },
+    {
+      type: "divider",
+    },
+    {
+      key: "3",
+      label: (
+        <a href="/" onClick={() => handleLogout()}>
+          {formatMessage("header.system_menu.logout")}
+        </a>
+      ),
+    },
+  ]
   const computedStyle = () => {
     let styles;
     if (fixedHeader) {
@@ -145,7 +130,7 @@ const Header: React.FC = () => {
               <FullScreen />
 
               <div id="intl">
-                <Dropdown overlay={intlMenu} placement="bottom" arrow>
+                <Dropdown menu={{ items: intlMenu, onClick: handleIntl }} placement="bottom" arrow>
                   <a onClick={(event: any) => event?.preventDefault()}>
                     <Space>
                       <TranslationOutlined className="ml-4" />
@@ -168,7 +153,7 @@ const Header: React.FC = () => {
             </div>
             <div className="h-full flex justify-between items-center">
               <Avatar src={`${SERVER_ADDRESS}/${userInfo?.avatar}`} />
-              <Dropdown overlay={systemMenu} placement="bottom" arrow>
+              <Dropdown menu={{ items: systemMenu }} placement="bottom" arrow>
                 <Button type="link">
                   <span className="text-lg">{userInfo?.username}</span>
                   <DownOutlined />
