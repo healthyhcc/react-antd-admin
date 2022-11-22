@@ -1,5 +1,5 @@
 import React from "react";
-import "./index.less";
+import "./index.css";
 
 const Github: React.FC = () => {
   return (

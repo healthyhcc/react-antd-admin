@@ -5,10 +5,10 @@
   display: flex;
   justify-content: center;
   align-items: center;  
-  .sidebar-logo {
-    width: 64px;
-    animation: sidebar-logo-spin infinite 10s linear;
-  }
+}
+.sidebar-logo {
+  width: 64px;
+  animation: sidebar-logo-spin infinite 10s linear;
 }
 @keyframes sidebar-logo-spin {
   from {

@@ -4,7 +4,7 @@ import { Provider } from "react-redux";
 import Intl from "@/components/Intl";
 import store from "@/store";
 import Router from "@/router/index";
-import "./main.less";
+import "./main.css";
 
 const App: React.FC = () => {
   if (!window.global) window.global = globalThis;

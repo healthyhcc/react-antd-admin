@@ -2,7 +2,6 @@ import { resolve } from "path";
 import { defineConfig, loadEnv, ConfigEnv, UserConfig } from "vite";
 import reactRefresh from "@vitejs/plugin-react-refresh";
 import viteCompression from "vite-plugin-compression";
-import { createStyleImportPlugin, AntdResolve } from "vite-plugin-style-import";
 
 export default defineConfig((mode: ConfigEnv): UserConfig => {
   const configEnv = loadEnv(mode.mode, "./");
@@ -13,13 +12,6 @@ export default defineConfig((mode: ConfigEnv): UserConfig => {
         "@": resolve(__dirname, "./src"),
       },
     },
-    css: {
-      preprocessorOptions: {
-        less: {
-          javascriptEnabled: true,
-        },
-      },
-    },
     server: {
       host: configEnv.VITE_HOST,
       port: Number(configEnv.VITE_PORT),
@@ -27,7 +19,6 @@ export default defineConfig((mode: ConfigEnv): UserConfig => {
     },
     plugins: [
       reactRefresh(),
-      createStyleImportPlugin({ resolves: [AntdResolve()] }),
       viteCompression({
         verbose: true,
         disable: false,
