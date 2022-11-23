@@ -1,9 +1,11 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { Space } from "antd";
 import { MenuFoldOutlined, MenuUnfoldOutlined } from "@ant-design/icons";
 import { setCollapse } from "@/store";
 
-const Hamburger: React.FC = () => {
+const Hamburger: React.FC<any> = (props: any) => {
+  const { hamburgerRef } = props;
   const state: any = useSelector((state) => state);
   const settingsDispatch = useDispatch();
   const { settings } = state;
@@ -12,13 +14,11 @@ const Hamburger: React.FC = () => {
     settingsDispatch(setCollapse(!collapsed));
   };
   return (
-    <div
-      id="hamburger"
-      className="h-full flex items-center cursor-pointer text-2xl -ml-8"
-      onClick={handleCollapse}
-    >
-      {collapsed ? <MenuFoldOutlined /> : <MenuUnfoldOutlined />}
-    </div>
+    <Space className="h-full flex items-center cursor-pointer text-2xl -ml-8">
+      <span ref={hamburgerRef} onClick={handleCollapse}>
+        {collapsed ? <MenuFoldOutlined /> : <MenuUnfoldOutlined />}
+      </span>
+    </Space>
   );
 };
 

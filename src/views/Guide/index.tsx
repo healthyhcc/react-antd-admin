@@ -1,41 +1,47 @@
-import React from "react";
+import React, { useState } from "react";
 import { useIntl } from "react-intl";
-import { Steps } from "intro.js-react";
-import "intro.js/introjs.css";
+import { useSelector } from "react-redux";
+import { Tour } from "antd";
+import type { TourProps } from "antd";
 
 const Guide = () => {
-    const intl = useIntl();
+  const [open, setOpen] = useState<boolean>(true);
+  const state: any = useSelector((state) => state);
+  const { hamburgerRef, breadcrumbRef, fullscreenRef, intlRef, settingsRef } =
+    state.refs;
+  const intl = useIntl();
   const formatMessage = (id: string): string => {
     return intl.formatMessage({ id });
   };
-  const steps = [
+  const steps: TourProps["steps"] = [
     {
       title: "react-antd-admin",
-      intro: formatMessage("guide.intro"),
+      description: formatMessage("guide.intro"),
+      target: null,
     },
     {
-      element: "#hamburger",
-      intro: formatMessage("guide.hamburger_intro"),
+      title: formatMessage("guide.hamburger_intro"),
+      target: () => hamburgerRef.current,
     },
     {
-      element: "#breadcrumb",
-      intro: formatMessage("guide.breadcrumb_intro"),
+      title: formatMessage("guide.breadcrumb_intro"),
+      target: () => breadcrumbRef.current,
     },
     {
-      element: "#fullscreen",
-      intro: formatMessage("guide.fullscreen_intro"),
+      title: formatMessage("guide.fullscreen_intro"),
+      target: () => fullscreenRef.current,
     },
     {
-      element: "#intl",
-      intro: formatMessage("guide.intl_intro"),
+      title: formatMessage("guide.intl_intro"),
+      target: () => intlRef.current,
     },
     {
-      element: "#settings",
-      intro: formatMessage("guide.settings_intro"),
+      title: formatMessage("guide.settings_intro"),
+      target: () => settingsRef.current,
     },
   ];
-  const onExit = () => {};
-  return <Steps enabled={true} steps={steps} initialStep={0} onExit={onExit} />;
+
+  return <Tour open={open} onClose={() => setOpen(false)} steps={steps} />;
 };
 
 export default Guide;

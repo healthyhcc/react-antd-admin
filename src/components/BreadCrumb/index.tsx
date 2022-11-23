@@ -2,11 +2,12 @@ import React from "react";
 import { useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useIntl } from "react-intl";
-import { Breadcrumb } from "antd";
+import { Breadcrumb, Space } from "antd";
 import menuList from "@/router/menuList";
 
 type ArrayObjectType = Array<object>;
-const BreadCrumb: React.FC = () => {
+const BreadCrumb: React.FC<any> = (props: any) => {
+  const { breadcrumbRef } = props;
   const state: any = useSelector((state) => state);
   const { settings } = state;
   const settingsIntl = settings?.intl;
@@ -51,19 +52,21 @@ const BreadCrumb: React.FC = () => {
     pathData = [{ label: homeLabel, key: "/home" }].concat(pathData);
   }
   return (
-    <div id="breadcrumb" className="ml-2">
-      <Breadcrumb className="h-full flex items-center ml-4 text-sm">
-        {pathData.map((item: any) =>
-          item?.label === homeLabel ? (
-            <Breadcrumb.Item key={item?.key}>
-              <a href={`#${item?.key}`}>{item?.label}</a>
-            </Breadcrumb.Item>
-          ) : (
-            <Breadcrumb.Item key={item?.key}>{item?.label}</Breadcrumb.Item>
-          )
-        )}
-      </Breadcrumb>
-    </div>
+    <Space className="ml-2">
+      <span ref={breadcrumbRef}>
+        <Breadcrumb className="h-full flex items-center text-sm">
+          {pathData.map((item: any) =>
+            item?.label === homeLabel ? (
+              <Breadcrumb.Item key={item?.key}>
+                <a href={`#${item?.key}`}>{item?.label}</a>
+              </Breadcrumb.Item>
+            ) : (
+              <Breadcrumb.Item key={item?.key}>{item?.label}</Breadcrumb.Item>
+            )
+          )}
+        </Breadcrumb>
+      </span>
+    </Space>
   );
 };
 

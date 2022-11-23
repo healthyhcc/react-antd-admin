@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useIntl } from "react-intl";
 import { setFixedHeader, setShowLogo, setShowTag } from "@/store";
 
-const DrawerSettings = (props: any) => {
+const DrawerSettings: React.FC<any> = (props: any) => {
   const { drawerOpen, setDrawerOpen } = props;
   const state: any = useSelector((state) => state);
   const settingsDispatch = useDispatch();

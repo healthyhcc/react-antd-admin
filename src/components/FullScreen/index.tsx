@@ -1,10 +1,14 @@
 import React from "react";
-import { Tooltip } from "antd";
+import { Tooltip, Space } from "antd";
 import { FullscreenOutlined } from "@ant-design/icons";
 import { useIntl } from "react-intl";
 import screenfull from "screenfull";
 
-const FullScreen: React.FC = () => {
+const FullScreen: React.FC<any> = (props: any) => {
+  
+  const { fullscreenRef } = props;
+  console.log(typeof fullscreenRef.current);
+  
   const intl = useIntl();
   const formatMessage = (id: string): string => {
     return intl.formatMessage({ id });
@@ -13,9 +17,11 @@ const FullScreen: React.FC = () => {
     screenfull.toggle();
   };
   return (
-    <div id="fullscreen">
+    <div ref={fullscreenRef}>
       <Tooltip placement="bottom" title={formatMessage("fullscreen.title")}>
-        <FullscreenOutlined onClick={handleFullScrren} />
+        <Space>
+          <FullscreenOutlined onClick={handleFullScrren} className="text-2xl" />
+        </Space>
       </Tooltip>
     </div>
   );

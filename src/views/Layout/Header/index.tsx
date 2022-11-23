@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import type { MenuProps } from 'antd';
 import {
   Layout,
   Dropdown,
@@ -10,6 +9,7 @@ import {
   Tooltip,
   message,
 } from "antd";
+import type { MenuProps } from "antd";
 import {
   DownOutlined,
   SettingOutlined,
@@ -20,35 +20,40 @@ import FullScreen from "@/components/FullScreen";
 import DrawerSettings from "@/components/DrawerSettings";
 import Hamburger from "@/components/Hamburger";
 import BreadCrumb from "@/components/BreadCrumb";
-import { setIntl } from "@/store";
+import {
+  setIntl,
+  setBreadcrumbRef,
+  setHamburgerRef,
+  setFullscreenRef,
+  setIntlRef,
+  setSettingsRef,
+} from "@/store";
 import { SERVER_ADDRESS } from "@/utils/config";
 
 const Header: React.FC = () => {
   const state: any = useSelector((state) => state);
   const settingsDispatch = useDispatch();
+  const refsDispatch = useDispatch();
   const { user, settings } = state;
   const { userInfo } = user;
   const { collapsed, fixedHeader } = settings;
-  const [drawerOpen, setDrawerOpen] = useState<any>(false);
+  const [drawerOpen, setDrawerOpen] = useState<boolean>(false);
   const isMb = document.body.clientWidth <= 992;
-  const [mobile, setMobile] = useState(isMb);
+  const [mobile, setMobile] = useState<boolean>(isMb);
   const intl = useIntl();
   const formatMessage = (id: string): string => {
     return intl.formatMessage({ id });
   };
-  const handleIntl = (event: any) => {
-    const setIntlAction = setIntl(event.key);
-    settingsDispatch(setIntlAction);
-  };
-  const handleLogout = () => {
-    localStorage.clear();
-    message.success(formatMessage("header.logout_success"));
-  };
-  const intlMenu: MenuProps['items'] = [
+  const breadcrumbRef = useRef<any>(null);
+  const hamburgerRef = useRef<any>(null);
+  const fullscreenRef = useRef<any>(null);
+  const intlRef = useRef<any>(null);
+  const settingsRef = useRef<any>(null);
+  const intlMenu: MenuProps["items"] = [
     { key: "en", label: "English" },
     { key: "zh", label: "中文" },
-  ]
-  const systemMenu: MenuProps['items'] = [
+  ];
+  const systemMenu: MenuProps["items"] = [
     {
       key: "1",
       label: (
@@ -76,7 +81,15 @@ const Header: React.FC = () => {
         </a>
       ),
     },
-  ]
+  ];
+  const handleIntl = (event: any) => {
+    const setIntlAction = setIntl(event.key);
+    settingsDispatch(setIntlAction);
+  };
+  const handleLogout = () => {
+    localStorage.clear();
+    message.success(formatMessage("header.logout_success"));
+  };
   const computedStyle = () => {
     let styles;
     if (fixedHeader) {
@@ -103,7 +116,36 @@ const Header: React.FC = () => {
     };
     window.addEventListener("resize", addResizeEvent);
   };
+  const handleInitRefs = () => {
+    const refsArray = [
+      {
+        ref: breadcrumbRef,
+        handleAction: setBreadcrumbRef,
+      },
+      {
+        ref: hamburgerRef,
+        handleAction: setHamburgerRef,
+      },
+      {
+        ref: fullscreenRef,
+        handleAction: setFullscreenRef,
+      },
+      {
+        ref: intlRef,
+        handleAction: setIntlRef,
+      },
+      {
+        ref: settingsRef,
+        handleAction: setSettingsRef,
+      },
+    ];
+    refsArray.forEach((item) => {
+      const refAction = item.handleAction(item.ref);
+      refsDispatch(refAction);
+    });
+  };
   useEffect(() => {
+    handleInitRefs();
     handleResizeEvent();
   }, []);
   return (
@@ -122,34 +164,40 @@ const Header: React.FC = () => {
       >
         <div className="flex justify-between w-full">
           <div className="flex justify-start items-center">
-            {mobile ? null : <Hamburger />}
-            {mobile ? null : <BreadCrumb />}
+            {mobile ? null : <Hamburger hamburgerRef={hamburgerRef} />}
+            {mobile ? null : <BreadCrumb breadcrumbRef={breadcrumbRef} />}
           </div>
           <div className={"h-16 flex justify-end items-center mr-12"}>
             <div className="h-full flex justify-between items-center text-2xl">
-              <FullScreen />
+              <FullScreen fullscreenRef={fullscreenRef} />
 
-              <div id="intl">
-                <Dropdown menu={{ items: intlMenu, onClick: handleIntl }} placement="bottom" arrow>
-                  <a onClick={(event: any) => event?.preventDefault()}>
-                    <Space>
-                      <TranslationOutlined className="ml-4" />
-                    </Space>
-                  </a>
-                </Dropdown>
-              </div>
+              <Dropdown
+                menu={{ items: intlMenu, onClick: handleIntl }}
+                placement="bottom"
+                arrow
+              >
+                <a onClick={(event: any) => event?.preventDefault()}>
+                  <Space align="center">
+                    <TranslationOutlined
+                      ref={intlRef}
+                      className="text-2xl ml-4"
+                    />
+                  </Space>
+                </a>
+              </Dropdown>
 
-              <div id="settings">
-                <Tooltip
-                  placement="bottom"
-                  title={formatMessage("header.system_settings")}
-                >
+              <Tooltip
+                placement="bottom"
+                title={formatMessage("header.system_settings")}
+              >
+                <Space>
                   <SettingOutlined
-                    className="mx-4 cursor-default"
+                    ref={settingsRef}
+                    className="text-2xl mx-4 mt-1 cursor-default"
                     onClick={() => setDrawerOpen(true)}
                   />
-                </Tooltip>
-              </div>
+                </Space>
+              </Tooltip>
             </div>
             <div className="h-full flex justify-between items-center">
               <Avatar src={`${SERVER_ADDRESS}/${userInfo?.avatar}`} />

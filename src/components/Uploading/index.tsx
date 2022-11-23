@@ -1,7 +1,7 @@
 import React, { Fragment } from "react";
 import { LoadingOutlined, PlusOutlined } from "@ant-design/icons";
 
-const Uploading = (props: any) => {
+const Uploading: React.FC<any> = (props: any) => {
   const { uploading } = props;
 
   return (
