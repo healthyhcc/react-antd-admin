@@ -5,10 +5,7 @@ import { useIntl } from "react-intl";
 import screenfull from "screenfull";
 
 const FullScreen: React.FC<any> = (props: any) => {
-  
   const { fullscreenRef } = props;
-  console.log(typeof fullscreenRef.current);
-  
   const intl = useIntl();
   const formatMessage = (id: string): string => {
     return intl.formatMessage({ id });

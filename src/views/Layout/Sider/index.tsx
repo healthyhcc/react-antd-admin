@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { useIntl } from "react-intl";
@@ -21,7 +21,7 @@ const Sider: React.FC = () => {
   const { collapsed } = settings;
   const [menuPermission, setMenuPermission] = useState<any>([]);
   const [openKeys, setOpenKeys] = useState<any>([]);
-  const [documentTitle, setDocumentTitle] = useState("");
+  const [documentTitle, setDocumentTitle] = useState<string>("");
   const intl = useIntl();
   const formatMessage = (id: string): string => {
     return intl.formatMessage({ id });
@@ -88,7 +88,10 @@ const Sider: React.FC = () => {
     const { key } = data;
     handleFindMenuItemByKey(menuList, key);
     handleDocumentTitle(menuList, key);
-    const addTagAction = addTag({ label: menuItemByKey?.label?.props?.id, key });
+    const addTagAction = addTag({
+      label: menuItemByKey?.label?.props?.id,
+      key,
+    });
     settingsDispatch(addTagAction);
     navigate(key);
   };

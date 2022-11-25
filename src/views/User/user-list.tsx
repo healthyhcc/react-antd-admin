@@ -16,6 +16,7 @@ import {
   Upload,
   message,
 } from "antd";
+import type { ColumnsType } from "antd/es/table";
 import { useIntl } from "react-intl";
 import {
   PlusOutlined,
@@ -35,63 +36,67 @@ import {
 import { EmailRegexp, PhoneRegexp } from "@/utils";
 import { SERVER_ADDRESS } from "@/utils/config";
 
-type UserDataType = {
-  id: number;
+interface SearchFormType {
   username: string;
   gender: number;
   role: number;
   phone: string;
   email: string;
-  avatar: string;
-  time: string;
-};
-type GetUserType = {
-  email: string;
-  gender: number;
+}
+interface Pagination {
   pageNum: number;
   pageSize: number;
-  phone: string;
-  role: number;
-  username: string;
-};
-type AddEditUserType = {
+}
+interface GetUserType extends SearchFormType, Pagination {}
+interface AddEditUserType extends SearchFormType {
+  id: number;
+  avatar: string;
+}
+interface UserDataType extends AddEditUserType {
+  time: string;
+}
+interface DeleteUserType {
+  id: number;
+}
+interface ModalFormType extends SearchFormType {
   id: number | undefined;
   avatar: string;
-  email: string;
-  gender: number;
-  phone: string;
-  role: number;
-  username: string;
-};
-type DeleteUserType = {
-  id: number | undefined;
-};
-type MultipleDeleteUserType = {
-  ids: Array<number>;
+}
+type UserTableDataType = Array<UserDataType>;
+type MultipleUserType = Array<number>;
+type MultipleUserIdType = {
+  ids: MultipleUserType;
 };
 type FileType = {
   type: string;
   size: number;
 };
+interface TotalType {
+  total: number;
+}
+type SelectOptionType = Array<{ label: string; value: number }>;
 const UserList: React.FC = () => {
   const state: any = useSelector((state) => state);
   const { user } = state;
   const { token } = user;
-  const [selectedRowKeys, setSelectedRowKeys] = useState([]);
-  const [uploading, setUploading] = useState(false);
-  const [avatarUrl, setAvatarUrl] = useState("");
-  const [userTableData, setUserTableData] = useState([]);
-  const [searchForm, setSearchForm] = useState({
+  const [selectedRowKeys, setSelectedRowKeys] = useState<MultipleUserType>([]);
+  const [uploading, setUploading] = useState<boolean>(false);
+  const [avatarUrl, setAvatarUrl] = useState<string>("");
+  const [userTableData, setUserTableData] = useState<UserTableDataType>([]);
+  const [searchForm, setSearchForm] = useState<SearchFormType>({
     username: "",
     gender: -1,
     role: 0,
     phone: "",
     email: "",
   });
-  const [pagination, setPagination] = useState({ pageNum: 1, pageSize: 10 });
-  const [total, setTotal] = useState({ total: 0 });
-  const [modalOpen, setModalOpen] = useState(false);
-  const [modalForm, setModalForm] = useState({
+  const [pagination, setPagination] = useState<Pagination>({
+    pageNum: 1,
+    pageSize: 10,
+  });
+  const [total, setTotal] = useState<TotalType>({ total: 0 });
+  const [modalOpen, setModalOpen] = useState<boolean>(false);
+  const [modalForm, setModalForm] = useState<ModalFormType>({
     id: undefined,
     username: "",
     gender: 0,
@@ -100,20 +105,20 @@ const UserList: React.FC = () => {
     email: "",
     avatar: "",
   });
-  const [modalType, setModalType] = useState("");
+  const [modalType, setModalType] = useState<string>("");
   const searchRef = useRef<any>();
   const intl = useIntl();
   const formatMessage = (id: string): string => {
     return intl.formatMessage({ id });
   };
-  const columns: Array<object> = [
+  const columns: ColumnsType<any> = [
     {
       title: "ID",
       dataIndex: "id",
       key: "id",
       align: "center",
       defaultSortOrder: "ascend",
-      sorter: (a: UserDataType, b: UserDataType) => a?.id - b?.id,
+      sorter: (a: UserDataType, b: UserDataType): number => a?.id - b?.id,
     },
     {
       title: formatMessage("user_list.columns_username_title"),
@@ -126,7 +131,7 @@ const UserList: React.FC = () => {
       dataIndex: "gender",
       key: "gender",
       align: "center",
-      render: (text: number) => {
+      render: (text: number): React.ReactNode => {
         return text === 0 ? (
           <span style={{ color: "#001529" }}>
             {formatMessage("user_list.columns_gender_male")}
@@ -138,14 +143,15 @@ const UserList: React.FC = () => {
         );
       },
       defaultSortOrder: "ascend",
-      sorter: (a: UserDataType, b: UserDataType) => a?.gender - b?.gender,
+      sorter: (a: UserDataType, b: UserDataType): number =>
+        a?.gender - b?.gender,
     },
     {
       title: formatMessage("user_list.columns_role"),
       dataIndex: "role",
       key: "role",
       align: "center",
-      render: (text: number) => {
+      render: (text: number): React.ReactNode => {
         switch (text) {
           case 1:
             return (
@@ -170,7 +176,7 @@ const UserList: React.FC = () => {
         }
       },
       defaultSortOrder: "ascend",
-      sorter: (a: UserDataType, b: UserDataType) => a?.role - b?.role,
+      sorter: (a: UserDataType, b: UserDataType): number => a?.role - b?.role,
     },
     {
       title: formatMessage("user_list.columns_phone"),
@@ -189,7 +195,7 @@ const UserList: React.FC = () => {
       dataIndex: "time",
       key: "time",
       align: "center",
-      render: (text: string) => {
+      render: (text: string): string => {
         return text.substring(0, 10) + " " + text.substring(11, 19);
       },
     },
@@ -199,8 +205,7 @@ const UserList: React.FC = () => {
       key: "avatar",
       align: "center",
       width: "100px",
-      height: "100px",
-      render: (_: any, record: UserDataType) => {
+      render: (_: any, record: UserDataType): React.ReactNode => {
         return (
           <img
             src={SERVER_ADDRESS + "/" + record?.avatar}
@@ -214,7 +219,7 @@ const UserList: React.FC = () => {
       title: formatMessage("user_list.columns_action"),
       key: "action",
       align: "center",
-      render: (_: any, record: UserDataType) => {
+      render: (_: any, record: UserDataType): React.ReactNode => {
         return (
           <Fragment>
             <Button
@@ -233,22 +238,22 @@ const UserList: React.FC = () => {
       },
     },
   ];
-  const genderOptions = [
+  const genderOptions: SelectOptionType = [
     { label: "user_list.options_gender_all", value: -1 },
     { label: "user_list.options_gender_male", value: 0 },
     { label: "user_list.options_gender_female", value: 1 },
   ];
-  const roleOptions = [
+  const roleOptions: SelectOptionType = [
     { label: "user_list.options_role_all", value: 0 },
     { label: "user_list.options_role_user", value: 1 },
     { label: "user_list.options_role_admin", value: 2 },
     { label: "user_list.options_role_root", value: 3 },
   ];
-  const genderRadios = [
+  const genderRadios: SelectOptionType = [
     { label: "user_list.radios_gender_male", value: 0 },
     { label: "user_list.radios_gender_female", value: 1 },
   ];
-  const roleRadios = [
+  const roleRadios: SelectOptionType = [
     { label: "user_list.radios_role_user", value: 1 },
     { label: "user_list.radios_role_admin", value: 2 },
     { label: "user_list.radios_role_root", value: 3 },
@@ -270,7 +275,7 @@ const UserList: React.FC = () => {
     { manual: true, throttleWait: 1000 }
   );
   const { loading: loadingMultipleDelete, runAsync: runMultipleDelete } =
-    useRequest((params: MultipleDeleteUserType) => multipleDelete(params), {
+    useRequest((params: MultipleUserIdType) => multipleDelete(params), {
       manual: true,
       throttleWait: 1000,
     });
@@ -292,7 +297,7 @@ const UserList: React.FC = () => {
     const { current, pageSize } = values;
     setPagination({ pageNum: current, pageSize });
   };
-  const onOpenAddEditForm = (modalType: string, record?: any) => {
+  const onOpenAddEditForm = (modalType: string, record?: ModalFormType) => {
     if (record) {
       setModalForm(record);
       setAvatarUrl(record?.avatar);
@@ -388,7 +393,7 @@ const UserList: React.FC = () => {
       },
     });
   };
-  const handleBeforeUpload = (file: FileType) => {
+  const handleBeforeUpload = (file: FileType): boolean => {
     if (file?.type !== "image/jpeg" && file?.type !== "image/png") {
       message.error(formatMessage("user_list.before_upload_type"));
       return false;
@@ -419,7 +424,6 @@ const UserList: React.FC = () => {
   useEffect(() => {
     handleGetUserList();
   }, [searchForm, pagination]);
-
   return (
     <Spin
       spinning={
