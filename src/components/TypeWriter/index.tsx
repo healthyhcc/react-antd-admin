@@ -1,7 +1,10 @@
 import React from "react";
 import TypeWriterEffect from "typewriter-effect";
 
-const TypeWriter: React.FC<any> = (props: any) => {
+interface PropsType {
+  content: string;
+}
+const TypeWriter: React.FC<PropsType> = (props: any) => {
   const { content } = props;
   const options: any = {
     strings: content,

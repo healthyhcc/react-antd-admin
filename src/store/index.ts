@@ -3,8 +3,9 @@ import userReducer from "@/store/reducers/userReducer";
 import settingsReducer from "@/store/reducers/settingsReducer";
 import tagsReducer from "@/store/reducers/tagsReducer";
 import refsReducer from "@/store/reducers/refsReducer";
+import { ToolkitStore } from "@reduxjs/toolkit/dist/configureStore";
 
-const store = configureStore({
+const store: ToolkitStore = configureStore({
   reducer: {
     user: userReducer.reducer,
     settings: settingsReducer.reducer,

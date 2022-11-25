@@ -4,9 +4,9 @@ import { Spin, Card, Space, Input, Button, message } from "antd";
 import QRCode from "qrcode";
 
 const QrCode: React.FC = () => {
-  const [spinning, setSpinning] = useState(false);
-  const [url, setUrl] = useState("");
-  const [qr, setQr] = useState("");
+  const [spinning, setSpinning] = useState<boolean>(false);
+  const [url, setUrl] = useState<string>("");
+  const [qr, setQr] = useState<string>("");
   const intl = useIntl();
   const formatMessage = (id: string): string => {
     return intl.formatMessage({ id });

@@ -2,18 +2,19 @@ import React, { useState, useEffect } from "react";
 import { useIntl } from "react-intl";
 import { Spin, Card, Input, Upload, Table, Button } from "antd";
 import * as XLSX from "xlsx";
+import { ColumnsType } from "antd/es/table";
 
 type DataType = Array<object>;
 const Excel: React.FC = () => {
-  const [spinning, setSpinning] = useState(false);
+  const [spinning, setSpinning] = useState<boolean>(false);
   const [tableData, setTableData] = useState<DataType>([]);
-  const [fileList, setFileList] = useState([]);
-  const [fileName, setFileName] = useState("file");
+  const [fileList, setFileList] = useState<any>([]);
+  const [fileName, setFileName] = useState<string>("file");
   const intl = useIntl();
   const formatMessage = (id: string): string => {
     return intl.formatMessage({ id });
   };
-  const data: Array<object> = [
+  const data: DataType = [
     { id: "1", name: "张三", gender: "男", age: 23, work: "程序员" },
     { id: "2", name: "李四", gender: "女", age: 21, work: "程序员" },
     { id: "3", name: "王五", gender: "女", age: 21, work: "程序员" },
@@ -27,7 +28,7 @@ const Excel: React.FC = () => {
     age: formatMessage("module.excel.age"),
     work: formatMessage("module.excel.work"),
   };
-  const columns: DataType = [
+  const columns: ColumnsType<any> = [
     {
       align: "center",
       title: "ID",
@@ -60,8 +61,6 @@ const Excel: React.FC = () => {
     },
   ];
   const sheetToBlob = (sheet: object, sheetName?: string) => {
-    console.log(sheet, sheetName);
-
     sheetName = sheetName || "sheet1";
     const workBook: any = {
       SheetNames: [sheetName],
@@ -150,7 +149,7 @@ const Excel: React.FC = () => {
     setFileList(fileArray);
     return formatData;
   };
-  const handleBeforeUploadFile = (file: any) => {
+  const handleBeforeUploadFile = (file: any): boolean => {
     setSpinning(true);
     const fileReader = new FileReader();
     fileReader.addEventListener("load", (event: any) => {
@@ -178,7 +177,6 @@ const Excel: React.FC = () => {
   useEffect(() => {
     setTableData(data);
   }, []);
-
   return (
     <Spin spinning={spinning}>
       <Card title={formatMessage("module.excel.title")}>

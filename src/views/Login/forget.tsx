@@ -18,10 +18,10 @@ const Forget: React.FC = () => {
     password: "",
     repeatPassword: "",
   });
-  const [registered, setRegistered] = useState(true);
-  const [codeText, setCodeText] = useState("获取验证码");
-  const [disabled, setDisabled] = useState(false);
-  const [authCode, setAuthCode] = useState(0);
+  const [registered, setRegistered] = useState<boolean>(true);
+  const [codeText, setCodeText] = useState<string>("获取验证码");
+  const [disabled, setDisabled] = useState<boolean>(false);
+  const [authCode, setAuthCode] = useState<number>(0);
   const { loading: loadingFindEmail, runAsync: runFindEmail } = useRequest(
     (params: object) => findEmail(params),
     { manual: true, throttleWait: 1000 }
@@ -127,7 +127,6 @@ const Forget: React.FC = () => {
         console.log(error);
       });
   };
-
   return (
     <Spin
       spinning={loadingFindEmail || loadingSendEmail || loadingResetPassword}

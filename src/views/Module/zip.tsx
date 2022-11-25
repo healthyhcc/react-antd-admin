@@ -3,11 +3,12 @@ import { useIntl } from "react-intl";
 import { Spin, Card, Table, Input, Button } from "antd";
 import { saveAs } from "file-saver";
 import JSZip from "jszip";
+import { ColumnsType } from "antd/es/table";
 
 type DataType = Array<object>;
 const Zip: React.FC = () => {
-  const [spinning, setSpinning] = useState(false);
-  const [fileName, setFileName] = useState("file");
+  const [spinning, setSpinning] = useState<boolean>(false);
+  const [fileName, setFileName] = useState<string>("file");
   const [tableData, setTableData] = useState<DataType>([]);
   const intl = useIntl();
   const formatMessage = (id: string): string => {
@@ -20,7 +21,7 @@ const Zip: React.FC = () => {
     { id: "4", name: "马六", gender: "男", age: 21, work: "程序员" },
     { id: "5", name: "赵七", gender: "女", age: 21, work: "程序员" },
   ];
-  const columns: DataType = [
+  const columns: ColumnsType<any> = [
     {
       align: "center",
       title: formatMessage("module.zip.name"),
@@ -79,7 +80,6 @@ const Zip: React.FC = () => {
   useEffect(() => {
     setTableData(data);
   }, []);
-
   return (
     <Spin spinning={spinning}>
       <Card title={formatMessage("module.zip.title")}>

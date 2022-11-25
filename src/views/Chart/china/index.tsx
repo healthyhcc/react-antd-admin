@@ -3,7 +3,7 @@ import * as Echarts from "echarts";
 import cityMap from "./citymap";
 import CHINA_JSON from "./map/china.json";
 
-const provinces: any = {
+const provinces = {
   台湾: "taiwan",
   河北: "hebei",
   山西: "shanxi",
@@ -44,7 +44,7 @@ const special = ["北京", "天津", "上海", "重庆", "香港", "澳门"];
 
 const China: React.FC = () => {
   let chart: any;
-  const [mapData, setMapData] = useState([]);
+  const [mapData, setMapData] = useState<any>([]);
 
   const option: any = {
     backgroundColor: "#000",

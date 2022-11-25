@@ -13,25 +13,24 @@ import {
   deleteAllFile,
 } from "@/api/file";
 
-type FileType = {
+interface DeleteFileType {
   id: number;
   name: string;
+}
+interface FileType extends DeleteFileType {
   original: string;
   time: string;
-};
-type DeleteFileType = {
-  id: number;
-  name: string;
-};
-type MultipleDeleteFileType = {
+}
+interface MultipleDeleteFileType {
   deleteParams: Array<DeleteFileType>;
-};
+}
+type FileListType = Array<any>;
 const FileAdmin: React.FC = () => {
-  const [spinning, setSpinning] = useState(false);
-  const [uploading, setUploading] = useState(false);
-  const [uploadFileList, setUploadFileList] = useState([]);
-  const [fileList, setFileList] = useState([]);
-  const [myUploadList, setMyUploadList] = useState([]);
+  const [spinning, setSpinning] = useState<boolean>(false);
+  const [uploading, setUploading] = useState<boolean>(false);
+  const [uploadFileList, setUploadFileList] = useState<FileListType>([]);
+  const [fileList, setFileList] = useState<FileListType>([]);
+  const [myUploadList, setMyUploadList] = useState<FileListType>([]);
   const intl = useIntl();
   const formatMessage = (id: string): string => {
     return intl.formatMessage({ id });

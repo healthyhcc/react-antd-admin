@@ -19,8 +19,8 @@ type DataPasswordType = {
 };
 const ModifyPassword: React.FC = () => {
   const navigate = useNavigate();
-  const [isFirst, setIsFirst] = useState(true);
-  const [verifyPassword, setVerifyPassword] = useState(false);
+  const [isFirst, setIsFirst] = useState<boolean>(true);
+  const [verifyPassword, setVerifyPassword] = useState<boolean>(false);
   const intl = useIntl();
   const formatMessage = (id: string): string => {
     return intl.formatMessage({ id });
@@ -53,7 +53,9 @@ const ModifyPassword: React.FC = () => {
       });
   };
   const handleSubmitForm = (values: DataPasswordType) => {
-    const params = { newPassword: CryptoJS.MD5(values?.newPassword).toString() };
+    const params = {
+      newPassword: CryptoJS.MD5(values?.newPassword).toString(),
+    };
 
     runUpdatePassword(params)
       .then(() => {
@@ -68,7 +70,10 @@ const ModifyPassword: React.FC = () => {
 
   return (
     <Spin spinning={loadingCheckPassword || loadingUpdatePassword}>
-      <Card title={formatMessage("modify_password.title")} style={{ height: "calc(100vh - 100px - 2rem)" }}>
+      <Card
+        title={formatMessage("modify_password.title")}
+        style={{ height: "calc(100vh - 100px - 2rem)" }}
+      >
         <Form
           labelCol={{ span: 4 }}
           wrapperCol={{ span: 12 }}

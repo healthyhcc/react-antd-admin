@@ -4,7 +4,10 @@ import { useSelector, useDispatch } from "react-redux";
 import { useIntl } from "react-intl";
 import { setFixedHeader, setShowLogo, setShowTag } from "@/store";
 
-const DrawerSettings: React.FC<any> = (props: any) => {
+interface PropsType {
+  drawerOpen: boolean
+}
+const DrawerSettings: React.FC<PropsType> = (props: any) => {
   const { drawerOpen, setDrawerOpen } = props;
   const state: any = useSelector((state) => state);
   const settingsDispatch = useDispatch();
@@ -13,13 +16,13 @@ const DrawerSettings: React.FC<any> = (props: any) => {
   const formatMessage = (id: string): string => {
     return intl.formatMessage({ id });
   };
-  const handleFixedHeader = (checked: any) => {
+  const handleFixedHeader = (checked: boolean) => {
     settingsDispatch(setFixedHeader(checked));
   };
-  const handleShowLogo = (checked: any) => {
+  const handleShowLogo = (checked: boolean) => {
     settingsDispatch(setShowLogo(checked));
   };
-  const handleShowTag = (checked: any) => {
+  const handleShowTag = (checked: boolean) => {
     settingsDispatch(setShowTag(checked));
   };
   return (

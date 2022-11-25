@@ -30,6 +30,9 @@ import {
 } from "@/store";
 import { SERVER_ADDRESS } from "@/utils/config";
 
+interface ComputedStyleType {
+  width: string;
+}
 const Header: React.FC = () => {
   const state: any = useSelector((state) => state);
   const settingsDispatch = useDispatch();
@@ -38,7 +41,7 @@ const Header: React.FC = () => {
   const { userInfo } = user;
   const { collapsed, fixedHeader } = settings;
   const [drawerOpen, setDrawerOpen] = useState<boolean>(false);
-  const isMb = document.body.clientWidth <= 992;
+  const isMb: boolean = document.body.clientWidth <= 992;
   const [mobile, setMobile] = useState<boolean>(isMb);
   const intl = useIntl();
   const formatMessage = (id: string): string => {
@@ -90,7 +93,7 @@ const Header: React.FC = () => {
     localStorage.clear();
     message.success(formatMessage("header.logout_success"));
   };
-  const computedStyle = () => {
+  const computedStyle = (): ComputedStyleType => {
     let styles;
     if (fixedHeader) {
       if (collapsed) {

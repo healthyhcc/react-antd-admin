@@ -23,6 +23,7 @@ import {
 } from "@ant-design/icons";
 import { useRequest } from "ahooks";
 import { getTask, addTask, editTask, deleteTask } from "@/api/task";
+import { ColumnsType } from "antd/es/table";
 
 type GetTaskType = {
   pageNum: number;
@@ -38,34 +39,55 @@ type TaskDataType = {
 type DeleteTaskType = {
   id: number | undefined;
 };
+interface SearchFormType {
+  taskname: string;
+  tasklevel: number;
+}
+interface PageType {
+  pageNum: number;
+  pageSize: number;
+}
+interface TotalType {
+  total: number;
+}
+interface ModalFormType {
+  id: number | undefined;
+  taskname: string;
+  tasklevel: string;
+}
+type OptionType = Array<{ label: string; value: number }>;
+type RadioType = Array<{ label: string; value: string }>;
 const TaskList: React.FC = () => {
   const [taskTableData, setTaskTableData] = useState([]);
-  const [searchForm, setSearchForm] = useState({
+  const [searchForm, setSearchForm] = useState<SearchFormType>({
     taskname: "",
     tasklevel: 0,
   });
-  const [pagination, setPagination] = useState({ pageNum: 1, pageSize: 10 });
-  const [total, setTotal] = useState({ total: 0 });
-  const [modalOpen, setModalOpen] = useState(false);
-  const [modalForm, setModalForm] = useState({
+  const [pagination, setPagination] = useState<PageType>({
+    pageNum: 1,
+    pageSize: 10,
+  });
+  const [total, setTotal] = useState<TotalType>({ total: 0 });
+  const [modalOpen, setModalOpen] = useState<boolean>(false);
+  const [modalForm, setModalForm] = useState<ModalFormType>({
     id: undefined,
     taskname: "",
     tasklevel: "0",
   });
-  const [modalType, setModalType] = useState("");
+  const [modalType, setModalType] = useState<string>("");
   const searchRef = useRef<any>();
   const intl = useIntl();
   const formatMessage = (id: string): string => {
     return intl.formatMessage({ id });
   };
-  const columns: Array<object> = [
+  const columns: ColumnsType<any> = [
     {
       title: "ID",
       dataIndex: "id",
       key: "id",
       align: "center",
       defaultSortOrder: "ascend",
-      sorter: (a: TaskDataType, b: TaskDataType) =>
+      sorter: (a: TaskDataType, b: TaskDataType): number =>
         Number(a?.id) - Number(b?.id),
     },
     {
@@ -79,7 +101,7 @@ const TaskList: React.FC = () => {
       dataIndex: "tasklevel",
       key: "tasklevel",
       align: "center",
-      render: (text: string): any => {
+      render: (text: string): React.ReactNode => {
         switch (text) {
           case "1":
             return (
@@ -104,7 +126,7 @@ const TaskList: React.FC = () => {
         }
       },
       defaultSortOrder: "ascend",
-      sorter: (a: TaskDataType, b: TaskDataType) =>
+      sorter: (a: TaskDataType, b: TaskDataType): number =>
         Number(a?.tasklevel) - Number(b?.tasklevel),
     },
     {
@@ -112,7 +134,7 @@ const TaskList: React.FC = () => {
       dataIndex: "action",
       key: "action",
       align: "center",
-      render: (_: any, record: TaskDataType) => {
+      render: (_: any, record: TaskDataType): React.ReactNode => {
         return (
           <Fragment>
             <Button
@@ -131,13 +153,13 @@ const TaskList: React.FC = () => {
       },
     },
   ];
-  const taskLevelOptions = [
+  const taskLevelOptions: OptionType = [
     { label: "home.options_task_level_all", value: -1 },
     { label: "home.options_task_level_common", value: 1 },
     { label: "home.options_task_level_important", value: 2 },
     { label: "home.options_task_level_urgent", value: 3 },
   ];
-  const taskLevelRadios = [
+  const taskLevelRadios: RadioType = [
     { label: "home.radios_task_level_common", value: "1" },
     { label: "home.radios_task_level_important", value: "2" },
     { label: "home.radios_task_level_urgent", value: "3" },
@@ -175,7 +197,7 @@ const TaskList: React.FC = () => {
     const { current, pageSize } = values;
     setPagination({ pageNum: current, pageSize });
   };
-  const onOpenAddEditForm = (modalType: string, record?: any) => {
+  const onOpenAddEditForm = (modalType: string, record?: ModalFormType) => {
     if (record) {
       setModalForm(record);
     } else {
@@ -241,7 +263,6 @@ const TaskList: React.FC = () => {
   useEffect(() => {
     handleGetTaskList();
   }, [searchForm, pagination]);
-
   return (
     <Spin
       spinning={

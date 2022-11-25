@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction, Slice } from "@reduxjs/toolkit";
 
 const initialUser = {
   token: "",
@@ -15,7 +15,7 @@ const initialUser = {
 const userData = localStorage.getItem("user");
 const userState = userData ? JSON.parse(userData) : initialUser;
 
-const reducer = createSlice({
+const reducer: Slice = createSlice({
   name: "user",
   initialState: userState,
   reducers: {

@@ -19,29 +19,30 @@ import { setUserInfo } from "@/store";
 import { EmailRegexp, PhoneRegexp } from "@/utils";
 import { SERVER_ADDRESS } from "@/utils/config";
 
-type UserDataType = {
-  avatar: string;
-  email: string;
-  gender: number;
+interface UserDataType {
   id: number;
-  phone: string;
-  remark: string;
-  role: number;
   username: string;
-};
-type FileType = {
+  gender: number;
+  role: number;
+  avatar: string;
+  phone: string;
+  email: string;
+  remark: string;
+}
+interface FileType {
   type: string;
   size: number;
-};
+}
+type SelectOptionType = Array<{ label: string; value: number }>;
 const BasicInfo: React.FC = () => {
   const state: any = useSelector((state) => state);
   const { user } = state;
   const { token, userInfo } = user;
   const userDispatch = useDispatch();
-  const [uploading, setUploading] = useState(false);
-  const [avatarUrl, setAvatarUrl] = useState("");
+  const [uploading, setUploading] = useState<boolean>(false);
+  const [avatarUrl, setAvatarUrl] = useState<string>("");
   const formRef = useRef<any>();
-  const initialForm = {
+  const initialForm: UserDataType = {
     id: 0,
     username: "",
     gender: 0,
@@ -55,11 +56,11 @@ const BasicInfo: React.FC = () => {
   const formatMessage = (id: string): string => {
     return intl.formatMessage({ id });
   };
-  const genderRadios = [
+  const genderRadios: SelectOptionType = [
     { label: "basic_info.options_gender_male", value: 0 },
     { label: "basic_info.options_gender_female", value: 1 },
   ];
-  const roleRadios = [
+  const roleRadios: SelectOptionType = [
     { label: "basic_info.options_role_user", value: 1 },
     { label: "basic_info.options_role_admin", value: 2 },
     { label: "basic_info.options_role_root", value: 3 },
@@ -144,7 +145,10 @@ const BasicInfo: React.FC = () => {
 
   return (
     <Spin spinning={loadingGetUserDetail || loadingUpdateUser}>
-      <Card title={formatMessage("basic_info.title")} style={{ height: "calc(100vh - 100px - 2rem)" }}>
+      <Card
+        title={formatMessage("basic_info.title")}
+        style={{ height: "calc(100vh - 100px - 2rem)" }}
+      >
         <Form
           labelCol={{ span: 4 }}
           wrapperCol={{ span: 12 }}

@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction, Slice } from "@reduxjs/toolkit";
 
 const initialRefs = {
   hamburgerRef: null,
@@ -8,7 +8,7 @@ const initialRefs = {
   settingsRef: null,
 };
 
-const reducer = createSlice({
+const reducer: Slice = createSlice({
   name: "refs",
   initialState: initialRefs,
   reducers: {

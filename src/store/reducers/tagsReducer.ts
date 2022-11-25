@@ -1,10 +1,10 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction, Slice } from "@reduxjs/toolkit";
 
 const initialTags = {
   tags: [{ label: "menulist.home", key: "/home" }],
 };
 
-const reducer = createSlice({
+const reducer: Slice = createSlice({
   name: "tags",
   initialState: initialTags,
   reducers: {
@@ -34,7 +34,9 @@ const reducer = createSlice({
       return state;
     },
     closeAllTag(state: any) {
-      const emptyState = state.tags.filter((item: any) => item?.key === "/home");
+      const emptyState = state.tags.filter(
+        (item: any) => item?.key === "/home"
+      );
       state.tags = emptyState;
       return state;
     },

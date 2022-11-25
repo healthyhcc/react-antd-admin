@@ -8,7 +8,7 @@ import en from "@/lang/en.json";
 import zh from "@/lang/zh.json";
 
 const Intl: React.FC<any> = (props: any) => {
-  const state: any = useSelector(state => state);
+  const state: any = useSelector((state) => state);
   const { settings } = state;
   const localLang = settings["intl"];
   const i18nData: any = { en, zh };
@@ -16,7 +16,6 @@ const Intl: React.FC<any> = (props: any) => {
     en: enUS,
     zh: zhCN,
   };
-
   return (
     <IntlProvider
       key={localLang}

@@ -9,15 +9,15 @@ type AddScheduleType = {
   scheduled: string;
   email: string | undefined;
 };
+type DateArrayType = Array<string>;
 const Schedule = () => {
-  const [email, setEmail] = useState();
-  const [scheduled, setScheduled] = useState("26 * * * * *");
-  const typeArray = ["month", "week", "date", "time"];
+  const [email, setEmail] = useState<string | undefined>();
+  const [scheduled, setScheduled] = useState<string>("26 * * * * *");
+  const typeArray: DateArrayType = ["month", "week", "date", "time"];
   const intl = useIntl();
   const formatMessage = (id: string): string => {
     return intl.formatMessage({ id });
   };
-
   const { loading: loadingAddSchedule, runAsync: runAddScheduleJob } =
     useRequest((params: AddScheduleType) => addScheduleJob(params), {
       manual: true,

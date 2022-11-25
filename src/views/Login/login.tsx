@@ -9,14 +9,21 @@ import { userLogin, userRegister, findEmail } from "@/api/login";
 import { setToken, setUserInfo } from "@/store";
 import { EmailRegexp, formatGMTTime } from "@/utils";
 
+interface OverlayType {
+  isLogin: boolean;
+  step: number;
+}
 const Login: React.FC = () => {
-  const state: any = useSelector(state => state);
+  const state: any = useSelector((state) => state);
   const userDispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
-  const [loading, setLoading] = useState(false);
-  const [registered, setRegistered] = useState(false);
-  const [overlay, setOverlay] = useState({ isLogin: true, step: 100 });
+  const [loading, setLoading] = useState<boolean>(false);
+  const [registered, setRegistered] = useState<boolean>(false);
+  const [overlay, setOverlay] = useState<OverlayType>({
+    isLogin: true,
+    step: 100,
+  });
   const [loginForm, setLoginForm] = useState<any>({ email: "", password: "" });
   const [registerForm, setRegisterForm] = useState<any>({
     email: "",

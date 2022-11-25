@@ -13,7 +13,6 @@ const LayoutPage: React.FC = () => {
   const { pathname } = location;
   const state: any = useSelector((state) => state);
   const { settings } = state;
-
   return (
     <Layout style={{ display: "flex", width: "100%" }}>
       <Sider />

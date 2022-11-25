@@ -6,6 +6,7 @@ import { setUserInfo } from "@/store";
 import logo from "@/assets/logo.svg";
 import vite from "@/assets/vite.svg";
 
+type SelectOptionType = Array<{ label: string; value: number }>;
 const Authority: React.FC = () => {
   const state: any = useSelector((state) => state);
   const userDispatch = useDispatch();
@@ -24,7 +25,7 @@ const Authority: React.FC = () => {
     const userInfoAction = setUserInfo({ ...userInfo, role: value });
     userDispatch(userInfoAction);
   };
-  const roleOptions = [
+  const roleOptions: SelectOptionType = [
     { label: "authority.options_role_user", value: 1 },
     { label: "authority.options_role_admin", value: 2 },
     { label: "authority.options_role_root", value: 3 },

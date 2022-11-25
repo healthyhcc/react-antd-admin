@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ReactElement } from "react";
 import { useIntl } from "react-intl";
 import { Card, message } from "antd";
 import {
@@ -53,7 +53,8 @@ import {
 } from "@ant-design/icons";
 import copy from "copy-to-clipboard";
 
-const icons = [
+type IconType = Array<{ key: string; value: ReactElement }>;
+const icons: IconType = [
   { key: "UserAddOutlined", value: <UserAddOutlined /> },
   { key: "UserDeleteOutlined", value: <UserDeleteOutlined /> },
   { key: "BankOutlined", value: <BankOutlined /> },
@@ -113,7 +114,6 @@ const Icon: React.FC = () => {
     copy(`<${item?.key} />`);
     message.success(`<${item?.key} />${formatMessage("icon.success_copy")}`, 1);
   };
-
   return (
     <Card title={formatMessage("icon.title")}>
       <ul className="flex flex-wrap overflow-hidden mx-0 my-3">

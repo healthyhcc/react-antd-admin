@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction, Slice } from "@reduxjs/toolkit";
 
 const initialSettings = {
   collapsed: false,
@@ -10,7 +10,7 @@ const initialSettings = {
 const settingsData = localStorage.getItem("settings");
 const settingsState = settingsData ? JSON.parse(settingsData) : initialSettings;
 
-const reducer = createSlice({
+const reducer: Slice = createSlice({
   name: "settings",
   initialState: settingsState,
   reducers: {

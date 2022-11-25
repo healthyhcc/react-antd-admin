@@ -6,6 +6,10 @@ import { Tag, Tooltip, Space, Button } from "antd";
 import { CloseOutlined } from "@ant-design/icons";
 import { closeTag, closeOtherTag, closeAllTag } from "@/store";
 
+interface TagType {
+  key: string;
+  label: string;
+}
 const Tags: React.FC = () => {
   const state: any = useSelector((state) => state);
   const tagsDispatch = useDispatch();
@@ -17,35 +21,37 @@ const Tags: React.FC = () => {
   const formatMessage = (id: string): string => {
     return intl.formatMessage({ id });
   };
-  const onClickTag = (item: any) => {
+  const onClickTag = (item: TagType) => {
+    console.log(item);
+
     navigate(item?.key);
   };
-  const onCloseTag = (item: any) => {
+  const onCloseTag = (item: TagType) => {
     const tagLength = tags.length;
     if (pathname === item.key && item.key === tags[tagLength - 1].key) {
       navigate(tags[tagLength - 2]?.key);
     }
     if (pathname === item.key && item.key !== tags[tagLength - 1].key) {
       const tagIndex = tags.findIndex(
-        (tagItem: any) => tagItem.key === item.key
+        (tagItem: TagType) => tagItem.key === item.key
       );
       navigate(tags[tagIndex + 1]?.key);
     }
     const closeTagAction = closeTag(item);
     tagsDispatch(closeTagAction);
   };
-  const onCloseOtherTag = (item: any) => {
+  const onCloseOtherTag = (item: TagType) => {
     const closeOtherTagAction = closeOtherTag(item);
     tagsDispatch(closeOtherTagAction);
   };
   const onCloseAllTag = () => {
-    const closeAllTagAction = closeAllTag();
+    const closeAllTagAction = closeAllTag(null);
     tagsDispatch(closeAllTagAction);
     navigate(tags[0]?.key);
   };
   return (
     <div className="w-full pl-4 py-2" style={{ backgroundColor: "#fafafa" }}>
-      {tags.map((item: any) => (
+      {tags.map((item: TagType) => (
         <Tag
           key={item?.key}
           closable={item?.key !== "/home"}
