@@ -2,10 +2,16 @@ import React from "react";
 import { Drawer, Switch, Space, Button, Divider } from "antd";
 import { useSelector, useDispatch } from "react-redux";
 import { useIntl } from "react-intl";
-import { setFixedHeader, setShowLogo, setShowTag } from "@/store";
+import { SketchPicker } from "react-color";
+import {
+  setFixedHeader,
+  setShowLogo,
+  setShowTag,
+  setThemeColor,
+} from "@/store";
 
 interface PropsType {
-  drawerOpen: boolean
+  drawerOpen: boolean;
 }
 const DrawerSettings: React.FC<PropsType> = (props: any) => {
   const { drawerOpen, setDrawerOpen } = props;
@@ -24,6 +30,9 @@ const DrawerSettings: React.FC<PropsType> = (props: any) => {
   };
   const handleShowTag = (checked: boolean) => {
     settingsDispatch(setShowTag(checked));
+  };
+  const handleThemeColor = (color: any) => {
+    settingsDispatch(setThemeColor(color.hex));
   };
   return (
     <Drawer
@@ -69,6 +78,15 @@ const DrawerSettings: React.FC<PropsType> = (props: any) => {
           unCheckedChildren={formatMessage("drawsettings.close")}
           defaultChecked={settings?.showTag}
           onChange={handleShowTag}
+        />
+      </div>
+      <Divider dashed />
+
+      <div className="flex justify-between items-top">
+        <span>{formatMessage("drawsettings.change_theme")}</span>
+        <SketchPicker
+          color={settings.themeColor}
+          onChangeComplete={handleThemeColor}
         />
       </div>
     </Drawer>

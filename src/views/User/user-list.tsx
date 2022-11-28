@@ -77,7 +77,7 @@ interface TotalType {
 type SelectOptionType = Array<{ label: string; value: number }>;
 const UserList: React.FC = () => {
   const state: any = useSelector((state) => state);
-  const { user } = state;
+  const { user, settings } = state;
   const { token } = user;
   const [selectedRowKeys, setSelectedRowKeys] = useState<MultipleUserType>([]);
   const [uploading, setUploading] = useState<boolean>(false);
@@ -223,13 +223,18 @@ const UserList: React.FC = () => {
         return (
           <Fragment>
             <Button
+              style={{ color: settings.themeColor }}
               type="link"
               onClick={() => onOpenAddEditForm("edit", record)}
             >
               <EditOutlined />
               {formatMessage("user_list.columns_action_edit")}
             </Button>
-            <Button type="link" onClick={() => handleSingleDeleteUser(record)}>
+            <Button
+              style={{ color: settings.themeColor }}
+              type="link"
+              onClick={() => handleSingleDeleteUser(record)}
+            >
               <DeleteOutlined />
               {formatMessage("user_list.columns_action_delete")}
             </Button>

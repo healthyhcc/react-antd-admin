@@ -17,7 +17,7 @@ const store: ToolkitStore = configureStore({
 });
 
 export const { setToken, setUserInfo } = userReducer.actions;
-export const { setCollapse, setIntl, setFixedHeader, setShowLogo, setShowTag } =
+export const { setCollapse, setIntl, setFixedHeader, setShowLogo, setShowTag, setThemeColor } =
   settingsReducer.actions;
 export const { addTag, closeTag, closeOtherTag, closeAllTag } =
   tagsReducer.actions;

@@ -12,6 +12,7 @@ interface TagType {
 }
 const Tags: React.FC = () => {
   const state: any = useSelector((state) => state);
+  const { settings } = state;
   const tagsDispatch = useDispatch();
   const { tags } = state?.tags;
   const location = useLocation();
@@ -22,8 +23,6 @@ const Tags: React.FC = () => {
     return intl.formatMessage({ id });
   };
   const onClickTag = (item: TagType) => {
-    console.log(item);
-
     navigate(item?.key);
   };
   const onCloseTag = (item: TagType) => {
@@ -55,7 +54,7 @@ const Tags: React.FC = () => {
         <Tag
           key={item?.key}
           closable={item?.key !== "/home"}
-          color={item?.key === pathname ? "#1890ff" : ""}
+          color={item?.key === pathname ? settings?.themeColor : ""}
           closeIcon={<CloseOutlined className="align-baseline" />}
           onClose={() => onCloseTag(item)}
           className="text-sm mb-2"

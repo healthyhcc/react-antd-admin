@@ -6,6 +6,7 @@ const initialSettings = {
   fixedHeader: false,
   showLogo: true,
   showTag: true,
+  themeColor: "",
 };
 const settingsData = localStorage.getItem("settings");
 const settingsState = settingsData ? JSON.parse(settingsData) : initialSettings;
@@ -32,6 +33,10 @@ const reducer: Slice = createSlice({
     },
     setShowTag(state: any, action: PayloadAction<boolean>) {
       state.showTag = action?.payload;
+      localStorage.setItem("settings", JSON.stringify(state));
+    },
+    setThemeColor(state: any, action: PayloadAction<any>) {
+      state.themeColor = action?.payload;
       localStorage.setItem("settings", JSON.stringify(state));
     },
   },

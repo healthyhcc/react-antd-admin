@@ -7,7 +7,7 @@ import zhCN from "antd/es/locale/zh_CN";
 import en from "@/lang/en.json";
 import zh from "@/lang/zh.json";
 
-const Intl: React.FC<any> = (props: any) => {
+const IntlTheme: React.FC<any> = (props: any) => {
   const state: any = useSelector((state) => state);
   const { settings } = state;
   const localLang = settings["intl"];
@@ -16,17 +16,18 @@ const Intl: React.FC<any> = (props: any) => {
     en: enUS,
     zh: zhCN,
   };
+  const theme = { token: { colorPrimary: settings.themeColor } };
   return (
     <IntlProvider
       key={localLang}
       locale={localLang}
       messages={i18nData[localLang]}
     >
-      <ConfigProvider locale={languageMap[localLang]}>
+      <ConfigProvider locale={languageMap[localLang]} theme={theme}>
         {props?.children}
       </ConfigProvider>
     </IntlProvider>
   );
 };
 
-export default Intl;
+export default IntlTheme;

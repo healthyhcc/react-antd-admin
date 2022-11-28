@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef, Fragment } from "react";
+import { useSelector } from "react-redux";
 import {
   Spin,
   Card,
@@ -58,6 +59,8 @@ interface ModalFormType {
 type OptionType = Array<{ label: string; value: number }>;
 type RadioType = Array<{ label: string; value: string }>;
 const TaskList: React.FC = () => {
+  const state: any = useSelector((state) => state);
+  const { settings } = state;
   const [taskTableData, setTaskTableData] = useState([]);
   const [searchForm, setSearchForm] = useState<SearchFormType>({
     taskname: "",
@@ -138,13 +141,18 @@ const TaskList: React.FC = () => {
         return (
           <Fragment>
             <Button
+              style={{ color: settings.themeColor }}
               type="link"
               onClick={() => onOpenAddEditForm("edit", record)}
             >
               <EditOutlined />
               {formatMessage("home.columns.edit")}
             </Button>
-            <Button type="link" onClick={() => handleDeleteTask(record)}>
+            <Button
+              style={{ color: settings.themeColor }}
+              type="link"
+              onClick={() => handleDeleteTask(record)}
+            >
               <DeleteOutlined />
               {formatMessage("home.columns.delete")}
             </Button>

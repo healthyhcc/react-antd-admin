@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { Provider } from "react-redux";
-import Intl from "@/components/Intl";
+import IntlTheme from "@/components/IntlTheme";
 import store from "@/store";
 import Router from "@/router/index";
 import "./main.css";
@@ -10,9 +10,9 @@ const App: React.FC = () => {
   if (!window.global) window.global = globalThis;
   return (
     <Provider store={store}>
-      <Intl>
+      <IntlTheme>
         <Router />
-      </Intl>
+      </IntlTheme>
     </Provider>
   );
 };

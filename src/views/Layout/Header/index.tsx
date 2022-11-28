@@ -182,8 +182,9 @@ const Header: React.FC = () => {
                 <a onClick={(event: any) => event?.preventDefault()}>
                   <Space align="center">
                     <TranslationOutlined
-                      ref={intlRef}
+                      style={{ color: settings.themeColor }}
                       className="text-2xl ml-4"
+                      ref={intlRef}
                     />
                   </Space>
                 </a>
@@ -195,8 +196,8 @@ const Header: React.FC = () => {
               >
                 <Space>
                   <SettingOutlined
-                    ref={settingsRef}
                     className="text-2xl mx-4 mt-1 cursor-default"
+                    ref={settingsRef}
                     onClick={() => setDrawerOpen(true)}
                   />
                 </Space>
@@ -205,7 +206,7 @@ const Header: React.FC = () => {
             <div className="h-full flex justify-between items-center">
               <Avatar src={`${SERVER_ADDRESS}/${userInfo?.avatar}`} />
               <Dropdown menu={{ items: systemMenu }} placement="bottom" arrow>
-                <Button type="link">
+                <Button style={{ color: settings.themeColor }} type="link">
                   <span className="text-lg">{userInfo?.username}</span>
                   <DownOutlined />
                 </Button>
