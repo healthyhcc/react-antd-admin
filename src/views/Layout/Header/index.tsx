@@ -206,7 +206,7 @@ const Header: React.FC = () => {
             <div className="h-full flex justify-between items-center">
               <Avatar src={`${SERVER_ADDRESS}/${userInfo?.avatar}`} />
               <Dropdown menu={{ items: systemMenu }} placement="bottom" arrow>
-                <Button style={{ color: settings.themeColor }} type="link">
+                <Button style={{ color: settings?.themeColor }} type="link">
                   <span className="text-lg">{userInfo?.username}</span>
                   <DownOutlined />
                 </Button>
@@ -215,7 +215,6 @@ const Header: React.FC = () => {
           </div>
           <DrawerSettings
             drawerOpen={drawerOpen}
-            fixedHeader={fixedHeader}
             setDrawerOpen={setDrawerOpen}
           />
         </div>

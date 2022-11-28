@@ -11,7 +11,8 @@ import {
 } from "@/store";
 
 interface PropsType {
-  drawerOpen: boolean;
+  drawerOpen: boolean,
+  setDrawerOpen: object
 }
 const DrawerSettings: React.FC<PropsType> = (props: any) => {
   const { drawerOpen, setDrawerOpen } = props;
