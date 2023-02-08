@@ -12,7 +12,7 @@
 An simple exercise project, react-antd-admin, use the latest package.
 
 [![react](https://img.shields.io/badge/react-^18.2.0-blue.svg?style=flat-square)](https://github.com/facebook/react)
-[![antd](https://img.shields.io/badge/antd-^4.24.1-orange.svg?style=flat-square)](https://github.com/ant-design/ant-design)
+[![antd](https://img.shields.io/badge/antd-^5.0.2-orange.svg?style=flat-square)](https://github.com/ant-design/ant-design)
 [![vite](https://img.shields.io/badge/vite-^3.1.8-yellow.svg?style=flat-square)](https://github.com/vitejs/vite)
 [![MIT](https://img.shields.io/dub/l/vibe-d.svg?style=flat-square)](http://opensource.org/licenses/MIT)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](https://github.com/healthyhcc/react-antd-admin/pulls)
